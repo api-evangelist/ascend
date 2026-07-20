@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/ascend-openapi-original.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearer_auth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/ascend-openapi-original.yml
