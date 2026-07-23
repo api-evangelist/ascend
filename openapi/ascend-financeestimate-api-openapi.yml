@@ -1,0 +1,158 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts FinanceEstimate API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: FinanceEstimate
+  description: Estimated financing terms.
+paths:
+  /v1/finance_estimates:
+    post:
+      summary: Create FinanceEstimate
+      tags:
+      - FinanceEstimate
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceEstimate'
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                premium_cents:
+                  type: integer
+                  description: The gross premium reduction for the policy.
+                minimum_earned_rate:
+                  type: number
+                  format: float
+                  description: The minimum rate to charge insureds when they decide to finance.
+                  minimum: 0
+                  maximum: 1
+                agency_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Fee collected by your agency. Fully earned, not financeable, and funded directly to your agency.
+                policy_fee_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any policy fees that come with the quote. This fee is treated as non-refundable & fully earned.
+                broker_fee_cents:
+                  type: integer
+                  minimum: 0
+                  description: Fee collected by the wholesaler. Fully earned, not financeable, and funded directly to the wholesaler.
+                taxes_and_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any taxes & unearned fees. Taxes and fees are financed.
+                other_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any additional fees that come with the policy. This fee is treated as non-refundable & fully earned.
+                custom_terms:
+                  type: object
+                  properties:
+                    downpayment_rate:
+                      type: number
+                      format: float
+                      description: The downpayment rate to be paid upfront.
+                      minimum: 0
+                      maximum: 1
+                    interest_rate:
+                      type: number
+                      format: float
+                      description: The interest rate for the quote.
+                      minimum: 0
+                      maximum: 1
+                    number_of_payments:
+                      type: integer
+                      description: The number of payments that will be made to repay the loan.
+                      minimum: 0
+                      maximum: 10
+                      example: 10
+                    payment_frequency:
+                      type: string
+                      enum:
+                      - monthly
+                      - quarterly
+                      - semiannual
+                      description: How often payments will be made.
+              required:
+              - premium_cents
+components:
+  schemas:
+    FinanceEstimate:
+      type: object
+      description: Return estimated loan terms
+      properties:
+        downpayment_cents:
+          type: integer
+          description: The initial up-front payment represented in cents.
+          minimum: 0
+          example: 3955000
+          readOnly: true
+        term_payment_cents:
+          type: integer
+          description: The amount that will be payed in each payment.
+          minimum: 0
+          example: 2027691
+          readOnly: true
+        number_of_payments:
+          type: integer
+          description: The number of payments that will be made to repay the loan.
+          minimum: 0
+          example: 10
+          readOnly: true
+        payment_frequency:
+          type: string
+          enum:
+          - monthly
+          - quarterly
+          - semiannual
+          description: How often payments will be made.
+          readOnly: true
+        total_sale_price_cents:
+          type: number
+          format: double
+          description: The total cost including downpayment and amount financed.
+          example: 5012285
+          readOnly: true
+        apr:
+          type: number
+          format: double
+          description: The annual rate charged.
+          example: 0.055
+          readOnly: true
+        total_interest_cents:
+          type: number
+          format: double
+          description: The total interest paid over the life of the loan.
+          example: 0.055
+          readOnly: true
+      required:
+      - downpayment_cents
+      - term_payment_cents
+      - number_of_payments
+      - payment_frequency
+      - total_sale_price_cents
+      - apr
+      - total_interest_cents
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

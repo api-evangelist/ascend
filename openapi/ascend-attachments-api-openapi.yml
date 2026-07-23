@@ -1,0 +1,118 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Attachments API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Attachments
+  description: Represents a file that is associated with a program.
+paths:
+  /v1/attachments:
+    post:
+      summary: Create attachment
+      tags:
+      - Attachments
+      operationId: createAttachment
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Attachment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: File to upload
+                title:
+                  type: string
+                  description: Title of the attachment
+                visibility:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  description: Determines who can see this document. When visibility is set to public, anyone with access to public urls such as checkout url will be able to see these documents. When visibility is set to private, only users from your organization will be able to see the documents.
+              required:
+              - file
+              - title
+              - visibility
+  /v1/attachments/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The attachment identifier
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Delete Attachments
+      security:
+      - bearer_auth: []
+      operationId: deleteAttachment
+      tags:
+      - Attachments
+      responses:
+        '204':
+          description: Attachment deleted
+        '404':
+          description: Attachments not found
+    get:
+      summary: Get attachment
+      tags:
+      - Attachments
+      operationId: getAttachment
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+        '404':
+          description: Attachment not found
+components:
+  schemas:
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+        title:
+          type: string
+          nullable: true
+          description: Title of the document.
+        url:
+          type: string
+          description: The url of the document.
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          description: Determines who can see this document. When visibility is set to public, anyone with access to public urls such as checkout url will be able to see these documents. When visibility is set to private, only users from your organization will be able to see the documents.
+      required:
+      - id
+      - title
+      - url
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

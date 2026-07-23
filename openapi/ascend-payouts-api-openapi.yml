@@ -1,0 +1,275 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Payouts API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Payouts
+  description: Money transfers between accounts triggered after an insured pays a quote.
+paths:
+  /v1/payouts:
+    get:
+      summary: List Payouts
+      tags:
+      - Payouts
+      operationId: listPayouts
+      security:
+      - bearer_auth: []
+      parameters:
+      - $ref: '#/components/parameters/program_id'
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: status
+        in: query
+        required: false
+        description: Filter by status
+        schema:
+          type: string
+      - name: paid_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return payouts paid during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return payouts created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return payouts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Payout'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+components:
+  schemas:
+    Payout:
+      type: object
+      description: Money transfers between accounts triggered after an insured pays a quote.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the payout.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          description: The date the payout was created. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+        failed_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date the payout failed. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+        gross_payout_amount_cents:
+          type: integer
+          description: The gross amount of the payout before fees. The value is represented in cents.
+          readOnly: true
+        gross_payout_amount_currency:
+          type: string
+          description: The three letter ISO-4217 currency code of the gross payout amount.
+          readOnly: true
+        installment_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment associated with this payout
+          readOnly: true
+        installment_plan_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment plan associated with this payout
+          readOnly: true
+        invoice_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the invoice associated with this payout
+          readOnly: true
+        net_payout_amount_cents:
+          type: integer
+          description: The net amount of the payout after fees. If there are no fees, this can be the same as gross payout amount. The value is represented in cents.
+          readOnly: true
+        net_payout_amount_currency:
+          type: string
+          description: The three letter ISO-4217 currency code of the net payout amount.
+          readOnly: true
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The time at which the payout was successfully transferred to the destination account. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+        payable_account:
+          type: object
+          description: The destination account of the payout.
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: The unique identifier for the payout.
+              readOnly: true
+            bank_name:
+              type: string
+              nullable: true
+              description: The name of the bank asssociated with the account.
+              readOnly: true
+            last_four_digits:
+              type: integer
+              nullable: true
+              description: The last four digits of the bank account number
+              readOnly: true
+            routing_number:
+              type: integer
+              nullable: true
+              description: The routing transit number for the bank account.
+              readOnly: true
+            owner_name:
+              type: string
+              nullable: true
+              description: The name of the person or business that owns the account.
+              readOnly: true
+            usage_type:
+              type: string
+              enum:
+              - trust_account
+              - commission_account
+              - supplier_account
+              description: The purpose for which this account is used.
+              readOnly: true
+        paying_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The time at which the payout was initiated. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+        payout_type:
+          type: string
+          enum:
+          - full_premium
+          - commission
+          - take_rate
+          - supplier
+          description: The type of payout
+          readOnly: true
+        program_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the program associated with this payout
+          readOnly: true
+        quote_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: The unique identifier of the quote associated with this payout
+          readOnly: true
+        recipient:
+          type: object
+          description: The entity receiving the payout funds.
+          properties:
+            type:
+              type: string
+              enum:
+              - account
+              - carrier
+              - organization
+              - wholesaler
+              description: The type of entity that received the funds
+              readOnly: true
+        reference:
+          type: string
+          description: The reference number of the batch payout associated with this payout
+          readOnly: true
+        status:
+          type: string
+          enum:
+          - unpaid
+          - transferred
+          - paying
+          - paid
+          - failed
+          - skipped
+          - refunded
+          - pending_servicer_payment
+          description: The state of the payout
+          readOnly: true
+        subscription_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment plan associated with this payout
+          readOnly: true
+          deprecated: true
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the payout was last updated. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,714 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Billables API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Billables
+  description: Represents an insurance quote or endorsement to be billed to the insured.
+paths:
+  /v1/billables:
+    post:
+      summary: Create Billable
+      tags:
+      - Billables
+      operationId: createBillable
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Billable'
+        '400':
+          description: Conflicting commission parameters
+        '404':
+          description: Record not Found
+        '422':
+          description: Not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: An insurance quote or endorsement to be billed to the insured.
+              properties:
+                agency_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Fee collected by your agency or by your partner, if you are a MGA. Fully earned, not financeable, and will be funded directly to your agency or partner.
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The Attachment ID
+                    required:
+                    - id
+                billable_identifier:
+                  type: string
+                  description: The identifier assigned to the quote/endorsement by the issuing carrier or wholesaler.
+                broker_fee_cents:
+                  type: integer
+                  minimum: 0
+                  description: Fee collected by the wholesaler. Fully earned, not financeable, and funded directly to the wholesaler.
+                carrier_identifier:
+                  type: string
+                  description: The identifier of the carrier who issued this quote. Required when billable is of type quote. When the billable is an endorsement the carrier will be inherited from the parent billable.
+                commission_terms:
+                  type: array
+                  deprecated: true
+                  description: 'Deprecated: use `organization_account_commission_cents` or `organization_account_commission_rate` instead.'
+                  items:
+                    type: object
+                    properties:
+                      organization_account_id:
+                        type: string
+                        description: The organization account to receive the commission. If null the commission will be funded to your organization.
+                      commission_cents:
+                        type: number
+                        format: integer
+                        nullable: true
+                        description: The commission amount for this entity in cents. One of `commission_cents` or `commission_rate` is required.
+                      commission_rate:
+                        type: number
+                        format: float
+                        nullable: true
+                        description: The commission rate for this entity. One of `commission_cents` or `commission_rate` is required.
+                coverage_identifier:
+                  type: string
+                  description: The identifier of coverage type the quote/endorsement covers.
+                description:
+                  type: string
+                  description: For endorsements, add a short description to explain to the insured what is changing.
+                effective_date:
+                  type: string
+                  format: date
+                  description: 'The date upon the quote/endorsement goes into effect. Expected format: YYYY-MM-DD.'
+                expiration_date:
+                  type: string
+                  format: datetime
+                  description: 'The date when the quote/endorsement is no longer active. Expected format: YYYY-MM-DD'
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the billable. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+                min_earned_rate:
+                  type: number
+                  format: float
+                  description: If there is a mininum earned on the policy, this field is required.
+                organization_account_commission_cents:
+                  type: number
+                  format: integer
+                  nullable: true
+                  description: For MGAs, set this field for your partner's commission amount. You must set one of `organization_account_commission_cents` or `organization_account_commission_rates`
+                organization_account_commission_rate:
+                  type: number
+                  format: float
+                  nullable: true
+                  description: For MGAs, set this field for your partner's commission rate. You must set one of `organization_account_commission_cents` or `organization_account_commission_rates`
+                organization_commission_cents:
+                  type: number
+                  format: integer
+                  nullable: true
+                  description: Your commission amount for this policy. If you're an agency, you must set one of `organization_commission_cents` or `organization_commission_rates`
+                organization_commission_rate:
+                  type: number
+                  format: float
+                  nullable: true
+                  description: Your commission rate for this policy. If you're an agency, you must set one of `organization_commission_cents` or `organization_commission_rates`
+                other_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any additional fees that come with the policy. This fee is treated as non-refundable & fully earned.
+                parent_billable_id:
+                  type: string
+                  format: uuid
+                  description: To create a premium increasing endorsement, set this to the billable ID of the policy you are endorsing. Should only be used if the intent is to create a premium increasing endorsement.
+                policy_fee_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any policy fees that come with the quote. This fee is treated as non-refundable & fully earned.
+                policy_number:
+                  type: string
+                  description: The number assigned to the policy once it has been bound.
+                premium_cents:
+                  type: integer
+                  minimum: 0
+                  description: The amount to pay for the quote or endorsement.
+                program_id:
+                  type: string
+                  format: uuid
+                  description: The id of the program the billable should be a part of.
+                seller_commission_amount_cents:
+                  type: number
+                  format: integer
+                  nullable: true
+                  description: 'Deprecated: use `organization_commission_cents` instead. Your commission amount for this policy. If you''re an agency, you must set one of `seller_commission_amount_cents` or `seller_commission_rate`. If MGA or Wholesaler, set commission_terms.'
+                  deprecated: true
+                seller_commission_rate:
+                  type: number
+                  format: float
+                  nullable: true
+                  description: 'Deprecated: use `organization_commission_rate` instead. Your commission rate for this policy. If you''re an agency, you must set one of `seller_commission_amount_cents` or `seller_commission_rate`. If MGA or Wholesaler, set commission_terms.'
+                  deprecated: true
+                surplus_lines_tax_cents:
+                  type: integer
+                  minimum: 0
+                  description: 'If you are filing surplus lines taxes & fees, set this field. These fees are financeable and will be funded to you. Note: This field is only supported for organizations with surplus lines tax functionality enabled. Contact developers@useascend.com to enable this feature.'
+                taxes_and_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any taxes & unearned fees. Taxes and fees are financed.
+                wholesaler_identifier:
+                  type: string
+                  description: The identifier of the wholesaler or MGA that issued this quote. Required if you're an MGA or Wholesaler. When the billable is an endorsement the wholesaler will be inherited from the parent billable.
+              required:
+              - billable_identifier
+              - carrier_identifier
+              - coverage_identifier
+              - effective_date
+              - expiration_date
+              - premium_cents
+              - program_id
+              - billable_type
+    get:
+      summary: List Billables
+      tags:
+      - Billables
+      operationId: listBillables
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: program_id
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+        description: Filter by the ID of the associated program
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return billables that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return billables that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Billable'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+  /v1/billables/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The billable identifier
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Delete Billable
+      tags:
+      - Billables
+      operationId: deleteBillable
+      security:
+      - bearer_auth: []
+      responses:
+        '204':
+          description: Billable deleted
+        '404':
+          description: Billable not found
+    get:
+      summary: Get Billable
+      tags:
+      - Billables
+      operationId: getBillable
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Billable found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Billable'
+        '404':
+          description: Billable not found
+    patch:
+      summary: Update Billable
+      tags:
+      - Billables
+      operationId: updateBillable
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: Billable updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Billable'
+        '400':
+          description: Billable type does not belong in checkout session
+        '404':
+          description: Billable not found
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: An insurance quote or endorsement to be billed to the insured.
+              properties:
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The Attachment ID
+                    required:
+                    - id
+                agency_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Fee collected by your agency or by your partner, if you are a MGA. Fully earned, not financeable, and will be funded directly to your agency or partner.
+                billable_identifier:
+                  type: string
+                  description: The identifier assigned to the quote/endorsement by the issuing carrier or wholesaler.
+                broker_fee_cents:
+                  type: integer
+                  minimum: 0
+                  description: Fee collected by the wholesaler. Fully earned, not financeable, and funded directly to the wholesaler.
+                carrier_identifier:
+                  type: string
+                  description: The identifier of the carrier who issued this quote. Required when billable is of type quote. When the billable is an endorsement the carrier will be inherited from the parent billable.
+                commission_terms:
+                  type: array
+                  deprecated: true
+                  description: 'Deprecated: use `organization_account_commission_cents` or `organization_account_commission_rate` instead.'
+                  items:
+                    type: object
+                    properties:
+                      organization_account_id:
+                        type: string
+                        description: The account to receive the commission. If null the commission will be funded to your organization.
+                      commission_cents:
+                        type: number
+                        format: integer
+                        description: The commission amount for this entity in cents. One of `commission_cents` or `commission_rate` is required.
+                      commission_rate:
+                        type: number
+                        format: float
+                        description: The commission rate for this entity.
+                coverage_identifier:
+                  type: string
+                  description: The identifier of coverage type the quote/endorsement covers.
+                description:
+                  type: string
+                  description: A short description to explain to the insured what they are purchasing.
+                effective_date:
+                  type: string
+                  format: date
+                  description: 'The date upon the quote/endorsement goes into effect. Expected format: YYYY-MM-DD.'
+                expiration_date:
+                  type: string
+                  format: datetime
+                  description: 'The date when the quote is no longer active. Expected format: YYYY-MM-DD.'
+                is_auditable:
+                  type: boolean
+                  description: Determines if the carrier can audit customer raising premium significantly. Cannot be set when billable is of type endorsement.
+                is_filed:
+                  type: boolean
+                  description: Determines if specific lines of business are filed with other bureaus which they have to notify on cancelation. Cannot be set when billable is of type endorsement.
+                is_short_rate:
+                  type: boolean
+                  description: Determines if the policy is fined by 10% on top of earned premium when insured cancels. Cannot be set when billable is of type endorsement.
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the billable. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+                min_days_to_cancel:
+                  type: integer
+                  description: Set state determined extended cancelation period for the policy.
+                min_earned_rate:
+                  type: number
+                  format: float
+                  description: The minimum rate to charge insureds when they decide to finance.
+                organization_account_commission_cents:
+                  type: number
+                  format: integer
+                  nullable: true
+                  description: For MGAs, set this field for your partner's commission amount. You must set one of `organization_account_commission_cents` or `organization_account_commission_rates`
+                organization_account_commission_rate:
+                  type: number
+                  format: float
+                  nullable: true
+                  description: For MGAs, set this field for your partner's commission rate. You must set one of `organization_account_commission_cents` or `organization_account_commission_rates`
+                organization_commission_cents:
+                  type: number
+                  format: integer
+                  nullable: true
+                  description: Your commission amount for this policy. If you're an agency, you must set one of `organization_commission_cents` or `organization_commission_rates`
+                organization_commission_rate:
+                  type: number
+                  format: float
+                  nullable: true
+                  description: Your commission rate for this policy. If you're an agency, you must set one of `organization_commission_cents` or `organization_commission_rates`
+                other_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any additional fees that come with the policy. This fee is treated as non-refundable & fully earned.
+                parent_billable_id:
+                  type: string
+                  format: uuid
+                  description: The id of the billable to be endorsed.
+                policy_fee_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any policy fees that come with the quote. This fee is treated as non-refundable & fully earned.
+                policy_number:
+                  type: string
+                  description: The number assigned to the policy once it has been bound.
+                premium_cents:
+                  type: integer
+                  minimum: 0
+                  description: The amount to pay for the quote or endorsement.
+                seller_commission_amount_cents:
+                  type: number
+                  format: integer
+                  nullable: true
+                  description: 'Deprecated: use `organization_commission_cents` instead. Your commission amount for this policy. If you''re an agency, you must set one of `seller_commission_amount_cents` or `seller_commission_rate`. If MGA or Wholesaler, set commission_terms.'
+                  deprecated: true
+                seller_commission_rate:
+                  type: number
+                  format: float
+                  nullable: true
+                  description: 'Deprecated: use `organization_commission_rate` instead. Your commission rate for this policy. If you''re an agency, you must set one of `seller_commission_amount_cents` or `seller_commission_rate`. If MGA or Wholesaler, set commission_terms.'
+                  deprecated: true
+                taxes_and_fees_cents:
+                  type: integer
+                  minimum: 0
+                  description: Any taxes & unearned fees. Taxes and fees are financed.
+                surplus_lines_tax_cents:
+                  type: integer
+                  minimum: 0
+                  description: 'If you are filing surplus lines taxes & fees, set this field. These fees are financeable and will be funded to you. Note: This field is only supported for organizations with surplus lines tax functionality enabled. Contact developers@useascend.com to enable this feature.'
+                wholesaler_identifier:
+                  type: string
+                  description: The identifier of the wholesaler that issued this quote. When the billable is an endorsement the wholesaler will be inherited from the parent billable.
+components:
+  schemas:
+    Wholesaler:
+      type: object
+      description: An insurance wholesaler or MGA.
+      properties:
+        identifier:
+          type: string
+          description: A human readable unique identifier.
+        title:
+          type: string
+          description: The wholesaler display name.
+        mailing_address_street_one:
+          type: string
+          description: Mailing Street address
+          nullable: true
+        mailing_address_street_two:
+          type: string
+          description: Suite or unit
+          nullable: true
+        mailing_address_city:
+          type: string
+          description: Mailing city
+          nullable: true
+        mailing_address_state:
+          $ref: '#/components/schemas/StateAnsiCodes'
+          nullable: true
+        mailing_address_zip_code:
+          type: string
+          description: Mailing zip code
+          nullable: true
+    Billable:
+      type: object
+      description: An insurance quote or endorsement to be billed to the insured.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the billable.
+        agency_fees_cents:
+          type: integer
+          minimum: 0
+          description: Fee collected by your agency. Fully earned, not financeable, and funded directly to your agency.
+        billable_identifier:
+          type: string
+          description: The identifier assigned to the quote/endorsement by the issuing carrier or wholesaler.
+        broker_fee_cents:
+          type: integer
+          minimum: 0
+          description: Fee collected by the wholesaler. Fully earned, not financeable, and funded directly to the wholesaler.
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        description:
+          type: string
+          nullable: true
+          description: A short description to explain to the insured what they are purchasing.
+        coverage_type:
+          $ref: '#/components/schemas/CoverageType'
+        effective_date:
+          type: string
+          format: date
+          description: 'The date upon the billable goes into effect. Expected format: YYYY-MM-DD.'
+        expiration_date:
+          type: string
+          format: date
+          nullable: true
+          description: 'The date when the billable is no longer active. Expected format: YYYY-MM-DD.'
+        documents:
+          type: array
+          description: A collection of documents associated with the billable.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: The display name of the static asset.
+                nullable: true
+              url:
+                type: string
+                description: The url to access the static asset.
+        is_auditable:
+          type: boolean
+          description: Determines if the carrier can audit customer raising premium significantly.
+        is_filed:
+          type: boolean
+          description: Determines if specific lines of business are filed with other bureaus which they have to notify on cancelation.
+        is_short_rate:
+          type: boolean
+          description: 'Determines if the policy is fined by 10% on top of earned premium when insured cancels '
+        min_days_to_cancel:
+          type: integer
+          description: Set state determined extended cancelation period for the policy.
+        min_earned_rate:
+          type: number
+          format: float
+          description: The minimum rate to charge insureds when they decide to finance.
+        other_fees_cents:
+          type: integer
+          description: Any additional fees that come with the policy. This fee is treated as non-refundable & fully earned.
+        parent_billable_id:
+          type: string
+          nullable: true
+          format: uuid
+          description: The unique identifier for the parent billable.
+        policy_fee_cents:
+          type: integer
+          description: Any policy fees that come with the billable. This fee is treated as non-refundable & fully earned.
+        policy_number:
+          type: string
+          nullable: true
+          description: The number assigned to the policy once it has been bound.
+        premium_cents:
+          type: integer
+          description: The amount to pay for the insurance policy.
+        seller_commission_amount_cents:
+          type: number
+          format: integer
+          description: Your commission amount for this policy.
+        seller_commission_rate:
+          type: number
+          format: float
+          nullable: true
+          description: Your commission rate for this policy.
+        commission_terms:
+          type: array
+          items:
+            type: object
+            properties:
+              organization_account_id:
+                type: string
+                description: The organization account to receive the commission. If null the commission will be funded to your organization.
+              commission_cents:
+                type: number
+                description: The commission amount for this entity in cents.
+        taxes_and_fees_cents:
+          type: integer
+          description: Any taxes & unearned fees. Taxes and fees are financed.
+        program_id:
+          type: string
+          format: uuid
+          description: The id of the program the billable should be a part of.
+        surplus_lines_tax_cents:
+          type: integer
+          description: The amount of surplus lines tax to be collected.
+        wholesaler:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Wholesaler'
+        metadata:
+          type: object
+          description: Metadata associated with the billable.
+          nullable: true
+    CoverageType:
+      type: object
+      description: A type of coverage.
+      properties:
+        identifier:
+          type: string
+          description: A human readable unique identifier.
+        title:
+          type: string
+          description: The coverage type display name.
+    StateAnsiCodes:
+      type: string
+      description: 'A US State represented with their ANSI code. For ex: California = CA'
+      enum:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
+    Carrier:
+      type: object
+      description: An insurance company.
+      properties:
+        identifier:
+          type: string
+          description: A human readable unique identifier.
+        title:
+          type: string
+          description: The carrier display name.
+        mailing_address_street_one:
+          type: string
+          description: Mailing Street address
+          nullable: true
+        mailing_address_street_two:
+          type: string
+          description: Suite or unit
+          nullable: true
+        mailing_address_city:
+          type: string
+          description: Mailing city
+          nullable: true
+        mailing_address_state:
+          $ref: '#/components/schemas/StateAnsiCodes'
+          nullable: true
+        mailing_address_zip_code:
+          type: string
+          description: Mailing zip code
+          nullable: true
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

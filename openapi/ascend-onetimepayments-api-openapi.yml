@@ -1,0 +1,691 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts OneTimePayments API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: OneTimePayments
+  description: Represents records of a transaction between an insured and an agency or MGA.
+paths:
+  /v1/one_time_payments:
+    post:
+      summary: Create One Time Payment
+      tags:
+      - OneTimePayments
+      operationId: createOneTimePayment
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OneTimePayment'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a transaction between an insured and an agency or MGA.
+              properties:
+                account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the account manager for the one time payment. This user is listed as the agent on checkout and receives any invoice communications
+                  format: uuid
+                  type: string
+                secondary_account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the secondary account manager for the one time payment. This user receives any invoice communications that the account manager also receives
+                  format: uuid
+                  type: string
+                attachments:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: The unique identifier of the attachment.
+                    required:
+                    - id
+                billing_type:
+                  type: string
+                  enum:
+                  - agency_bill
+                  - direct_bill
+                  description: (MGA only) The type of billing used for this one time payment. If not specified, defaults to the billing type on the organization account.
+                due_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  description: The date by which the one time payment should be paid.
+                funds_distribution:
+                  type: object
+                  description: Dictates where funds will be routed upon receiving payment for this one time payment. Defaults to full allocation to the issuer's configured bank account.
+                  properties:
+                    company_payables:
+                      type: array
+                      description: Payables paid to the issuing or billing company
+                      items:
+                        type: object
+                        properties:
+                          amount_cents:
+                            type: integer
+                            description: Amount to be paid
+                          identifier:
+                            type: string
+                            description: Identifier of the issuing or billing company
+                          remittance_memo:
+                            type: string
+                            description: Remittance memo such as the policy number to identify the payable
+                            maxLength: 50
+                        required:
+                        - amount_cents
+                        - identifier
+                        - remittance_memo
+                    organization_account_payables:
+                      type: array
+                      description: Payables to partner agencies
+                      items:
+                        type: object
+                        properties:
+                          amount_cents:
+                            type: integer
+                            description: Amount to be paid
+                          organization_account_id:
+                            type: string
+                            description: Organization account id for the partner agency
+                          remittance_memo:
+                            type: string
+                            description: Remittance memo such as the policy number to identify the payable
+                            maxLength: 50
+                        required:
+                        - amount_cents
+                        - organization_account_id
+                        - remittance_memo
+                    payables:
+                      type: array
+                      description: Payables paid to your organization
+                      items:
+                        type: object
+                        properties:
+                          account_type:
+                            type: string
+                            enum:
+                            - trust_account
+                            - commission_account
+                            description: The type of the bank account that will receive funds
+                          amount_cents:
+                            type: integer
+                            description: Amount to be paid
+                          remittance_memo:
+                            type: string
+                            description: Remittance memo such as the policy number to identify the payable
+                            maxLength: 50
+                        required:
+                        - account_type
+                        - amount_cents
+                        - remittance_memo
+                insured_id:
+                  type: string
+                  format: uuid
+                  description: The unique identifier of the insured for this one time payment. By default, the one time payment will be issued to the insured.
+                invoice_items:
+                  type: array
+                  description: A breakdown of items being charged for.
+                  items:
+                    $ref: '#/components/schemas/InvoiceItem'
+                memo:
+                  type: string
+                  description: Information about the one time payment shown to the payer.
+                  default: Invoice for {payer_name}
+                  nullable: true
+                  example: Additional premium for auto policy
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the one time payment. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+                organization_account:
+                  type: object
+                  description: (MGA only) The billing account associated to the one time payment. This can represent either the wholesaler or the retail agency.
+                  nullable: true
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: The unique identifier of the billing account associated to the one time payment.
+                    users:
+                      type: array
+                      description: An array of user ids belonging to the billing account who should receive communications for the one time payment.
+                      items:
+                        type: string
+                        format: uuid
+              required:
+              - account_manager_id
+              - due_date
+              - funds_distribution
+              - insured_id
+              - invoice_items
+    get:
+      summary: List One Time Payments
+      tags:
+      - OneTimePayments
+      operationId: listOneTimePayments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: insured_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+          description: Filter by one time payments related to this insured
+        required: false
+      - name: organization_account_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+          description: Filter by one time payments related to this organization account
+        required: false
+      - name: due_date_start
+        in: query
+        schema:
+          type: string
+          format: date
+          description: Filter by one time payments due on or after this date
+        required: false
+      - name: due_date_end
+        in: query
+        schema:
+          type: string
+          format: date
+          description: Filter by one time payments due on or before this date
+        required: false
+      - name: paid_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return one time payments paid during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for paginating results. Default is 1.
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return one time payments that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return one time payments that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OneTimePayment'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+  /v1/one_time_payments/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The one time payment identifier
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get One Time Payment
+      tags:
+      - OneTimePayments
+      operationId: getOneTimePayment
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OneTimePayment'
+        '404':
+          description: not found
+    patch:
+      summary: Update One Time Payment
+      tags:
+      - OneTimePayments
+      operationId: updateOneTimePayment
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OneTimePayment'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a transaction between an insured and an agency or MGA.
+              properties:
+                account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the account manager for the one time payment. This user is listed as the agent on checkout and receives any invoice communications
+                  format: uuid
+                  type: string
+                secondary_account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the secondary account manager for the one time payment. This user receives any invoice communications that the account manager also receives
+                  format: uuid
+                  type: string
+                due_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  description: The date by which the one time payment should be paid.
+                funds_distribution:
+                  type: object
+                  description: Dictates where funds will be routed upon receiving payment for this invoice. Defaults to full allocation to the issuer's configured bank account.
+                  properties:
+                    company_payables:
+                      type: array
+                      description: Payables paid to the issuing or billing company
+                      items:
+                        type: object
+                        properties:
+                          amount_cents:
+                            type: integer
+                            description: Amount to be paid
+                          identifier:
+                            type: string
+                            description: Identifier of the issuing or billing company
+                          remittance_memo:
+                            type: string
+                            description: Remittance memo such as the policy number to identify the payable
+                            maxLength: 50
+                        required:
+                        - amount_cents
+                        - identifier
+                        - remittance_memo
+                    organization_account_payables:
+                      type: array
+                      description: Payables to partner agencies
+                      items:
+                        type: object
+                        properties:
+                          amount_cents:
+                            type: integer
+                            description: Amount to be paid
+                          organization_account_id:
+                            type: string
+                            description: Organization account id for the partner agency
+                          remittance_memo:
+                            type: string
+                            description: Remittance memo such as the policy number to identify the payable
+                            maxLength: 50
+                        required:
+                        - amount_cents
+                        - organization_account_id
+                        - remittance_memo
+                    payables:
+                      type: array
+                      description: Payables paid to your organization
+                      items:
+                        type: object
+                        properties:
+                          account_type:
+                            type: string
+                            enum:
+                            - trust_account
+                            - commission_account
+                            description: The type of the bank account that will receive funds
+                          amount_cents:
+                            type: integer
+                            description: Amount to be paid
+                          remittance_memo:
+                            type: string
+                            description: Remittance memo such as the policy number to identify the payable
+                            maxLength: 50
+                        required:
+                        - account_type
+                        - amount_cents
+                        - remittance_memo
+                invoice_items:
+                  type: array
+                  description: A breakdown of items the insured is being charged for
+                  items:
+                    $ref: '#/components/schemas/InvoiceItem'
+                memo:
+                  type: string
+                  description: Information about the one time payment shown to the insured.
+                  nullable: true
+                  example: Additional premium for auto policy
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the one time payment. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+                organization_account:
+                  type: object
+                  description: (MGA only) The billing account associated to the one time payment. This can represent either the wholesaler or the retail agency.
+                  properties:
+                    users:
+                      type: array
+                      description: An array of user ids belonging to the billing account who should receive communications for the one time payment.
+                      items:
+                        type: string
+                        format: uuid
+              required:
+              - funds_distribution
+              - invoice_items
+    delete:
+      summary: Void One Time Payment
+      tags:
+      - OneTimePayments
+      operationId: voidOneTimePayment
+      security:
+      - bearer_auth: []
+      responses:
+        '204':
+          description: One Time Payment Voided
+  /v1/one_time_payments/{id}/send:
+    parameters:
+    - name: id
+      in: path
+      description: The id of the one_time_payment
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Notify User
+      tags:
+      - OneTimePayments
+      operationId: sendOneTimePaymentReminder
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+components:
+  schemas:
+    OneTimePayment:
+      type: object
+      description: A document representing a transaction between an insured and an agency or MGA.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The one time payment unique identifier.
+          readOnly: true
+        account_manager:
+          $ref: '#/components/schemas/User'
+        secondary_account_manager:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        billing_type:
+          type: string
+          enum:
+          - agency_bill
+          - direct_bill
+          description: (MGA only) The type of billing used for this one time payment.
+        checkout_url:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The checkout url of the one time payment.
+        due_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date by which the one time payment should be paid.
+        funds_distribution:
+          type: object
+          nullable: true
+          description: Dictates where funds will be routed upon receiving payment for this one time payment. Defaults to full allocation to the issuer's configured bank account.
+          properties:
+            company_payables:
+              type: array
+              description: Payables paid to the issuing or billing company
+              items:
+                type: object
+                properties:
+                  amount_cents:
+                    type: integer
+                    description: Amount to be paid
+                  identifier:
+                    type: string
+                    description: Identifier of the issuing or billing company
+                  remittance_memo:
+                    type: string
+                    description: Remittance memo such as the policy number to identify the payable
+                    maxLength: 50
+            organization_account_payables:
+              type: array
+              description: Payables to partner agencies
+              items:
+                type: object
+                properties:
+                  amount_cents:
+                    type: integer
+                    description: Amount to be paid
+                  organization_account_id:
+                    type: string
+                    description: Organization account id for the partner agency
+                  remittance_memo:
+                    type: string
+                    description: Remittance memo such as the policy number to identify the payable
+                    maxLength: 50
+            payables:
+              type: array
+              description: Payables paid to your organization
+              items:
+                type: object
+                properties:
+                  account_type:
+                    type: string
+                    enum:
+                    - trust_account
+                    - commission_account
+                    description: The type of the bank account that will receive funds
+                  amount_cents:
+                    type: integer
+                    description: Amount to be paid
+                  remittance_memo:
+                    type: string
+                    description: Remittance memo such as the policy number to identify the payable
+                    maxLength: 50
+        insured_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the insured for this one time payment.
+        invoice_documents:
+          type: array
+          nullable: true
+          description: A collection of documents associated with the one time payment.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: The display name of the static asset.
+                nullable: true
+              url:
+                type: string
+                description: The url to access the static asset.
+        invoice_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+        invoice_number:
+          type: string
+          description: A number assigned to uniquely identify the invoice.
+          example: I909821
+          readOnly: true
+        memo:
+          type: string
+          description: Information about the one time payment shown to the payer.
+          nullable: true
+          example: Additional premium for auto policy
+        metadata:
+          type: object
+          description: Metadata associated with the one time payment.
+          nullable: true
+        organization_account_id:
+          type: string
+          format: uuid
+          description: (MGA only) The unique identifier of the organization account associated with this one time payment.
+          nullable: true
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date when the one time payment was paid by the payer.
+          readOnly: true
+        payer:
+          type: object
+          description: The payer of the one time payment.
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: The unique identifier of the payer of the one time payment.
+            type:
+              type: string
+              enum:
+              - Insured
+              - OrganizationAccount
+              description: The type of payer.
+        status:
+          type: string
+          description: The current state of the one time payment.
+          example: awaiting_payment
+          readOnly: true
+          enum:
+          - draft
+          - awaiting_payment
+          - overdue
+          - processing_payment
+          - paid
+          - void
+        total_amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+          readOnly: true
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type: string
+          nullable: true
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

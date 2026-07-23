@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts CoverageTypes API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: CoverageTypes
+  description: Represents the coverage types Ascend supports for quote creation.
+paths:
+  /v1/coverage_types:
+    get:
+      summary: List CoverageTypes
+      tags:
+      - CoverageTypes
+      operationId: listCoverageTypes
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

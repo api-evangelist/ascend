@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Installments API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Installments
+  description: An single installment on a installment plan
+paths:
+  /v1/installments/{id}:
+    get:
+      summary: Get installment
+      tags:
+      - Installments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        description: Id of the installment
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Installment'
+        '403':
+          description: Unauthorized
+    patch:
+      summary: Update installment
+      tags:
+      - Installments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        description: Id of the installment
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Installment'
+        '403':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                due_date:
+                  type: string
+                  format: date
+                  description: 'Due date of the installment. Format: YYYY-MM-DD'
+                amount_cents:
+                  type: integer
+                  description: Total amount to be paid for the installment
+                payables:
+                  type: array
+                  description: Payables paid to your organization
+                  items:
+                    type: object
+                    properties:
+                      amount_cents:
+                        type: integer
+                        description: Amount to be paid
+                      account_type:
+                        type: string
+                        enum:
+                        - trust_account
+                        - commission_account
+                        description: The type of the bank account that will receive funds
+                      remittance_memo:
+                        type: string
+                        description: Remittance memo such as the policy number to identify the payable
+                        maxLength: 50
+                    required:
+                    - amount_cents
+                    - account_type
+                    - remittance_memo
+                company_payables:
+                  type: array
+                  description: Payables paid to the issuing or billing company
+                  items:
+                    type: object
+                    properties:
+                      amount_cents:
+                        type: integer
+                        description: Amount to be paid
+                      identifier:
+                        type: string
+                        description: Identifier of the issuing or billing company
+                      remittance_memo:
+                        type: string
+                        description: Remittance memo such as the policy number to identify the payable
+                        maxLength: 50
+                    required:
+                    - amount_cents
+                    - identifier
+                    - remittance_memo
+                organization_account_payables:
+                  type: array
+                  description: Payables to partner agencies
+                  items:
+                    type: object
+                    properties:
+                      amount_cents:
+                        type: integer
+                        description: Amount to be paid
+                      organization_account_id:
+                        type: string
+                        description: Organization account id for the partner agency
+                      remittance_memo:
+                        type: string
+                        description: Remittance memo such as the policy number to identify the payable
+                        maxLength: 50
+                    required:
+                    - amount_cents
+                    - organization_account_id
+                    - remittance_memo
+components:
+  schemas:
+    Installment:
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the installment
+        status:
+          type: string
+          enum:
+          - awaiting_payment
+          - processing_payment
+          - paid
+          - overdue
+          - void
+          description: Status of the installment
+        checkout_url:
+          type: string
+          format: uri
+          description: Checkout url for the installment
+        due_date:
+          type: string
+          format: date
+          description: 'Due date of the installment. Format: YYYY-MM-DD'
+        amount_cents:
+          type: integer
+          description: Total amount to be paid for the installment
+        payables:
+          type: array
+          description: Payables paid to your organization
+          items:
+            type: object
+            properties:
+              amount_cents:
+                type: integer
+                description: Amount to be paid
+              account_type:
+                type: string
+                enum:
+                - trust_account
+                - commission_account
+                description: The type of the bank account that will receive funds
+              remittance_memo:
+                type: string
+                description: Remittance memo such as the policy number to identify the payable
+                maxLength: 50
+        company_payables:
+          type: array
+          description: Payables paid to the issuing or billing company
+          items:
+            type: object
+            properties:
+              amount_cents:
+                type: integer
+                description: Amount to be paid
+              identifier:
+                type: string
+                description: Identifier of the issuing or billing company
+              remittance_memo:
+                type: string
+                description: Remittance memo such as the policy number to identify the payable
+                maxLength: 50
+        organization_account_payables:
+          type: array
+          description: Payables to partner agencies
+          items:
+            type: object
+            properties:
+              amount_cents:
+                type: integer
+                description: Amount to be paid
+              organization_account_id:
+                type: string
+                description: Organization account id for the partner agency
+              remittance_memo:
+                type: string
+                description: Remittance memo such as the policy number to identify the payable
+                maxLength: 50
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

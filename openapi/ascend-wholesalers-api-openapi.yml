@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Wholesalers API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Wholesalers
+paths:
+  /v1/wholesalers:
+    get:
+      summary: List Wholesalers
+      tags:
+      - Wholesalers
+      operationId: listWholesalers
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        description: The requested page number. Default page number is 0.
+        schema:
+          type: integer
+      - name: search_query
+        in: query
+        description: The term used to search. An empty query can be used to fetch all wholesalers sorted by the wholesaler name in alphabetical order.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

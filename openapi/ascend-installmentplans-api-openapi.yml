@@ -1,0 +1,477 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts InstallmentPlans API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: InstallmentPlans
+  description: A payment plan broken down over a seriies of regular installments
+paths:
+  /v1/installment_plans:
+    post:
+      summary: Create installment plan
+      tags:
+      - InstallmentPlans
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallmentPlan'
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: An installment plan for a series of payments
+              properties:
+                account_manager_id:
+                  type: string
+                  format: uuid
+                  description: Id of the account manager belonging to your organization who will receive email communications for the installment plan
+                secondary_account_manager_id:
+                  type: string
+                  format: uuid
+                  description: Id of the secondary account manager belonging to your organization who will receive the same email communications for the installment plan as the account manager
+                attachments:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: The unique identifier of the attachment.
+                    required:
+                    - id
+                billing_type:
+                  type: string
+                  enum:
+                  - agency_bill
+                  - direct_bill
+                  description: (MGA only) The type of billing used for this one time payment. If not specified, defaults to the billing type on the organization account.
+                installments:
+                  type: array
+                  description: An array of installments
+                  items:
+                    type: object
+                    properties:
+                      amount_cents:
+                        type: integer
+                        description: Total amount to be paid for the installment
+                      due_date:
+                        type: string
+                        format: date
+                        description: 'Due date of the installment. Format: YYYY-MM-DD'
+                      payables:
+                        type: array
+                        description: Payables paid to your organization
+                        items:
+                          type: object
+                          properties:
+                            amount_cents:
+                              type: integer
+                              description: Amount to be paid
+                            account_type:
+                              type: string
+                              enum:
+                              - trust_account
+                              - commission_account
+                              description: The type of the bank account that will receive funds
+                            remittance_memo:
+                              type: string
+                              description: Remittance memo such as the policy number to identify the payable
+                              maxLength: 50
+                          required:
+                          - amount_cents
+                          - account_type
+                          - remittance_memo
+                      company_payables:
+                        type: array
+                        description: Payables paid to the issuing or billing company
+                        items:
+                          type: object
+                          properties:
+                            amount_cents:
+                              type: integer
+                              description: Amount to be paid
+                            identifier:
+                              type: string
+                              description: Identifier of the issuing or billing company
+                            remittance_memo:
+                              type: string
+                              description: Remittance memo such as the policy number to identify the payable
+                              maxLength: 50
+                          required:
+                          - amount_cents
+                          - identifier
+                          - remittance_memo
+                      organization_account_payables:
+                        type: array
+                        description: Payables to partner agencies
+                        items:
+                          type: object
+                          properties:
+                            amount_cents:
+                              type: integer
+                              description: Amount to be paid
+                            organization_account_id:
+                              type: string
+                              description: Organization account id for the partner agency
+                            remittance_memo:
+                              type: string
+                              description: Remittance memo such as the policy number to identify the payable
+                              maxLength: 50
+                          required:
+                          - amount_cents
+                          - organization_account_id
+                          - remittance_memo
+                    required:
+                    - amount_cents
+                    - due_date
+                  minItems: 2
+                insured_id:
+                  type: string
+                  format: uuid
+                  description: Id of the insured responsible for installment payments
+                memo:
+                  type: string
+                  description: Short description for the installment plan
+                  maxLength: 50
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the installment plan. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+                organization_account:
+                  type: object
+                  description: (MGA only) The billing account associated to the one time payment. This can represent either the wholesaler or the retail agency.
+                  nullable: true
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: The unique identifier of the billing account associated to the one time payment.
+                    users:
+                      type: array
+                      description: An array of user ids belonging to the billing account who should receive communications for the installment plan.
+                      items:
+                        type: string
+                        format: uuid
+              required:
+              - insured_id
+              - account_manager_id
+              - memo
+              - installments
+  /v1/installment_plans/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The id of the installment plan
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Archive Installment Plan
+      tags:
+      - InstallmentPlans
+      operationId: archiveInstallmentPlan
+      security:
+      - bearer_auth: []
+      description: Archives a unpurchased installment plan. This will void all installments.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Installment Plan Archived
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallmentPlan'
+    get:
+      summary: Get installment plan
+      tags:
+      - InstallmentPlans
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallmentPlan'
+    patch:
+      summary: Update Installment Plan
+      tags:
+      - InstallmentPlans
+      operationId: updateInstallmentPlan
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallmentPlan'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                account_manager_id:
+                  type: string
+                  format: uuid
+                  description: Id of the account manager who will receive the email communications for the installment plan
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the installment plan. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+                secondary_account_manager_id:
+                  type: string
+                  format: uuid
+                  description: Id of the secondary account manager who will receive the same email communications for the installment plan as the account manager
+                organization_account:
+                  type: object
+                  description: (MGA only) The billing account associated to the installment plan. This can represent either the wholesaler or the retail agency.
+                  properties:
+                    users:
+                      type: array
+                      description: An array of user ids belonging to the billing account who should receive communications for the installment plan.
+                      items:
+                        type: string
+                        format: uuid
+              type: object
+  /v1/installment_plans/{id}/cancel:
+    parameters:
+    - name: id
+      in: path
+      description: The id of the installment plan
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Cancel Installment Plan
+      tags:
+      - InstallmentPlans
+      operationId: cancelInstallmentPlan
+      security:
+      - bearer_auth: []
+      description: Cancels a purchased installment plan. This will void any unpaid installments, but existing payments will not be reversed.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallmentPlan'
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallmentPlan'
+  /v1/installment_plans/{id}/send:
+    parameters:
+    - name: id
+      in: path
+      description: The id of the installment plan
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Notify User
+      tags:
+      - InstallmentPlans
+      operationId: sendInstallmentPlanReminder
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type: string
+          nullable: true
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
+    InstallmentPlan:
+      type: object
+      description: An installment plan for a series of payments
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the installment plan
+        account_manager:
+          $ref: '#/components/schemas/User'
+        secondary_account_manager:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        autopay_enabled:
+          type: boolean
+          description: Whether autopay is enabled for the installment plan.
+          readOnly: true
+        billing_type:
+          type: string
+          enum:
+          - agency_bill
+          - direct_bill
+          description: (MGA only) The type of billing used for this one time payment.
+        documents:
+          type: array
+          nullable: true
+          description: A collection of documents associated with the installment plan.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: The display name of the static asset.
+                nullable: true
+              url:
+                type: string
+                description: The url to access the static asset.
+        installments:
+          type: array
+          description: ''
+          items:
+            type: object
+            description: ''
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: Id of the installment
+              status:
+                type: string
+                enum:
+                - awaiting_payment
+                - processing_payment
+                - paid
+                - overdue
+                - void
+                description: Status of the installment
+              due_date:
+                type: string
+                format: date
+                description: 'Due date of the installment. Format: YYYY-MM-DD'
+              payables:
+                type: array
+                description: Payables paid to your organization
+                items:
+                  type: object
+                  properties:
+                    amount_cents:
+                      type: integer
+                      description: Amount to be paid
+                    account_type:
+                      type: string
+                      enum:
+                      - trust_account
+                      - commission_account
+                      description: The type of the bank account that will receive funds
+                    remittance_memo:
+                      type: string
+                      description: Remittance memo such as the policy number to identify the payable
+                      maxLength: 50
+              company_payables:
+                type: array
+                description: Payables paid to the issuing or billing company
+                items:
+                  type: object
+                  properties:
+                    amount_cents:
+                      type: integer
+                      description: Amount to be paid
+                    identifier:
+                      type: string
+                      description: Identifier of the issuing or billing company
+                    remittance_memo:
+                      type: string
+                      description: Remittance memo such as the policy number to identify the payable
+                      maxLength: 50
+              organization_account_payables:
+                type: array
+                description: Payables to partner agencies
+                items:
+                  type: object
+                  properties:
+                    amount_cents:
+                      type: integer
+                      description: Amount to be paid
+                    organization_account_id:
+                      type: string
+                      description: Organization account id for the partner agency
+                    remittance_memo:
+                      type: string
+                      description: Remittance memo such as the policy number to identify the payable
+                      maxLength: 50
+        insured_id:
+          type: string
+          format: uuid
+          description: Id of the insured responsible for installment payments
+        memo:
+          type: string
+          description: Short description for the installment plan
+          maxLength: 50
+        metadata:
+          type: object
+          description: Metadata associated with the installment plan.
+          nullable: true
+        organization_account_id:
+          type: string
+          format: uuid
+          description: (MGA only) The unique identifier of the organization account associated with this one time payment.
+          nullable: true
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

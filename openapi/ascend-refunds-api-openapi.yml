@@ -1,0 +1,162 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Refunds API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Refunds
+  description: A collection of refunds to the insured.
+paths:
+  /v1/refunds:
+    get:
+      summary: List Refunds
+      tags:
+      - Refunds
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: billable_id
+        in: query
+        required: false
+        description: Filter by associated billable
+        schema:
+          type: string
+      - name: program_id
+        in: query
+        required: false
+        description: Filter by associated program
+        schema:
+          type: string
+      - name: invoice_id
+        in: query
+        required: false
+        description: Filter by associated invoice
+        schema:
+          type: string
+      - name: paid_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return refunds paid during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return refunds created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return refunds that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+components:
+  schemas:
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the refund
+        created_at:
+          type: string
+          format: datetime
+          description: Date when the refund was created.
+        paid_at:
+          type: string
+          format: datetime
+          description: Date when the refund was initiated.
+        amount_cents:
+          type: integer
+          description: The amount to refund insured
+        status:
+          type: string
+          enum:
+          - unpaid
+          - paying
+          - paid
+          - canceled
+          description: The status of the refund
+        refundable_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: The unique identifier of the object that is being refunded
+        refundable_type:
+          type: string
+          nullable: true
+          description: The type of the object being refunded
+          enum:
+          - Billable
+          - Invoice
+          - Program
+          - InstallmentPlan
+          - ReducingEndorsement
+        return_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: The unique identifier of the return that resulted in the refund being created
+        return_type:
+          type: string
+          nullable: true
+          description: The type of the return that resulted in the refund being created
+          enum:
+          - ReducingEndorsementReturn
+          - BillableCancelation
+      required:
+      - amount_cents
+      - status
+      - refundable_id
+      - refundable_type
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

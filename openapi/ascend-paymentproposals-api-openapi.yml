@@ -1,0 +1,41 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts PaymentProposals API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: PaymentProposals
+paths:
+  /v1/payment_proposals:
+    post:
+      summary: Generate payment proposal document for a program
+      tags:
+      - PaymentProposals
+      operationId: createPaymentProposal
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: Payment proposal created
+        '400':
+          description: Unable to generate payment proposal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                program_id:
+                  type: string
+                  description: Id of the program
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

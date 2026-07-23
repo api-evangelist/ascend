@@ -1,0 +1,293 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts CancelationReturns API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: CancelationReturns
+  description: Represents the cancelation of an insurance quote
+paths:
+  /v1/cancelation_returns:
+    post:
+      summary: Create Cancelation Return
+      tags:
+      - CancelationReturns
+      operationId: createCancelationReturns
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Create a new cancelation return
+        '400':
+          description: Cannot cancel billable if program is pending reinstatement.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Initiates a cancelation for a billable
+              properties:
+                billable_id:
+                  type: string
+                  description: The id of the billable to be canceled
+                billable:
+                  type: object
+                  properties:
+                    is_flat_cancelation:
+                      type: boolean
+                      description: Indicates if this is a flat cancelation
+                    cancelation_effective_date:
+                      type: string
+                      format: date
+                      description: The effective date of the cancelation
+                unearned_commission_cents:
+                  type: integer
+                  description: Unearned commission amount in cents
+                unearned_organization_account_commission_cents:
+                  type: integer
+                  description: Unearned commission amount in cents you're expecting to collect back from the associated account
+                unearned_surplus_lines_tax_cents:
+                  type: integer
+                  description: Unearned surplus lines tax amount in cents.
+                unearned_premium_cents:
+                  type: integer
+                  description: Unearned premium amount in cents
+                cancelation_docs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The id of an attachment previously uploaded via POST /v1/attachments. Ownership and resource_type will be reassigned to this cancelation return.
+                    required:
+                    - id
+                  description: List of supporting documents to associate with the cancelation return. Each element references an existing attachment by id.
+    get:
+      summary: List Cancelation Returns
+      tags:
+      - CancelationReturns
+      operationId: getCancelationReturns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: program_id
+        in: query
+        description: The program identifier
+        schema:
+          type: string
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return cancelation returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return cancelation returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: List cancelation returns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CancelationReturn'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+  /v1/cancelation_returns/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The cancelation return identifier
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Cancelation Return
+      tags:
+      - CancelationReturns
+      operationId: getCancelationReturn
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Get cancelation return
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelationReturn'
+    patch:
+      summary: Update Cancelation Returns
+      tags:
+      - CancelationReturns
+      operationId: updateCancelationReturn
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: Update cancelation return for agency
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelationReturn'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Updates a cancelation return for a billable
+              properties:
+                billable:
+                  type: object
+                  properties:
+                    is_flat_cancelation:
+                      type: boolean
+                      description: Indicates if this is a flat cancelation
+                    cancelation_effective_date:
+                      type: string
+                      format: date
+                      description: The effective date of the cancelation
+                unearned_commission_cents:
+                  type: integer
+                  description: Unearned commission amount in cents
+                unearned_organization_account_commission_cents:
+                  type: integer
+                  description: Unearned commission amount in cents you're expecting to collect back from the associated account
+                unearned_surplus_lines_tax_cents:
+                  type: integer
+                  description: Unearned surplus lines tax amount in cents
+                unearned_premium_cents:
+                  type: integer
+                  description: Unearned premium amount in cents
+                cancelation_docs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The id of the attachment.
+                      url:
+                        type: string
+                        format: string
+                        description: The url of the attachment.
+                    description: Details of the billable being canceled
+                  description: List of supporting documents
+components:
+  schemas:
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+        title:
+          type: string
+          nullable: true
+          description: Title of the document.
+        url:
+          type: string
+          description: The url of the document.
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          description: Determines who can see this document. When visibility is set to public, anyone with access to public urls such as checkout url will be able to see these documents. When visibility is set to private, only users from your organization will be able to see the documents.
+      required:
+      - id
+      - title
+      - url
+    CancelationReturn:
+      type: object
+      properties:
+        billable:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The id of the billable to be canceled.
+            cancelation_effective_date:
+              type: string
+              format: date
+              description: The effective date of the cancelation
+            is_flat_cancelation:
+              type: boolean
+              description: Indicates if this is a flat cancelation
+          description: Details of the billable being canceled
+        unearned_commission_cents:
+          type: integer
+          description: Unearned commission amount in cents
+        unearned_surplus_lines_tax_cents:
+          type: integer
+          description: Unearned surplus lines tax amount in cents.
+        unearned_premium_cents:
+          type: integer
+          description: Unearned premium amount in cents (Agency)
+        unearned_organization_account_commission_cents:
+          type: integer
+          description: Unearned premium amount in cents (MGA)
+        cancelation_docs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          description: List of supporting documents attached to the cancelation return.
+        organization_payments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The id of the organization payment.
+          description: List of invoices to be paid by you.
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

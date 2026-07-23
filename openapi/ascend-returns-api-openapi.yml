@@ -1,0 +1,412 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Returns API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Returns
+  description: A collection of returns on one time payments or installment plans.
+paths:
+  /v1/installment_plans/{installment_plan_id}/returns:
+    get:
+      summary: Get returns
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: installment_plan_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return installment plan returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return installment plan returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Return'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+    post:
+      summary: Create a return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: installment_plan_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Return'
+        '400':
+          description: Bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a return of funds on a one time payment or installment plan.
+              properties:
+                amount_cents:
+                  description: The amount to return to the payer.
+                  type: integer
+                remittance_memo:
+                  type: string
+                  description: Information about why the funds are being returned.
+                  default: Refund for one time payment
+              required:
+              - amount_cents
+  /v1/installment_plans/{installment_plan_id}/returns/{return_id}:
+    delete:
+      summary: Void return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: installment_plan_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: return_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: success
+    get:
+      summary: Get a return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: installment_plan_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: return_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Return'
+    patch:
+      summary: Update a return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: installment_plan_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: return_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Return'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a return of funds on a one time payment or installment plan.
+              properties:
+                amount_cents:
+                  description: The amount to return to the payer.
+                  type: integer
+                remittance_memo:
+                  type: string
+                  description: Information about why the funds are being returned.
+                  default: Refund for one time payment
+              required:
+              - amount_cents
+  /v1/one_time_payments/{one_time_payment_id}/returns:
+    get:
+      summary: Get returns
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: one_time_payment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Return'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+    post:
+      summary: Create a return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: one_time_payment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Return'
+        '400':
+          description: Bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a return of funds on a one time payment or installment plan.
+              properties:
+                amount_cents:
+                  description: The amount to return to the payer.
+                  type: integer
+                remittance_memo:
+                  type: string
+                  description: Information about why the funds are being returned.
+                  default: Refund for one time payment
+              required:
+              - amount_cents
+  /v1/one_time_payments/{one_time_payment_id}/returns/{return_id}:
+    delete:
+      summary: Void return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: one_time_payment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: return_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: success
+    get:
+      summary: Get a return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: one_time_payment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: return_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Return'
+    patch:
+      summary: Update a return
+      tags:
+      - Returns
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: one_time_payment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: return_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Return'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a return of funds on a one time payment or installment plan.
+              properties:
+                amount_cents:
+                  description: The amount to return to the payer.
+                  type: integer
+                remittance_memo:
+                  type: string
+                  description: Information about why the funds are being returned.
+                  default: Refund for one time payment
+              required:
+              - amount_cents
+components:
+  schemas:
+    Return:
+      type: object
+      description: A document representing a return of funds on a one time payment or installment plan.
+      properties:
+        id:
+          description: The unique identifier of the return.
+          format: uuid
+          type: string
+          readOnly: true
+        amount_cents:
+          description: The amount to return to the payer.
+          type: integer
+        due_date:
+          type: string
+          format: date
+          description: The date by which the return invoice should be paid.
+          readOnly: true
+        installment_plan_id:
+          description: The unique identifier of the installment plan the return is for.
+          format: uuid
+          type: string
+          nullable: true
+        one_time_payment_id:
+          description: The unique identifier of the one time payment the return is for.
+          format: uuid
+          type: string
+          nullable: true
+        remittance_memo:
+          type: string
+          description: Information about why the funds are being returned.
+        status:
+          type: string
+          description: The current state of the one time paymentreturn.
+          example: awaiting_payment
+          readOnly: true
+          enum:
+          - draft
+          - awaiting_payment
+          - overdue
+          - processing_payment
+          - paid
+          - void
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

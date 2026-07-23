@@ -1,0 +1,388 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Accounts
+paths:
+  /v1/accounts:
+    get:
+      summary: List Accounts
+      tags:
+      - Accounts
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return accounts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return accounts that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: List accounts
+    post:
+      summary: Create Accounts
+      tags:
+      - Accounts
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Create a new account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          description: Contact email domain matches an owner organization admin's domain
+          content:
+            application/json:
+              examples:
+                contact_email_domain_matches_owner_admin:
+                  value:
+                    errors:
+                    - status: 400
+                      title: Bad Request
+                      detail: 'Contact email domain ''test.com'' is not allowed: it matches a domain used by an admin of the owner organization.'
+                      source: {}
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                        title:
+                          type: string
+                          example: Bad Request
+                        detail:
+                          type: string
+                        source:
+                          type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request schema for an organization account creation or details.
+              properties:
+                organization_account:
+                  type: object
+                  properties:
+                    contact:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                          description: Contact person's first name
+                        last_name:
+                          type: string
+                          description: Contact person's last name
+                        email:
+                          type: string
+                          description: Contact person's email address
+                      required:
+                      - first_name
+                      - last_name
+                      - email
+                    agency:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Agency's legal name
+                        doing_business_as:
+                          type: string
+                          description: Agency's trade or assumed name used by the agency for business purposes
+                        phone:
+                          type: string
+                          description: Agency's contact phone number
+                        federal_tax_identification_number:
+                          type: string
+                          description: Agency's federal tax identification number
+                        business_type:
+                          type: string
+                          enum:
+                          - sole_proprietorship
+                          - partnership
+                          - corporation
+                          - llc
+                          - non_profit
+                          description: Agency's business type
+                        url:
+                          type: string
+                          description: Agency's website URL
+                        mailing_address:
+                          type: object
+                          properties:
+                            street_one:
+                              type: string
+                              description: Mailing address street line one
+                            street_two:
+                              type: string
+                              description: Mailing address street line two
+                            city:
+                              type: string
+                              description: Mailing address city
+                            state:
+                              type: string
+                              description: Mailing address state
+                            zip_code:
+                              type: string
+                              description: Mailing address zip/postal code
+                          required:
+                          - street_one
+                          - city
+                          - state
+                          - zip_code
+                      required:
+                      - name
+                      - phone
+                      - mailing_address
+                    default_seller_commission_rate:
+                      type: number
+                      description: Default commission rate for the seller, expressed as a decimal (e.g., 0.05 for 5%)
+                    default_account_fees_cents:
+                      type: number
+                      description: Required for Direct bill. Default account fee for the seller. Expressed in cents (e.g., 1000 for $10.00)
+                    payment_schedule:
+                      type: string
+                      enum:
+                      - daily
+                      - bi-weekly
+                      - weekly
+                      - monthly
+                      description: Required for Direct bill. This is the schedule in which the agency would receive their commission.
+                    payment_settlement_period_max_days:
+                      type: number
+                      description: Maximum number of days for payment settlement period. Required for Direct bill.
+                    billing_type:
+                      type: string
+                      description: Billing type for the agency
+                      enum:
+                      - agency
+                      - direct
+                    payable_account:
+                      type: object
+                      description: The account where the agency would receive their commissions
+                      properties:
+                        account_holder_name:
+                          type: string
+                          description: Name of the account holder
+                        account_holder_type:
+                          type: string
+                          description: Type of account holder (e.g., individual or company)
+                          enum:
+                          - individual
+                          - company
+                        account_number:
+                          type: string
+                          description: Bank account number
+                        confirm_account_number:
+                          type: string
+                          description: Confirmation of the bank account number
+                        account_type:
+                          type: string
+                          enum:
+                          - bank_account
+                          - check
+                          description: Type of account (e.g., bank account, check)
+                        routing_number:
+                          type: string
+                          description: Bank routing number
+                      required:
+                      - account_holder_name
+                      - account_holder_type
+                      - account_number
+                      - confirm_account_number
+                      - account_type
+                      - routing_number
+                  required:
+                  - contact
+                  - agency
+                  - default_seller_commission_rate
+                  - billing_type
+              required:
+              - organization_account
+  /v1/accounts/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Account identifier
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get account
+      tags:
+      - Accounts
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    patch:
+      summary: Update account
+      tags:
+      - Accounts
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organization_account:
+                  type: object
+                  properties:
+                    default_seller_commission_rate:
+                      type: number
+                      description: Default commission rate for the seller, expressed as a decimal (e.g., 0.05 for 5%)
+                    default_account_fees_cents:
+                      type: number
+                      description: Required for Direct bill. Default account fee for the seller. Expressed in cents (e.g., 1000 for $10.00)
+              required:
+              - organization_account
+components:
+  schemas:
+    Account:
+      type: object
+      description: Response data for a successful organization creation or query.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the organization.
+        default_account_fees_cents:
+          type: integer
+          description: Default account fees in cents.
+          minimum: 0
+        default_seller_commission_rate:
+          type: string
+          description: Default commission rate for the seller.
+        billing_type:
+          type: string
+          enum:
+          - agency
+          - direct
+          description: Billing type of the account
+        status:
+          type: string
+          enum:
+          - created
+          - active
+          - archived
+          description: Current status of the organization.
+        name:
+          type: string
+          description: Name of the partner organization.
+        payable_accounts:
+          type: array
+          description: List of payable accounts associated with the organization.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - check
+                - bank_account
+                description: Type of payable account.
+              status:
+                type: string
+                enum:
+                - verified
+                - unverified
+                - verifying
+                - rejected
+                description: Verification status of the payable account.
+            required:
+            - type
+            - status
+        contact:
+          type: object
+          description: Agency contact information for the account
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: User id of the contact
+            first_name:
+              type: string
+              description: First name of the contact
+            last_name:
+              type: string
+              description: Last name of the contact
+            phone:
+              type: string
+              nullable: true
+              description: Phone number of the contact
+            email:
+              type: string
+              format: email
+              description: Email of the contact
+      required:
+      - id
+      - default_account_fees_cents
+      - default_seller_commission_rate
+      - status
+      - payable_accounts
+      - billing_type
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

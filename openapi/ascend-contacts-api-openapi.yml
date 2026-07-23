@@ -1,0 +1,165 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Contacts API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Contacts
+  description: Represents the contacts that may be associated with an Insured account.
+paths:
+  /v1/contacts:
+    get:
+      summary: List Contacts
+      tags:
+      - Contacts
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by contact email address (case-insensitive)
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for paginating results. Default is 1.
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return contacts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return contacts that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create Contact
+      tags:
+      - Contacts
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: successful
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The email for the contact
+                first_name:
+                  type: string
+                  description: First name of the contact.
+                last_name:
+                  type: string
+                  description: Last name of the contact.
+                phone:
+                  type: string
+                  description: 'Phone number. Formatted: 5555555555'
+              required:
+              - email
+              - first_name
+              - last_name
+  /v1/contacts/{id}:
+    get:
+      summary: Get Contact
+      tags:
+      - Contacts
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+    patch:
+      summary: Update contact
+      tags:
+      - Contacts
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The email for the contact
+                first_name:
+                  type: string
+                  description: First name of the contact.
+                last_name:
+                  type: string
+                  description: Last name of the contact.
+                phone:
+                  type: string
+                  description: 'Phone number. Formatted: 5555555555'
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

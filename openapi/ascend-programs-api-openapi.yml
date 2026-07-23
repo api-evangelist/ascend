@@ -1,0 +1,932 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Programs API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Programs
+  description: A collection of insurance quotes pooled to produce 1 checkout link.
+paths:
+  /v1/programs:
+    post:
+      summary: Create Program
+      tags:
+      - Programs
+      operationId: createProgram
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the account manager for the program. This user is listed as the agent on checkout and receives any program communications. This defaults to the producer if not specified.
+                  format: uuid
+                  type: string
+                secondary_account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the secondary account manager for the program. This user receives any program communications that the account manager also receives
+                  format: uuid
+                  type: string
+                allowed_payment_methods:
+                  type: array
+                  description: A list of payment methods that are allowed during checkout.
+                  items:
+                    type: string
+                    enum:
+                    - card
+                    - ach_debit
+                    - ach_credit_transfer
+                    - check
+                billing_type:
+                  type: string
+                  enum:
+                  - agency_bill
+                  - direct_bill
+                  description: (MGA only) The type of billing used for this program. If not specified, defaults to the billing type on the organization account.
+                due_date:
+                  type: string
+                  format: date
+                  description: Due date of the program payment or downpayment. If not specified, this will default to the earliest effective date plus an additional settlement period if applicable.
+                failure_callback_url:
+                  description: A URL to send the user back to after failed transaction occurs during the checkout process. This defaults to the organization return url if not specified.
+                  type: string
+                hidden_payment_options:
+                  type: array
+                  description: A list of payment options that are hidden during checkout.
+                  items:
+                    type: string
+                    enum:
+                    - annual_pay_in_full
+                    - monthly_financed
+                insured_id:
+                  description: The id of the insured associated to the program
+                  format: uuid
+                  type: string
+                is_checkout_overview_page_visible:
+                  description: A configuration to let the customer view the overview page during the checkout process. This defaults to false if not specified.
+                  type: boolean
+                is_checkout_receipt_page_visible:
+                  description: A configuration to let the customer view the receipt page during the checkout process. This defaults to false if not specified.
+                  type: boolean
+                organization_account:
+                  type: object
+                  description: (MGA only) The billing account associated to the program. This can represent either the wholesaler or the retail agency.
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: The unique identifier of the billing account associated to the program
+                    users:
+                      type: array
+                      description: An array of user ids belonging to the billing account who should be associated to the program. Required if billing_type is agency_bill.
+                      items:
+                        type: string
+                        format: uuid
+                producer_id:
+                  description: The user id associated to the producer of this program. This user is listed on the premium finance agreement.
+                  format: uuid
+                  type: string
+                return_url:
+                  description: A URL to send the user back to after dismissing the checkout process. This defaults to the organization return url if not specified.
+                  type: string
+                success_callback_url:
+                  description: A URL to send the user back to after successful transaction occurs during the checkout process. This defaults to the organization return url if not specified.
+                  type: string
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the program. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+              required:
+              - insured_id
+              - producer_id
+              - account_manager_id
+              type: object
+    get:
+      summary: List Programs
+      tags:
+      - Programs
+      operationId: listPrograms
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: insured_id
+        in: query
+        required: false
+        description: Filter by associated insured
+        schema:
+          type: string
+      - name: purchased_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return programs that were purchased during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return programs that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return programs that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: successful
+  /v1/programs/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The program identifier
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Archive Program
+      tags:
+      - Programs
+      operationId: deleteProgram
+      security:
+      - bearer_auth: []
+      responses:
+        '204':
+          description: Program archived
+        '400':
+          description: Bad request
+        '404':
+          description: Program not found
+        '422':
+          description: Can't archive program, rolling back
+    get:
+      summary: Get Program
+      tags:
+      - Programs
+      operationId: getProgram
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: include_archived
+        required: false
+        in: query
+        description: Include archived programs
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+        '404':
+          description: Program not found
+    patch:
+      summary: Update program
+      tags:
+      - Programs
+      operationId: updateProgram
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+        '403':
+          description: Forbidden
+        '404':
+          description: Program not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the account manager for the program. This user is listed as the agent on checkout and receives any program communications. This defaults to the producer if not specified.
+                  format: uuid
+                  type: string
+                secondary_account_manager_id:
+                  description: The unique identifier of the user belonging to your organization that will be associated as the secondary account manager for the program. This user receives any program communications that the account manager also receives
+                  format: uuid
+                  type: string
+                allowed_payment_methods:
+                  type: array
+                  description: A list of payment methods that are allowed during checkout.
+                  items:
+                    type: string
+                    enum:
+                    - card
+                    - ach_debit
+                    - ach_credit_transfer
+                    - check
+                due_date:
+                  type: string
+                  format: date
+                  description: Due date of the program payment or downpayment. This cannot be changed after the program has become active.
+                endorsement_due_date:
+                  type: string
+                  format: date
+                  description: Due date of the upcoming endorsement payment. This cannot be changed if there are no unpaid endorsements on the program.
+                failure_callback_url:
+                  description: A URL to send the user back to after failed transaction occurs during the checkout process. This defaults to the organization return url if not specified.
+                  type: string
+                hidden_payment_options:
+                  type: array
+                  description: A list of payment options that are hidden during checkout.
+                  items:
+                    type: string
+                    enum:
+                    - annual_pay_in_full
+                is_checkout_overview_page_visible:
+                  description: A configuration to let the customer view the overview page during the checkout process. This defaults to false if not specified.
+                  type: boolean
+                is_checkout_receipt_page_visible:
+                  description: A configuration to let the customer view the receipt page during the checkout process. This defaults to false if not specified.
+                  type: boolean
+                organization_account:
+                  type: object
+                  description: (MGA only) The billing account associated to the program. This can represent either the wholesaler or the retail agency.
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: The unique identifier of the billing account associated to the program
+                    users:
+                      type: array
+                      description: An array of user ids belonging to the billing account who should be associated to the program.
+                      items:
+                        type: string
+                        format: uuid
+                producer_id:
+                  description: The unique identifier of the user associated as the producer of the program. This user is listed on the premium finance agreement. This defaults to the insured assignee user if not specified.
+                  format: uuid
+                  type: string
+                return_url:
+                  description: A URL to send the user back to after dismissing the checkout process. This defaults to the organization return url if not specified.
+                  type: string
+                success_callback_url:
+                  description: A URL to send the user back to after successful transaction occurs during the checkout process. This defaults to the organization return url if not specified.
+                  type: string
+                metadata:
+                  type: object
+                  description: Metadata to be associated with the program. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
+                  nullable: true
+              type: object
+  /v1/programs/{id}/loan_payoff:
+    parameters:
+    - name: id
+      in: path
+      description: Program id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Create loan payoff invoice
+      tags:
+      - Programs
+      operationId: createProgramLoanPayoff
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+    get:
+      summary: Get loan payoff invoice
+      tags:
+      - Programs
+      operationId: getProgramLoanPayoff
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '204':
+          description: no active early payoff invoice
+    delete:
+      summary: Void loan payoff invoice
+      tags:
+      - Programs
+      operationId: voidProgramLoanPayoff
+      security:
+      - bearer_auth: []
+      responses:
+        '204':
+          description: no content
+        '422':
+          description: cannot void invoice
+  /v1/programs/{id}/loan_payoff_estimate:
+    parameters:
+    - name: id
+      in: path
+      description: the id of the program
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Loan Payoff Estimate
+      tags:
+      - Programs
+      operationId: createLoanPayoffEstimate
+      security:
+      - bearer_auth: []
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanPayoffEstimate'
+        '404':
+          description: Program not found
+        '422':
+          description: Unprocessable content
+        '500':
+          description: Internal server error
+  /v1/programs/{id}/send:
+    parameters:
+    - name: id
+      in: path
+      description: the id of the program
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Notify User
+      tags:
+      - Programs
+      operationId: notifyInsured
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: Program not found
+        '422':
+          description: Unprocessable content
+  /v1/programs/{id}/unarchive:
+    parameters:
+    - name: id
+      in: path
+      description: The id of the program
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Unarchive program
+      tags:
+      - Programs
+      operationId: unarchiveProgram
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Successful
+        '404':
+          description: Program not found
+components:
+  schemas:
+    Program:
+      type: object
+      description: A collection of insurance quotes pooled to produce 1 checkout link.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the program
+        account_manager:
+          $ref: '#/components/schemas/User'
+        secondary_account_manager:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        allowed_payment_methods:
+          type: array
+          description: A list of payment methods that are allowed during checkout.
+          items:
+            type: string
+            enum:
+            - card
+            - ach_debit
+            - ach_credit_transfer
+            - check
+        archived_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date the program was archived. The date uses UTC and is represented in the iso8601 format.
+        autopay_enabled:
+          type: boolean
+          description: Whether autopay is enabled for the program.
+          readOnly: true
+        billing_type:
+          type: string
+          enum:
+          - agency_bill
+          - direct_bill
+          description: The type of billing used for this policy.
+          readOnly: true
+        checkedout_at:
+          type: string
+          nullable: true
+          format: date-time
+          description: The date the program was checked out. The date uses UTC and is represented in the iso8601 format.
+        created_at:
+          type: string
+          format: date-time
+          description: The date the program was created. The date uses UTC and is represented in the iso8601 format.
+        due_date:
+          type: string
+          format: date
+          description: Due date of the program payment or downpayment.
+          nullable: true
+        endorsement_due_date:
+          type: string
+          format: date
+          description: Due date of the most recent endorsement payment.
+          nullable: true
+        failure_callback_url:
+          type: string
+          nullable: true
+          description: A URL to send the user back to after failed transaction occurs during the checkout process.
+        hidden_payment_options:
+          type: array
+          description: A list of payment options that are hidden during checkout.
+          items:
+            type: string
+            enum:
+            - annual_pay_in_full
+        insured:
+          $ref: '#/components/schemas/Insured'
+        premium_cents:
+          type: integer
+          description: The total premium that the insured should pay for the program. This represents the premium sum of each quote associated to this program. The value is represented in cents.
+        producer:
+          $ref: '#/components/schemas/User'
+        program_url:
+          type: string
+          description: A URL to complete the checkout process.
+        return_url:
+          type: string
+          nullable: true
+          description: A URL to send the user back to after completing the checkout process.
+        selected_payment_option_type:
+          type: string
+          nullable: true
+          description: The payment option chosen by the insured during the checkout process.
+        status:
+          type: string
+          enum:
+          - archived
+          - purchased
+          - checked_out
+          - elected
+          - ready_for_checkout
+          - created
+          description: The state of the program
+        sub_total_cents:
+          type: integer
+          description: The amount to be payed by the insured including all premium and fees applicable to the program. The value is represented in cents.
+        success_callback_url:
+          type: string
+          nullable: true
+          description: A URL to send the user back to after successful transaction occurs during the checkout process.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the program was last updated. The date uses UTC and is represented in the iso8601 format.
+        metadata:
+          type: object
+          description: Metadata associated with the program.
+          nullable: true
+    PaymentMethod:
+      type: object
+      description: It represents the payment instrument used by an insured.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the payment method.
+          readOnly: true
+        payment_type:
+          type: string
+          enum:
+          - card
+          - ach_debit
+          - ach_credit_transfer
+          - us_bank_account
+          - check
+          description: The type of payment method.
+          readOnly: true
+        card:
+          type: object
+          description: Detailed information about the card.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the card.
+            brand:
+              type: string
+              description: The card brand.
+          required:
+          - brand
+          - last_four_digits
+        ach_debit:
+          type: object
+          description: Detailed information about the ach method.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the account number.
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
+          - last_four_digits
+        ach_credit:
+          type: object
+          description: Detailed information about the ach credit method.
+          properties:
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
+    Insured:
+      type: object
+      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the insured
+        email:
+          type: string
+          format: email
+          description: The email for the insured
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+          description: First name of the insured.
+        last_name:
+          type: string
+          nullable: true
+          description: Last name of the insured.
+        business_name:
+          type: string
+          nullable: true
+          description: Business name. Either first + last name or business name is required.
+        is_business:
+          type: boolean
+          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
+        formatted_address:
+          type: string
+          nullable: true
+          description: complete address of the insured
+        phone:
+          type: string
+          description: Phone number of the insured
+          nullable: true
+        mailing_address_street_one:
+          type: string
+          nullable: true
+          description: Mailing Street address
+        mailing_address_street_two:
+          type: string
+          nullable: true
+          description: Suite or unit
+        mailing_address_city:
+          type: string
+          nullable: true
+          description: Mailing city
+        mailing_address_state:
+          nullable: true
+          $ref: '#/components/schemas/StateAnsiCodes'
+        mailing_address_zip_code:
+          type: string
+          nullable: true
+          description: Mailing zip code
+      required:
+      - id
+      - email
+      - is_business
+      - phone
+      - mailing_address_street_one
+      - mailing_address_city
+      - mailing_address_state
+      - mailing_address_zip_code
+    LoanPayoffEstimate:
+      type: object
+      description: Loan payoff estimate for a financed program
+      properties:
+        pay_off_amount_cents:
+          type: integer
+          description: The amount in cents needed to pay off the loan.
+          minimum: 0
+          example: 19775000
+          readOnly: true
+        program_id:
+          type: string
+          format: uuid
+          description: The program unique identifier.
+          readOnly: true
+      required:
+      - pay_off_amount_cents
+      - program_id
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
+    StateAnsiCodes:
+      type: string
+      description: 'A US State represented with their ANSI code. For ex: California = CA'
+      enum:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type: string
+          nullable: true
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
+    Invoice:
+      type: object
+      description: A document representing a transaction between the insured and Ascend.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The invoice unique identifier.
+          readOnly: true
+        account_manager_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
+        agent_invoice_docs:
+          type: array
+          nullable: true
+          description: A collection of documents associated with the invoice.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: The display name of the static asset.
+                nullable: true
+              url:
+                type: string
+                description: The url to access the static asset.
+        checkout_url:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The checkout url of the invoice.
+        due_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date by which the invoice should be paid.
+        installment_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment the invoice is attached to. Only present for installment plan invoices.
+          nullable: true
+          readOnly: true
+        installment_plan_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment plan the invoice is attached to.
+          nullable: true
+          readOnly: true
+        insured_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the insured invoice is attached to.
+        invoice_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+        invoice_number:
+          type: string
+          description: A number assigned to uniquely identify the invoice.
+          example: I909821
+          readOnly: true
+        invoice_url:
+          type: string
+          description: The url of the invoice document.
+          example: http://res.cloudinary.com/useascend.pdf
+          nullable: true
+          readOnly: true
+        issued_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date when the invoice was shared with the insured.
+          readOnly: true
+        memo:
+          type: string
+          description: Information about the invoice shown to the insured.
+          nullable: true
+          example: Additional premium for auto policy
+        one_time_payment_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the one-time payment the invoice is attached to. Only present for one-time payment invoices.
+          nullable: true
+          readOnly: true
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date when the invoice was paid by the insured.
+          readOnly: true
+        payer_name:
+          type: string
+          description: The name of the insured/business paying for the invoice.
+          example: Auto Sales Inc.
+        payment_method:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/PaymentMethod'
+        program_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: The unique identifier of the program invoice is attached to.
+          readOnly: true
+        status:
+          type: string
+          description: The current state of the invoice.
+          example: draft
+          readOnly: true
+          enum:
+          - draft
+          - awaiting_payment
+          - overdue
+          - processing_payment
+          - paid
+          - void
+        total_amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+          readOnly: true
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

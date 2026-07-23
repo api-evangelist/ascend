@@ -1,0 +1,194 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Users API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Users
+  description: Represent users that manage programs. They can be analysts, producers, support & admins.
+paths:
+  /v1/users:
+    post:
+      summary: Create User
+      tags:
+      - Users
+      operationId: createUser
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The email for the user
+                first_name:
+                  type: string
+                  description: First name of the user.
+                last_name:
+                  type: string
+                  description: Last name of the user.
+                phone:
+                  type: string
+                  description: 'Phone number. Formatted: 5555555555'
+                role:
+                  type: string
+                  description: User role
+                  enum:
+                  - accountant
+                  - admin
+                  - producer
+                  - support
+                  default: support
+              required:
+              - email
+              - phone
+    get:
+      summary: List Users
+      tags:
+      - Users
+      operationId: listUsers
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: email
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+  /v1/users/{id}:
+    get:
+      summary: Get User
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      operationId: getUser
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    patch:
+      summary: Update User
+      tags:
+      - Users
+      operationId: updateUser
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: The email for the user
+                first_name:
+                  type: string
+                  description: First name of the user.
+                last_name:
+                  type: string
+                  description: Last name of the user.
+                phone:
+                  type: string
+                  description: 'Phone number. Formatted: 5555555555'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type: string
+          nullable: true
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,534 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Invoices API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Invoices
+  description: Represents records of a transaction between the insured and Ascend.
+paths:
+  /v1/invoices:
+    post:
+      summary: Create invoice
+      tags:
+      - Invoices
+      operationId: createInvoice
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a transaction between the insured and Ascend.
+              properties:
+                account_manager_id:
+                  description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
+                  format: uuid
+                  type: string
+                attachments:
+                  type: array
+                  nullable: true
+                  items:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                due_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  description: The date by which the invoice should be paid.
+                insured_id:
+                  type: string
+                  format: uuid
+                  description: The unique identifier of the insured the invoice is attached to.
+                invoice_items:
+                  type: array
+                  description: A breakdown of items the insured is being charged for
+                  items:
+                    $ref: '#/components/schemas/InvoiceItem'
+                memo:
+                  type: string
+                  description: Information about the invoice shown to the insured.
+                  default: Invoice for {payer_name}
+                  nullable: true
+                  example: Additional premium for auto policy
+                payer_name:
+                  type: string
+                  description: The name of the insured/business paying for the invoice.
+                  example: Auto Sales Inc.
+              required:
+              - account_manager_id
+              - due_date
+              - insured_id
+              - invoice_items
+              - payer_name
+    get:
+      summary: List Invoices
+      tags:
+      - Invoices
+      operationId: listInvoices
+      security:
+      - bearer_auth: []
+      parameters:
+      - $ref: '#/components/parameters/program_id'
+      - $ref: '#/components/parameters/program_ids'
+      - name: page
+        in: query
+        description: Page number for paginating results. Default is 1.
+        required: false
+        schema:
+          type: integer
+      - name: billable_id
+        in: query
+        description: Filter by associated billable
+        required: false
+        schema:
+          type: string
+      - name: insured_id
+        in: query
+        description: Filter for invoices to be paid by associated insured
+        required: false
+        schema:
+          type: string
+      - name: product_type
+        in: query
+        schema:
+          type: string
+          description: Type of invoice to filter by
+          enum:
+          - one_time_payment
+          - installment_plan
+        required: false
+      - name: due_date_start
+        in: query
+        schema:
+          type: string
+          format: date
+          description: Filter by invoices due on or after this date
+        required: false
+      - name: due_date_end
+        in: query
+        schema:
+          type: string
+          format: date
+          description: Filter by invoices due on or before this date
+        required: false
+      - name: paid_at_start
+        in: query
+        schema:
+          type: string
+          format: date
+          description: Filter by invoices paid after this date
+        required: false
+      - name: paid_at_end
+        in: query
+        schema:
+          type: string
+          format: date
+          description: Filter by invoices paid before this date
+        required: false
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return invoices that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return invoices that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Invoice'
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+  /v1/invoices/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: The invoice identifier
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get Invoice
+      tags:
+      - Invoices
+      operationId: getInvoice
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          description: not found
+    patch:
+      summary: Update invoice
+      tags:
+      - Invoices
+      operationId: updateInvoice
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: A document representing a transaction between the insured and Ascend.
+              properties:
+                account_manager_id:
+                  description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
+                  format: uuid
+                  type: string
+                due_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  description: The date by which the invoice should be paid.
+                insured_id:
+                  type: string
+                  format: uuid
+                  description: The unique identifier of the insured the invoice is attached to.
+                invoice_items:
+                  type: array
+                  description: A breakdown of items the insured is being charged for
+                  items:
+                    $ref: '#/components/schemas/InvoiceItem'
+                memo:
+                  type: string
+                  description: Information about the invoice shown to the insured.
+                  nullable: true
+                  example: Additional premium for auto policy
+                payee:
+                  type: string
+                  description: 'The name of the insured/business. Deprecated: user payer_name'
+                  example: Auto Sales Inc.
+                  deprecated: true
+                payer_name:
+                  type: string
+                  description: The name of the insured/business paying for the invoice.
+                  example: Auto Sales Inc.
+    delete:
+      summary: Void invoice
+      tags:
+      - Invoices
+      operationId: voidInvoice
+      security:
+      - bearer_auth: []
+      responses:
+        '204':
+          description: Invoice voided
+  /v1/invoices/{id}/charge:
+    parameters:
+    - name: id
+      in: path
+      description: The invoice identifier
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Charge a renewal program's initial checkout invoice using the insured's stored payment method
+      tags:
+      - Invoices
+      operationId: chargeInvoice
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: Invoice charged successfully
+        '400':
+          description: Invoice ineligible (caller sent the wrong invoice / program / payer)
+        '403':
+          description: api_invoice_charge feature is not enabled for the organization
+        '404':
+          description: Payment method not found
+        '422':
+          description: Payment failed (card declined, requires_action / 3DS, already_charged, etc.)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - payment_method_id
+              properties:
+                payment_method_id:
+                  type: string
+                  description: Identifier of the insured's payment method to charge. Must belong to the program's insured payer and have prior use on a different program in this organization.
+components:
+  schemas:
+    PaymentMethod:
+      type: object
+      description: It represents the payment instrument used by an insured.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the payment method.
+          readOnly: true
+        payment_type:
+          type: string
+          enum:
+          - card
+          - ach_debit
+          - ach_credit_transfer
+          - us_bank_account
+          - check
+          description: The type of payment method.
+          readOnly: true
+        card:
+          type: object
+          description: Detailed information about the card.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the card.
+            brand:
+              type: string
+              description: The card brand.
+          required:
+          - brand
+          - last_four_digits
+        ach_debit:
+          type: object
+          description: Detailed information about the ach method.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the account number.
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
+          - last_four_digits
+        ach_credit:
+          type: object
+          description: Detailed information about the ach credit method.
+          properties:
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
+    Invoice:
+      type: object
+      description: A document representing a transaction between the insured and Ascend.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The invoice unique identifier.
+          readOnly: true
+        account_manager_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
+        agent_invoice_docs:
+          type: array
+          nullable: true
+          description: A collection of documents associated with the invoice.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: The display name of the static asset.
+                nullable: true
+              url:
+                type: string
+                description: The url to access the static asset.
+        checkout_url:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The checkout url of the invoice.
+        due_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date by which the invoice should be paid.
+        installment_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment the invoice is attached to. Only present for installment plan invoices.
+          nullable: true
+          readOnly: true
+        installment_plan_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the installment plan the invoice is attached to.
+          nullable: true
+          readOnly: true
+        insured_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the insured invoice is attached to.
+        invoice_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+        invoice_number:
+          type: string
+          description: A number assigned to uniquely identify the invoice.
+          example: I909821
+          readOnly: true
+        invoice_url:
+          type: string
+          description: The url of the invoice document.
+          example: http://res.cloudinary.com/useascend.pdf
+          nullable: true
+          readOnly: true
+        issued_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date when the invoice was shared with the insured.
+          readOnly: true
+        memo:
+          type: string
+          description: Information about the invoice shown to the insured.
+          nullable: true
+          example: Additional premium for auto policy
+        one_time_payment_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the one-time payment the invoice is attached to. Only present for one-time payment invoices.
+          nullable: true
+          readOnly: true
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date when the invoice was paid by the insured.
+          readOnly: true
+        payer_name:
+          type: string
+          description: The name of the insured/business paying for the invoice.
+          example: Auto Sales Inc.
+        payment_method:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/PaymentMethod'
+        program_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: The unique identifier of the program invoice is attached to.
+          readOnly: true
+        status:
+          type: string
+          description: The current state of the invoice.
+          example: draft
+          readOnly: true
+          enum:
+          - draft
+          - awaiting_payment
+          - overdue
+          - processing_payment
+          - paid
+          - void
+        total_amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+          readOnly: true
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

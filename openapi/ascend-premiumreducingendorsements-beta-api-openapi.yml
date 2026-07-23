@@ -1,0 +1,257 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts PremiumReducingEndorsements (Beta) API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: PremiumReducingEndorsements (Beta)
+  description: Represents a premium reducing endorsement for an insurance quote.
+paths:
+  /v1/premium_reducing_endorsements:
+    post:
+      summary: Create premium reducing endorsement
+      tags:
+      - PremiumReducingEndorsements (Beta)
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PremiumReducingEndorsement'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parent_billable_id:
+                  type: string
+                  format: uuid
+                  description: The id of the billable to be endorsed.
+                billable_identifier:
+                  type: string
+                  description: The identifier assigned to the endorsement by the issuing carrier or wholesaler.
+                premium_cents:
+                  type: integer
+                  minimum: 0
+                  description: The gross premium reduction for the policy.
+                taxes_and_fees_cents:
+                  type: integer
+                  minimum: 0
+                  nullable: true
+                  description: The reduction in taxes and fees for the policy.
+                surplus_lines_tax_cents:
+                  type: integer
+                  minimum: 0
+                  nullable: true
+                  description: 'The reduction in unearned surplus lines tax for the policy. Note: This field is only supported for organizations with surplus lines tax functionality enabled. Contact developers@useascend.com to enable this feature'
+                effective_date:
+                  type: string
+                  format: date
+                  description: The date when the endorsement goes into effect. The date uses UTC and is represented in the iso format.
+                return_premium_cents:
+                  type: integer
+                  minimum: 0
+                  description: The return premium held by the agency that will be refunded to insured.
+                unearned_commission_cents:
+                  type: integer
+                  minimum: 0
+                  description: The unearned commission held by the agency that will be refunded to insured.
+                supporting_docs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The Attachment ID
+                    required:
+                    - id
+                description:
+                  type: string
+                  nullable: true
+                  description: A short description that explains to the insured what is changing.
+              required:
+              - attachments
+  /v1/premium_reducing_endorsements/{id}:
+    delete:
+      summary: delete premium reducing endorsement
+      tags:
+      - PremiumReducingEndorsements (Beta)
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Endorsement ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: sucessfully deleted
+    get:
+      summary: Show a premium reducing endorsement
+      tags:
+      - PremiumReducingEndorsements (Beta)
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Endorsement ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PremiumReducingEndorsement'
+    patch:
+      summary: Update a premium reducing endorsement
+      tags:
+      - PremiumReducingEndorsements (Beta)
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Endorsement ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PremiumReducingEndorsement'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parent_billable_id:
+                  type: string
+                  format: uuid
+                  description: The id of the billable to be endorsed.
+                billable_identifier:
+                  type: string
+                  description: The identifier assigned to the endorsement by the issuing carrier or wholesaler.
+                premium_cents:
+                  type: integer
+                  minimum: 0
+                  description: The gross premium reduction for the policy.
+                taxes_and_fees_cents:
+                  type: integer
+                  minimum: 0
+                  nullable: true
+                  description: The reduction in taxes and fees for the policy.
+                surplus_lines_tax_cents:
+                  type: integer
+                  minimum: 0
+                  nullable: true
+                  description: 'The reduction in unearned surplus lines tax for the policy. Note: This field is only supported for organizations with surplus lines tax functionality enabled. Contact developers@useascend.com to enable this feature.'
+                effective_date:
+                  type: string
+                  format: date
+                  description: The date when the endorsement goes into effect. The date uses UTC and is represented in the iso format.
+                return_premium_cents:
+                  type: integer
+                  minimum: 0
+                  description: The return premium for the policy held by the agency that will be refunded to insured.
+                unearned_commission_cents:
+                  type: integer
+                  minimum: 0
+                  description: The unearned commission for the policy held by the agency that will be refunded to insured.
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                    required:
+                    - url
+                description:
+                  type: string
+                  nullable: true
+                  description: A short description that explains to the insured what is changing.
+              required:
+              - attachments
+components:
+  schemas:
+    PremiumReducingEndorsement:
+      type: object
+      description: A premium reducing endorsement on a policy.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the endorsement.
+        program_id:
+          type: string
+          format: uuid
+          description: The unique identifier for the program.
+        billable_identifier:
+          type: string
+          description: The identifier assigned to the endorsement by the issuing carrier or wholesaler.
+        effective_date:
+          type: string
+          format: date
+          description: 'The date when the endorsement goes into effect. Expected format: YYYY-MM-DD.'
+        description:
+          type: string
+          nullable: true
+          description: A short description that explains to the insured what is changing.
+        documents:
+          type: array
+          description: A collection of documents associated with the premium reducing endorsement.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: The display name of the static asset.
+                nullable: true
+              url:
+                type: string
+                description: The url to access the static asset.
+        parent_billable_id:
+          type: string
+          nullable: true
+          format: uuid
+          description: The unique identifier for the endorsement's parent billable.
+        premium_cents:
+          type: integer
+          description: The gross premium reduction for the policy.
+        taxes_and_fees_cents:
+          type: integer
+          description: The reduction in taxes and fees for the policy.
+        surplus_lines_tax_cents:
+          type: integer
+          description: Unearned surplus lines tax for the policy.
+        return_premium_cents:
+          type: integer
+          description: The return premium for the policy held by the agency that will be refunded to insured.
+        unearned_commission_cents:
+          type: integer
+          description: The unearned commission for the policy held by the agency that will be refunded to insured.
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

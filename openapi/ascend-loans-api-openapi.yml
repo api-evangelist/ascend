@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Ascend API V1 Accounts Loans API
+  version: v1
+  description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
+servers:
+- url: https://sandbox.api.useascend.com
+  description: Test server
+- url: https://api.useascend.com
+  description: Production server
+tags:
+- name: Loans
+  description: Loan details for a financed program
+paths:
+  /v1/loans:
+    get:
+      summary: List Loans
+      tags:
+      - Loans
+      operationId: listLoans
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: status
+        in: query
+        required: false
+        description: Filter by associated status
+        schema:
+          type: string
+      - name: program_id
+        in: query
+        required: false
+        description: Filter by associated program
+        schema:
+          type: string
+      - name: updated_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return loans that were updated during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      - name: created_at
+        in: query
+        style: deepObject
+        explode: true
+        description: Only return loans that were created during the given date interval. The date should be defined as an ISO-8601 datetime.
+        required: false
+        schema:
+          type: object
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Maximum value to filter by (exclusive).
+            gte:
+              type: string
+              format: date-time
+              description: Minimum value to filter by (inclusive).
+      responses:
+        '200':
+          description: Loans found
+  /v1/loans/{id}:
+    get:
+      summary: Get Loan
+      tags:
+      - Loans
+      operationId: getLoan
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        description: The loan identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: return loan with id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loan'
+        '404':
+          description: Loan not found
+components:
+  schemas:
+    Loan:
+      type: object
+      description: Loan details for a financed program
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The loan unique identifier.
+        amount_financed_cents:
+          type: integer
+          description: The amount financed through the loan represented in cents.
+          minimum: 0
+          example: 19775000
+          readOnly: true
+        apr:
+          type: number
+          format: double
+          description: The annual rate charged.
+          example: 0.055
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          description: The date when the loan was created. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+        downpayment_cents:
+          type: integer
+          description: The initial up-front payment represented in cents.
+          minimum: 0
+          example: 3955000
+          readOnly: true
+        number_of_payments:
+          type: integer
+          description: The number of payments that will be made to repay the loan.
+          minimum: 0
+          example: 10
+          readOnly: true
+        program_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the program associated to the loan.
+          readOnly: true
+        status:
+          type: string
+          description: The current state of the loan.
+          example: draft
+          readOnly: true
+        term_payment_cents:
+          type: integer
+          description: The amount that will be payed in each payment.
+          minimum: 0
+          example: 2027691
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: The date when the loan was last updated. The date uses UTC and is represented in the iso8601 format.
+          readOnly: true
+        completed_disclosure_url:
+          type: string
+          description: The completed disclosure document url.
+          readOnly: true
+          nullable: true
+      required:
+      - id
+      - amount_financed_cents
+      - apr
+      - created_at
+      - downpayment_cents
+      - number_of_payments
+      - program_id
+      - status
+      - term_payment_cents
+      - updated_at
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
