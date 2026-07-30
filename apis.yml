@@ -1,8 +1,25 @@
 aid: ascend
 name: Ascend
-description: 'Ascend is a company surfaced as a portfolio company of index-ventures and added to the API
-  Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: Ascend is a financial operations platform built for the insurance industry, offering AI-powered
+  accounting automation, payments, and premium financing in a single vertically integrated solution. Its
+  REST API (v1) lets insurance agencies, wholesalers, MGAs, and carriers automate billing and invoicing,
+  premium financing and installment plans, cash application, carrier payables, and direct bill workflows
+  — managing insureds, programs, billables, invoices, loans, payouts, refunds, and one-time payments programmatically,
+  secured with bearer tokens and HMAC-signed webhooks for invoice, payout, and refund events. Trusted
+  by over 4,000 insurance businesses, including over half of the 50 largest brokers.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.useascend.com/favicons/icon-512.png
 url: https://raw.githubusercontent.com/api-evangelist/ascend/refs/heads/main/apis.yml
 x-type: company
 x-source: index-ventures-portfolio
@@ -10,16 +27,404 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Fintech
-apis: []
+- Insurance
+- InsurTech
+- Payments
+- Premium Financing
+- Billing
+- Invoicing
+- Embedded Finance
+- REST API
+- Webhooks
+apis:
+- aid: ascend:ascend-accounts-api
+  name: Ascend Accounts API
+  description: The Accounts API from Ascend — 2 operation(s) for accounts.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-attachments-api
+  name: Ascend Attachments API
+  description: Represents a file that is associated with a program.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-billables-api
+  name: Ascend Billables API
+  description: Represents an insurance quote or endorsement to be billed to the insured.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Billables
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-billables-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-cancelationreturns-api
+  name: Ascend CancelationReturns API
+  description: Represents the cancelation of an insurance quote
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - CancelationReturns
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-cancelationreturns-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-carriers-api
+  name: Ascend Carriers API
+  description: Represents the carriers Ascend supports for quote creation.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Carriers
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-carriers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-contacts-api
+  name: Ascend Contacts API
+  description: Represents the contacts that may be associated with an Insured account.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-coveragetypes-api
+  name: Ascend CoverageTypes API
+  description: Represents the coverage types Ascend supports for quote creation.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - CoverageTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-coveragetypes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-financeestimate-api
+  name: Ascend FinanceEstimate API
+  description: Estimated financing terms.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - FinanceEstimate
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-financeestimate-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-installmentplans-api
+  name: Ascend InstallmentPlans API
+  description: A payment plan broken down over a seriies of regular installments
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - InstallmentPlans
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-installmentplans-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-installments-api
+  name: Ascend Installments API
+  description: An single installment on a installment plan
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Installments
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-installments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-insureds-api
+  name: Ascend Insureds API
+  description: >-
+    Represents the person or business entity that is purchasing the collection of insurance quotes.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Insureds
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-insureds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-invoices-api
+  name: Ascend Invoices API
+  description: Represents records of a transaction between the insured and Ascend.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-loans-api
+  name: Ascend Loans API
+  description: Loan details for a financed program
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Loans
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-loans-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-onetimepayments-api
+  name: Ascend OneTimePayments API
+  description: Represents records of a transaction between an insured and an agency or MGA.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - OneTimePayments
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-onetimepayments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-organization-account-users-api
+  name: Ascend Organization Account Users API
+  description: >-
+    The Organization Account Users API from Ascend — 2 operation(s) for organization account users.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Organization Account Users
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-organization-account-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-paymentproposals-api
+  name: Ascend PaymentProposals API
+  description: The PaymentProposals API from Ascend — 1 operation(s) for paymentproposals.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - PaymentProposals
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-paymentproposals-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-payouts-api
+  name: Ascend Payouts API
+  description: Money transfers between accounts triggered after an insured pays a quote.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Payouts
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-payouts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-premiumreducingendorsements-beta-api
+  name: Ascend PremiumReducingEndorsements (Beta) API
+  description: Represents a premium reducing endorsement for an insurance quote.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - PremiumReducingEndorsements (Beta)
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-premiumreducingendorsements-beta-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-programs-api
+  name: Ascend Programs API
+  description: A collection of insurance quotes pooled to produce 1 checkout link.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-programs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-refunds-api
+  name: Ascend Refunds API
+  description: A collection of refunds to the insured.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-returns-api
+  name: Ascend Returns API
+  description: A collection of returns on one time payments or installment plans.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Returns
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-returns-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-users-api
+  name: Ascend Users API
+  description: Represent users that manage programs. They can be analysts, producers, support & admins.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-wholesalers-api
+  name: Ascend Wholesalers API
+  description: The Wholesalers API from Ascend — 1 operation(s) for wholesalers.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Wholesalers
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-wholesalers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/ascend-agentic-access.yml
+- type: DomainSecurity
+  url: security/ascend-domain-security.yml
+- type: Authentication
+  url: authentication/ascend-authentication.yml
 - type: Website
   url: https://useascend.com/
+- type: DeveloperPortal
+  url: https://developers.useascend.com/
+- type: Documentation
+  url: https://developers.useascend.com/docs
+- type: APIReference
+  url: https://developers.useascend.com/reference
+- type: GettingStarted
+  url: https://developers.useascend.com/docs/getting-started
+- type: Support
+  url: https://support.useascend.com/
+- type: SignUp
+  url: https://dashboard.useascend.com/
+- type: StatusPage
+  url: https://status.useascend.com/
+- type: TermsOfService
+  url: https://useascend.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://useascend.com/legal/privacy-policy
+- type: Security
+  url: https://useascend.com/legal/security-policy
+- type: LLMsTxt
+  url: llms/ascend-llms.txt
+- type: Webhooks
+  url: asyncapi/ascend-webhooks.yml
+- type: Conventions
+  url: conventions/ascend-conventions.yml
+- type: ErrorCatalog
+  url: errors/ascend-problem-types.yml
+- type: DataModel
+  url: data-model/ascend-data-model.yml
+- type: Lifecycle
+  url: lifecycle/ascend-lifecycle.yml
+- type: Sandbox
+  url: sandbox/ascend-sandbox.yml
+- type: Conformance
+  url: conformance/ascend-conformance.yml
+- type: Compliance
+  url: conformance/ascend-conformance.yml
+- type: MCPServer
+  url: mcp/ascend-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: VulnerabilityDisclosure
+  url: security/ascend-vulnerability-disclosure.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
