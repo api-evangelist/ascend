@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.useascend.com/docs/webhooks
+spec_type: Webhooks
+summary: >-
+  Ascend sends webhook events as HTTPS POST requests with a JSON payload of the form
+  {"id","type","data":{...}}. Requests are signed with an HMAC SHA-256 signature in the
+  X-Ascend-Signature header (format "t=<timestamp>,v1=<hmac>") over "<timestamp>:<raw body>",
+  with the timestamp also supplied in X-Ascend-Request-Timestamp. Webhook keys and event
+  subscriptions are provisioned by contacting developers@useascend.com.
+signature:
+  header: X-Ascend-Signature
+  timestamp_header: X-Ascend-Request-Timestamp
+  algorithm: HMAC-SHA256
+  signed_payload: '<timestamp>:<stringified request body>'
+event_groups:
+- name: Invoice
+  docs: https://developers.useascend.com/docs/invoice-webhooks
+  events:
+  - name: invoice.created
+    description: An invoice has been created.
+  - name: invoice.processing_payment
+    description: The insured invoice is being processed (e.g. ACH payments).
+  - name: invoice.paid
+    description: The invoice has been paid and funds have cleared Ascend.
+  - name: invoice.voided
+    description: The invoice has been voided (e.g. archived or canceled).
+  - name: invoice.marked_overdue
+    description: The invoice is past its due date.
+- name: Payout
+  docs: https://developers.useascend.com/docs/payout-webhooks
+  events:
+  - name: payout.paying
+    description: The payout has been released.
+  - name: payout.paid
+    description: The payout has cleared.
+  - name: payout.on_hold
+    description: The payout is in review or placed on hold.
+  - name: payout.canceled
+    description: The payout has been canceled.
+  - name: payout.failed
+    description: The payout has failed.
+- name: Refund
+  docs: https://developers.useascend.com/docs/refund-webhooks
+  events:
+  - name: refund.paid
+    description: The refund has been paid.
+  - name: refund.cancelled
+    description: The refund has been cancelled.

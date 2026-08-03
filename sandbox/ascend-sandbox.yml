@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.useascend.com/
+summary: >-
+  Ascend exposes a dedicated sandbox/test environment distinct from production. Sandbox API keys are
+  issued on request; there is no self-serve key generation documented.
+environments:
+- mode: test
+  base_url: https://sandbox.api.useascend.com
+  description: Test server (sandbox).
+- mode: live
+  base_url: https://api.useascend.com
+  description: Production server.
+test_keys:
+  provisioning: Request a sandbox API key by contacting developers@useascend.com
+  self_serve: false
+webhooks_test:
+  note: Webhook keys and subscriptions (including environment) are provisioned via developers@useascend.com.
+test_values:
+  note: Ascend does not publish a public list of magic test card numbers or fixtures; test data is provisioned per sandbox account.

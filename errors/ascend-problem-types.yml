@@ -1,0 +1,54 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/ascend-openapi-original.yml
+format: custom
+note: 'Ascend does not use RFC 9457 problem+json. Errors are returned as application/json with an "errors"
+  array envelope: {"errors": [ ... ]}.'
+envelope:
+  field: errors
+  type: array
+problems:
+- status: 400
+  title: Bad Request
+  occurrences: 21
+  example_operations:
+  - null
+  - createBillable
+  - updateBillable
+  remediation: Check request parameters and body against the schema.
+- status: 401
+  title: Unauthorized
+  occurrences: 1
+  example_operations:
+  - listInsuredPaymentMethods
+  remediation: Provide a valid bearer token in the Authorization header.
+- status: 403
+  title: Forbidden
+  occurrences: 4
+  example_operations:
+  - null
+  - null
+  - chargeInvoice
+  remediation: The authenticated principal lacks access to this resource.
+- status: 404
+  title: Not Found
+  occurrences: 21
+  example_operations:
+  - deleteAttachment
+  - getAttachment
+  - createBillable
+  remediation: Verify the resource identifier exists and is accessible to your organization.
+- status: 422
+  title: Unprocessable Entity
+  occurrences: 15
+  example_operations:
+  - createBillable
+  - updateBillable
+  - null
+  remediation: Validation failed; inspect the errors[] array for field-level detail.
+- status: 500
+  title: Internal Server Error
+  occurrences: 1
+  example_operations:
+  - createLoanPayoffEstimate
+  remediation: Retry with backoff; contact developers@useascend.com if it persists.

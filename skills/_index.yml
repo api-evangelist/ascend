@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/ascend-openapi-original.yml
+skills:
+- file: ascend-bill-and-invoice-an-insured.md
+  name: Bill and invoice an insured
+  api: openapi/ascend-openapi-original.yml
+  operations: [createInsured, createProgram, createBillable, createInvoice, getInvoice, chargeInvoice]
+- file: ascend-set-up-premium-financing.md
+  name: Set up premium financing for a program
+  api: openapi/ascend-openapi-original.yml
+  operations: [listPrograms, getProgram, createLoanPayoffEstimate, getLoan, listLoans]
+- file: ascend-reconcile-payouts.md
+  name: Reconcile payouts and invoices
+  api: openapi/ascend-openapi-original.yml
+  operations: [listPayouts, listInvoices, getInvoice]

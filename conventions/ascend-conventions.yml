@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.useascend.com/
+note: >-
+  Cross-cutting request/response semantics for the Ascend API V1, harvested from the developer
+  docs and the reconstructed OpenAPI. Ascend does not document an idempotency-key contract, so no
+  Idempotency pointer is emitted.
+authentication:
+  style: bearer
+  scheme: http bearer
+  header: 'Authorization: Bearer <token>'
+  detail: authentication/ascend-authentication.yml
+  sandbox_keys: Request via developers@useascend.com
+pagination:
+  style: page-number
+  params:
+  - name: page
+    in: query
+    description: Page number for list endpoints.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /v1
+error_envelope:
+  shape: '{"errors": [ ... ]}'
+  media_type: application/json
+  format: non-rfc9457
+  catalog: errors/ascend-problem-types.yml
+webhooks:
+  signature_header: X-Ascend-Signature
+  algorithm: HMAC-SHA256
+  catalog: asyncapi/ascend-webhooks.yml
+identifiers:
+  style: uuid
+  note: Resource ids are UUIDs (format uuid in the spec); monetary amounts are integer *_cents fields.
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or documented idempotency contract found.
+rate_limiting:
+  documented: false

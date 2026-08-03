@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Ascend API V1
+  version: 1.0.0
+extends: openapi/ascend-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-apievangelist-webhooks: asyncapi/ascend-webhooks.yml
+    x-apievangelist-conventions: conventions/ascend-conventions.yml
+    x-apievangelist-errors: errors/ascend-problem-types.yml
+    x-apievangelist-contact: developers@useascend.com
+- target: $.components.securitySchemes.bearer_auth
+  update:
+    description: Bearer token issued by Ascend. Request sandbox keys via developers@useascend.com.

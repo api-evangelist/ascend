@@ -1,0 +1,185 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/ascend-openapi-original.yml
+note: Candidate MCP tool surface derived one-tool-per-operation from the harvested OpenAPI. No official
+  hosted Ascend MCP server was found as of this date.
+server:
+  name: ascend
+  transport: stdio
+tools:
+- name: createAttachment
+  description: Create attachment
+  source_operation: openapi/ascend-openapi-original.yml#createAttachment
+- name: deleteAttachment
+  description: Delete Attachments
+  source_operation: openapi/ascend-openapi-original.yml#deleteAttachment
+- name: getAttachment
+  description: Get attachment
+  source_operation: openapi/ascend-openapi-original.yml#getAttachment
+- name: createBillable
+  description: Create Billable
+  source_operation: openapi/ascend-openapi-original.yml#createBillable
+- name: listBillables
+  description: List Billables
+  source_operation: openapi/ascend-openapi-original.yml#listBillables
+- name: deleteBillable
+  description: Delete Billable
+  source_operation: openapi/ascend-openapi-original.yml#deleteBillable
+- name: getBillable
+  description: Get Billable
+  source_operation: openapi/ascend-openapi-original.yml#getBillable
+- name: updateBillable
+  description: Update Billable
+  source_operation: openapi/ascend-openapi-original.yml#updateBillable
+- name: createCancelationReturns
+  description: Create Cancelation Return
+  source_operation: openapi/ascend-openapi-original.yml#createCancelationReturns
+- name: getCancelationReturns
+  description: List Cancelation Returns
+  source_operation: openapi/ascend-openapi-original.yml#getCancelationReturns
+- name: getCancelationReturn
+  description: Get Cancelation Return
+  source_operation: openapi/ascend-openapi-original.yml#getCancelationReturn
+- name: updateCancelationReturn
+  description: Update Cancelation Returns
+  source_operation: openapi/ascend-openapi-original.yml#updateCancelationReturn
+- name: listCarriers
+  description: List Carriers
+  source_operation: openapi/ascend-openapi-original.yml#listCarriers
+- name: listCoverageTypes
+  description: List CoverageTypes
+  source_operation: openapi/ascend-openapi-original.yml#listCoverageTypes
+- name: archiveInstallmentPlan
+  description: Archive Installment Plan
+  source_operation: openapi/ascend-openapi-original.yml#archiveInstallmentPlan
+- name: updateInstallmentPlan
+  description: Update Installment Plan
+  source_operation: openapi/ascend-openapi-original.yml#updateInstallmentPlan
+- name: cancelInstallmentPlan
+  description: Cancel Installment Plan
+  source_operation: openapi/ascend-openapi-original.yml#cancelInstallmentPlan
+- name: sendInstallmentPlanReminder
+  description: Notify User
+  source_operation: openapi/ascend-openapi-original.yml#sendInstallmentPlanReminder
+- name: createInsured
+  description: Create Insured
+  source_operation: openapi/ascend-openapi-original.yml#createInsured
+- name: listInsureds
+  description: List Insureds
+  source_operation: openapi/ascend-openapi-original.yml#listInsureds
+- name: getInsured
+  description: Get Insured
+  source_operation: openapi/ascend-openapi-original.yml#getInsured
+- name: updateInsured
+  description: Update Insured
+  source_operation: openapi/ascend-openapi-original.yml#updateInsured
+- name: listInsuredPaymentMethods
+  description: List the insured's last-used payment method
+  source_operation: openapi/ascend-openapi-original.yml#listInsuredPaymentMethods
+- name: createInvoice
+  description: Create invoice
+  source_operation: openapi/ascend-openapi-original.yml#createInvoice
+- name: listInvoices
+  description: List Invoices
+  source_operation: openapi/ascend-openapi-original.yml#listInvoices
+- name: getInvoice
+  description: Get Invoice
+  source_operation: openapi/ascend-openapi-original.yml#getInvoice
+- name: updateInvoice
+  description: Update invoice
+  source_operation: openapi/ascend-openapi-original.yml#updateInvoice
+- name: voidInvoice
+  description: Void invoice
+  source_operation: openapi/ascend-openapi-original.yml#voidInvoice
+- name: chargeInvoice
+  description: Charge a renewal program's initial checkout invoice using the insured's stored payment
+    method
+  source_operation: openapi/ascend-openapi-original.yml#chargeInvoice
+- name: listLoans
+  description: List Loans
+  source_operation: openapi/ascend-openapi-original.yml#listLoans
+- name: getLoan
+  description: Get Loan
+  source_operation: openapi/ascend-openapi-original.yml#getLoan
+- name: createOneTimePayment
+  description: Create One Time Payment
+  source_operation: openapi/ascend-openapi-original.yml#createOneTimePayment
+- name: listOneTimePayments
+  description: List One Time Payments
+  source_operation: openapi/ascend-openapi-original.yml#listOneTimePayments
+- name: getOneTimePayment
+  description: Get One Time Payment
+  source_operation: openapi/ascend-openapi-original.yml#getOneTimePayment
+- name: updateOneTimePayment
+  description: Update One Time Payment
+  source_operation: openapi/ascend-openapi-original.yml#updateOneTimePayment
+- name: voidOneTimePayment
+  description: Void One Time Payment
+  source_operation: openapi/ascend-openapi-original.yml#voidOneTimePayment
+- name: sendOneTimePaymentReminder
+  description: Notify User
+  source_operation: openapi/ascend-openapi-original.yml#sendOneTimePaymentReminder
+- name: createOrgAccountUser
+  description: Create account user
+  source_operation: openapi/ascend-openapi-original.yml#createOrgAccountUser
+- name: listOrgAccountUsers
+  description: List account users
+  source_operation: openapi/ascend-openapi-original.yml#listOrgAccountUsers
+- name: getOrgAccountUser
+  description: Get account user
+  source_operation: openapi/ascend-openapi-original.yml#getOrgAccountUser
+- name: createPaymentProposal
+  description: Generate payment proposal document for a program
+  source_operation: openapi/ascend-openapi-original.yml#createPaymentProposal
+- name: listPayouts
+  description: List Payouts
+  source_operation: openapi/ascend-openapi-original.yml#listPayouts
+- name: createProgram
+  description: Create Program
+  source_operation: openapi/ascend-openapi-original.yml#createProgram
+- name: listPrograms
+  description: List Programs
+  source_operation: openapi/ascend-openapi-original.yml#listPrograms
+- name: deleteProgram
+  description: Archive Program
+  source_operation: openapi/ascend-openapi-original.yml#deleteProgram
+- name: getProgram
+  description: Get Program
+  source_operation: openapi/ascend-openapi-original.yml#getProgram
+- name: updateProgram
+  description: Update program
+  source_operation: openapi/ascend-openapi-original.yml#updateProgram
+- name: createProgramLoanPayoff
+  description: Create loan payoff invoice
+  source_operation: openapi/ascend-openapi-original.yml#createProgramLoanPayoff
+- name: getProgramLoanPayoff
+  description: Get loan payoff invoice
+  source_operation: openapi/ascend-openapi-original.yml#getProgramLoanPayoff
+- name: voidProgramLoanPayoff
+  description: Void loan payoff invoice
+  source_operation: openapi/ascend-openapi-original.yml#voidProgramLoanPayoff
+- name: createLoanPayoffEstimate
+  description: Loan Payoff Estimate
+  source_operation: openapi/ascend-openapi-original.yml#createLoanPayoffEstimate
+- name: notifyInsured
+  description: Notify User
+  source_operation: openapi/ascend-openapi-original.yml#notifyInsured
+- name: unarchiveProgram
+  description: Unarchive program
+  source_operation: openapi/ascend-openapi-original.yml#unarchiveProgram
+- name: createUser
+  description: Create User
+  source_operation: openapi/ascend-openapi-original.yml#createUser
+- name: listUsers
+  description: List Users
+  source_operation: openapi/ascend-openapi-original.yml#listUsers
+- name: getUser
+  description: Get User
+  source_operation: openapi/ascend-openapi-original.yml#getUser
+- name: updateUser
+  description: Update User
+  source_operation: openapi/ascend-openapi-original.yml#updateUser
+- name: listWholesalers
+  description: List Wholesalers
+  source_operation: openapi/ascend-openapi-original.yml#listWholesalers

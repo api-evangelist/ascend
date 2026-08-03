@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: https://useascend.com/legal/security-policy
+compliance:
+  soc2:
+    published: true
+    evidence: >-
+      Security policy states "Our Information Security Program follows the criteria set forth by the
+      SOC 2 Framework."
+    source: https://useascend.com/legal/security-policy
+standards:
+- id: oauth2
+  conforms: false
+  evidence: securitySchemes use http bearer, not oauth2
+- id: bearer-token
+  conforms: true
+  evidence: openapi securitySchemes bearer_auth (http, scheme bearer)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as {"errors":[...]} JSON envelope, not application/problem+json
+- id: webhooks-hmac-sha256
+  conforms: true
+  evidence: X-Ascend-Signature HMAC SHA-256 request signing documented
+- id: pagination
+  conforms: true
+  evidence: page-number pagination via page query parameter
+- id: soc2
+  conforms: true
+  evidence: Information Security Program follows the SOC 2 Framework (security policy)

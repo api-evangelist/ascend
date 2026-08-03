@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.useascend.com/
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://developers.useascend.com/reference
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal deprecation/sunset policy published. The docs mark some beta surfaces (e.g.
+    PremiumReducingEndorsements (Beta), BillableCancelations Beta) but no dated deprecation policy.
+status_page: https://status.useascend.com/
+support: https://support.useascend.com/
+deprecated_operations: []
