@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts FinanceEstimate API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FinanceEstimate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create FinanceEstimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/finance_estimates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create FinanceEstimate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

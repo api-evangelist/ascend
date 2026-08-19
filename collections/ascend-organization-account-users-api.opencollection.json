@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts Organization Account Users API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Account Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List account users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/organization_accounts/:account_id/users",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginating results. Default is 1."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The organization account identifier"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user email address (case-insensitive)"
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return users that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return users that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List account users"
+        },
+        {
+          "info": {
+            "name": "Create account user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/organization_accounts/:account_id/users",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create account user"
+        },
+        {
+          "info": {
+            "name": "Get account user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/organization_accounts/:account_id/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get account user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

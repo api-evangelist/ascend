@@ -1,0 +1,1269 @@
+{
+  "item": [
+    {
+      "id": "95d9f068-03c7-4285-b21a-5a1ca6d311b4",
+      "name": "Invoices",
+      "description": {
+        "content": "Represents records of a transaction between the insured and Ascend.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "746d8039-a4f1-47c5-b8fe-49bcd979f00a",
+          "name": "Create invoice",
+          "request": {
+            "name": "Create invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"payer_name\": \"<string>\",\n  \"attachments\": [\n    {\n      \"url\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\"\n    }\n  ],\n  \"memo\": \"Invoice for {payer_name}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22d0c6e0-de9f-4812-88ec-0b222db37ebf",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"attachments\": [\n    {\n      \"url\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\"\n    }\n  ],\n  \"memo\": \"Additional premium for auto policy\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5e3f46c7-0079-4e4c-23d5-768760be03e0\",\n  \"account_manager_id\": \"0878755a-e798-56d8-e365-9660aad32ae1\",\n  \"agent_invoice_docs\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"checkout_url\": \"string\",\n  \"due_date\": \"1985-11-05\",\n  \"installment_id\": \"6250d6e5-da6e-d3a0-f67b-71097e2ecec7\",\n  \"installment_plan_id\": \"fd7cb569-a9a5-ebe7-76e7-0b2e0a7e05c9\",\n  \"insured_id\": \"46ee8f4a-e9b1-d32f-ff83-9fd03f307a6e\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n  \"issued_at\": \"2017-12-18T09:19:56.105Z\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"one_time_payment_id\": \"fa549d03-aa14-8047-b2c0-ab486c216fac\",\n  \"paid_at\": \"1972-03-23T17:58:08.324Z\",\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"payment_method\": {\n    \"id\": \"50bdd2ff-b274-9826-5b19-36a6a5a9721b\",\n    \"payment_type\": \"card\",\n    \"card\": {\n      \"brand\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_debit\": {\n      \"bank_name\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_credit\": {\n      \"bank_name\": \"string\"\n    }\n  },\n  \"program_id\": \"479e6296-8b43-c21a-ce25-200e3a67fa8c\",\n  \"status\": \"draft\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "043913c8-ac31-49bf-9cec-c6c30ef0f979",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"attachments\": [\n    {\n      \"url\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\"\n    }\n  ],\n  \"memo\": \"Additional premium for auto policy\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f7f62c3-546a-4a42-9994-a0840cb482a1",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"attachments\": [\n    {\n      \"url\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\"\n    }\n  ],\n  \"memo\": \"Additional premium for auto policy\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c2ea6fd-47c4-4661-bc9a-d73236bb6ceb",
+          "name": "List Invoices",
+          "request": {
+            "name": "List Invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for paginating results. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "billable_id",
+                  "value": "<string>",
+                  "description": "Filter by associated billable"
+                },
+                {
+                  "disabled": false,
+                  "key": "insured_id",
+                  "value": "<string>",
+                  "description": "Filter for invoices to be paid by associated insured"
+                },
+                {
+                  "disabled": false,
+                  "key": "product_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "due_date_start",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "due_date_end",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at_start",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at_end",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return invoices that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return invoices that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return invoices that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return invoices that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2e88da97-9d5b-4745-a9a9-8650080c2daf",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "billable_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "insured_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "due_date_start",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "due_date_end",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "paid_at_start",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "paid_at_end",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1b8e5ff7-8d95-321c-099c-a644e770f023\",\n      \"account_manager_id\": \"adbf7f25-0c71-76f6-0f48-7642e924c0ac\",\n      \"agent_invoice_docs\": [\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"checkout_url\": \"string\",\n      \"due_date\": \"2018-04-07\",\n      \"installment_id\": \"84abcf13-692f-bd1b-e3f5-51dcb1b51d49\",\n      \"installment_plan_id\": \"be878b18-5d4d-7341-f73b-1a2b0c0f6c53\",\n      \"insured_id\": \"4fa73f81-cbe2-6429-872f-d970e720ea85\",\n      \"invoice_items\": [\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        },\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        }\n      ],\n      \"invoice_number\": \"I909821\",\n      \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n      \"issued_at\": \"2005-06-11T20:36:52.982Z\",\n      \"memo\": \"Additional premium for auto policy\",\n      \"one_time_payment_id\": \"3d540c0d-8cea-6bce-fe4d-fab4f770d83d\",\n      \"paid_at\": \"1987-09-29T04:23:16.868Z\",\n      \"payer_name\": \"Auto Sales Inc.\",\n      \"payment_method\": {\n        \"id\": \"1d4745f3-4798-85c8-c8a4-46b00d1e4087\",\n        \"payment_type\": \"card\",\n        \"card\": {\n          \"brand\": \"string\",\n          \"last_four_digits\": \"string\"\n        },\n        \"ach_debit\": {\n          \"bank_name\": \"string\",\n          \"last_four_digits\": \"string\"\n        },\n        \"ach_credit\": {\n          \"bank_name\": \"string\"\n        }\n      },\n      \"program_id\": \"035104a4-5d98-82b2-bfbf-18938affe1b7\",\n      \"status\": \"draft\",\n      \"total_amount_cents\": 10000\n    },\n    {\n      \"id\": \"a12f15d8-9e0e-6caa-d327-2f39bd0f0f77\",\n      \"account_manager_id\": \"4a2cba29-05c0-00fc-397c-9b946c5da1c0\",\n      \"agent_invoice_docs\": [\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"checkout_url\": \"string\",\n      \"due_date\": \"1969-06-03\",\n      \"installment_id\": \"f1606090-2dbe-426d-91d1-aa0d12629ed2\",\n      \"installment_plan_id\": \"1128c6ec-f328-015b-2c29-125337d784fb\",\n      \"insured_id\": \"51edeac5-0d0a-041d-8b03-80e04667231a\",\n      \"invoice_items\": [\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        },\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        }\n      ],\n      \"invoice_number\": \"I909821\",\n      \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n      \"issued_at\": \"1961-11-05T09:07:05.590Z\",\n      \"memo\": \"Additional premium for auto policy\",\n      \"one_time_payment_id\": \"f93edc3f-f1d6-c8e9-aff7-382b4e631fb4\",\n      \"paid_at\": \"1982-07-15T18:20:45.601Z\",\n      \"payer_name\": \"Auto Sales Inc.\",\n      \"payment_method\": {\n        \"id\": \"5f04a9b2-ed4a-8565-ad17-1076928011b7\",\n        \"payment_type\": \"card\",\n        \"card\": {\n          \"brand\": \"string\",\n          \"last_four_digits\": \"string\"\n        },\n        \"ach_debit\": {\n          \"bank_name\": \"string\",\n          \"last_four_digits\": \"string\"\n        },\n        \"ach_credit\": {\n          \"bank_name\": \"string\"\n        }\n      },\n      \"program_id\": \"ddf86615-b40f-c0a7-91df-b9930bc8d5c9\",\n      \"status\": \"draft\",\n      \"total_amount_cents\": 10000\n    }\n  ],\n  \"meta\": {\n    \"count\": 3861,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f2d3ef0-3ca5-41c9-a2cf-630c0f70a8a2",
+          "name": "Get Invoice",
+          "request": {
+            "name": "Get Invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "invoices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a1bb3801-19a4-4a7d-9028-e7c460ccb35c",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c9d3f00f-e4d5-31bd-79c3-e185d855d026\",\n  \"account_manager_id\": \"ed6d6fca-6861-571d-332b-0662984d8e7f\",\n  \"agent_invoice_docs\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"checkout_url\": \"string\",\n  \"due_date\": \"2021-02-15\",\n  \"installment_id\": \"5f931f7c-6e02-57a8-46d0-a4f07d57f1f5\",\n  \"installment_plan_id\": \"0bf34705-b977-0334-36bf-d29f38acf27b\",\n  \"insured_id\": \"d65a9728-cbac-db61-bb51-aff84cc29162\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n  \"issued_at\": \"1988-01-29T12:28:38.437Z\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"one_time_payment_id\": \"98c8d55e-adf8-fbb0-b983-748c0047ae7b\",\n  \"paid_at\": \"1965-05-22T03:56:48.703Z\",\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"payment_method\": {\n    \"id\": \"2b2c86a3-fdf6-1ed6-e9a4-1c71149da8a4\",\n    \"payment_type\": \"us_bank_account\",\n    \"card\": {\n      \"brand\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_debit\": {\n      \"bank_name\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_credit\": {\n      \"bank_name\": \"string\"\n    }\n  },\n  \"program_id\": \"d2465b75-9905-5ebd-c531-530f633925a8\",\n  \"status\": \"draft\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e01b6c57-506d-4188-a6dc-3f32d0b28a34",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23283b8a-f8ec-41c2-8fb0-13db1a3a2dfe",
+          "name": "Update invoice",
+          "request": {
+            "name": "Update invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "invoices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"memo\": \"<string>\",\n  \"payee\": \"<string>\",\n  \"payer_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4d0a5f1-fddd-43fb-bb2c-aa647d56ac40",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"memo\": \"Additional premium for auto policy\",\n  \"payee\": \"Auto Sales Inc.\",\n  \"payer_name\": \"Auto Sales Inc.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c9d3f00f-e4d5-31bd-79c3-e185d855d026\",\n  \"account_manager_id\": \"ed6d6fca-6861-571d-332b-0662984d8e7f\",\n  \"agent_invoice_docs\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"checkout_url\": \"string\",\n  \"due_date\": \"2021-02-15\",\n  \"installment_id\": \"5f931f7c-6e02-57a8-46d0-a4f07d57f1f5\",\n  \"installment_plan_id\": \"0bf34705-b977-0334-36bf-d29f38acf27b\",\n  \"insured_id\": \"d65a9728-cbac-db61-bb51-aff84cc29162\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n  \"issued_at\": \"1988-01-29T12:28:38.437Z\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"one_time_payment_id\": \"98c8d55e-adf8-fbb0-b983-748c0047ae7b\",\n  \"paid_at\": \"1965-05-22T03:56:48.703Z\",\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"payment_method\": {\n    \"id\": \"2b2c86a3-fdf6-1ed6-e9a4-1c71149da8a4\",\n    \"payment_type\": \"us_bank_account\",\n    \"card\": {\n      \"brand\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_debit\": {\n      \"bank_name\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_credit\": {\n      \"bank_name\": \"string\"\n    }\n  },\n  \"program_id\": \"d2465b75-9905-5ebd-c531-530f633925a8\",\n  \"status\": \"draft\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f5f077b-7609-4a2d-bac3-1f4a2c9840c1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"memo\": \"Additional premium for auto policy\",\n  \"payee\": \"Auto Sales Inc.\",\n  \"payer_name\": \"Auto Sales Inc.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12e22bb2-34df-4768-8e3f-a0df858df383",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"memo\": \"Additional premium for auto policy\",\n  \"payee\": \"Auto Sales Inc.\",\n  \"payer_name\": \"Auto Sales Inc.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a4abfa9-9f86-49a9-91c4-5faac547f56a",
+          "name": "Void invoice",
+          "request": {
+            "name": "Void invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "invoices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice identifier"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4b5f9d50-34d1-4320-9050-071c94853558",
+              "name": "Invoice voided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c912e72-9078-4445-b81a-ca354f73bddc",
+          "name": "Charge a renewal program's initial checkout invoice using the insured's stored payment method",
+          "request": {
+            "name": "Charge a renewal program's initial checkout invoice using the insured's stored payment method",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "invoices",
+                ":id",
+                "charge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_method_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "273ba899-3143-4d63-b8c0-2c98952c272f",
+              "name": "Invoice charged successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d94d82e6-36b8-4ea0-a32e-cb951a733707",
+              "name": "Invoice ineligible (caller sent the wrong invoice / program / payer)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e0f0b46-3108-482d-9415-e2c2d7ee1114",
+              "name": "api_invoice_charge feature is not enabled for the organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1746fbad-2be5-4b78-a041-41f33d9e1648",
+              "name": "Payment method not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1c577a3-731e-44e4-85da-bfcb5e582624",
+              "name": "Payment failed (card declined, requires_action / 3DS, already_charged, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d04db410-8ad0-4ccc-b413-671d5a6e5fac",
+    "name": "Ascend API V1 Accounts Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

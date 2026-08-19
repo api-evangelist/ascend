@@ -1,0 +1,129 @@
+{
+  "item": [
+    {
+      "id": "50a9fdfe-eaf3-4c0f-b363-5e44758861d1",
+      "name": "Carriers",
+      "description": {
+        "content": "Represents the carriers Ascend supports for quote creation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81b7861b-2e40-46f2-9dc9-6e6d9029bbf1",
+          "name": "List Carriers",
+          "request": {
+            "name": "List Carriers",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "carriers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The requested page number. Default page number is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_query",
+                  "value": "<string>",
+                  "description": "The term used to search. An empty query can be used to fetch all carriers sorted by the carrier name in alphabetical order."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "59b57140-3493-4f7a-8176-9c92f8b81d8a",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "carriers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b2adcd77-4988-4c13-b836-cfc9535ff9bc",
+    "name": "Ascend API V1 Accounts Carriers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1005 @@
+{
+  "item": [
+    {
+      "id": "bd33154b-2be7-4e0e-99c5-7d6857f64ea1",
+      "name": "OneTimePayments",
+      "description": {
+        "content": "Represents records of a transaction between an insured and an agency or MGA.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14d30bb1-7152-428c-bcf3-2f0da37d6b08",
+          "name": "Create One Time Payment",
+          "request": {
+            "name": "Create One Time Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"memo\": \"Invoice for {payer_name}\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "12fc6b0b-8af3-483d-a766-770ca36ec030",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6a86129f-3940-f236-a2c4-293b0f92e926\",\n  \"account_manager\": {\n    \"email\": \"Pj0tJ1VawViYDwH@VzbzI.xvwf\",\n    \"phone\": \"string\",\n    \"id\": \"74563c2d-5531-3a42-fa4d-c92cbba72b3f\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"SJ5Jy-z@wDbK.vf\",\n    \"phone\": \"string\",\n    \"id\": \"e861b128-eb12-4658-6bfc-7fb2ea7e9b56\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"billing_type\": \"agency_bill\",\n  \"checkout_url\": \"string\",\n  \"due_date\": \"1948-10-25\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": 8737,\n        \"identifier\": \"string\",\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"amount_cents\": 9696,\n        \"identifier\": \"string\",\n        \"remittance_memo\": \"string\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": 4494,\n        \"organization_account_id\": \"string\",\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"amount_cents\": 9361,\n        \"organization_account_id\": \"string\",\n        \"remittance_memo\": \"string\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"commission_account\",\n        \"amount_cents\": 848,\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"account_type\": \"trust_account\",\n        \"amount_cents\": 3221,\n        \"remittance_memo\": \"string\"\n      }\n    ]\n  },\n  \"insured_id\": \"7a6fd2bf-6cdc-5a8f-4c26-deeb04344a60\",\n  \"invoice_documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": {},\n  \"organization_account_id\": \"bad5097e-2d5d-fcdf-5f02-3ef750734524\",\n  \"paid_at\": \"1992-01-29T05:20:55.534Z\",\n  \"payer\": {\n    \"id\": \"f322c36c-2fe7-f6a0-33ed-86adbe2f66de\",\n    \"type\": \"Insured\"\n  },\n  \"status\": \"awaiting_payment\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cb042d0-e321-47c5-8995-45fe6bf0b140",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9dc7779b-d883-4ed9-a41b-6c41ba7fa2e3",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"insured_id\": \"<uuid>\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43250eb4-45ec-4e44-8470-f075f550be5f",
+          "name": "List One Time Payments",
+          "request": {
+            "name": "List One Time Payments",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "insured_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_account_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "due_date_start",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "due_date_end",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return one time payments paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return one time payments paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for paginating results. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return one time payments that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return one time payments that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return one time payments that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return one time payments that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7465dcc5-1276-4b75-ae41-3f102a34af96",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insured_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "due_date_start",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "due_date_end",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "paid_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "paid_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"715f6764-fde4-d475-56cb-b44727015f79\",\n      \"account_manager\": {\n        \"email\": \"NCVdMu5Otm@LZugktTttYyrzkOqjgrtmyQFb.yhd\",\n        \"phone\": \"string\",\n        \"id\": \"d1b10e5f-6944-64e6-03e3-2091e179423e\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"secondary_account_manager\": {\n        \"email\": \"xHVJfnj77ng@lWKHLKnlmsGzE.ilw\",\n        \"phone\": \"string\",\n        \"id\": \"dbde3e0b-d567-4042-51de-2e6a6fc85708\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"billing_type\": \"agency_bill\",\n      \"checkout_url\": \"string\",\n      \"due_date\": \"1973-08-31\",\n      \"funds_distribution\": {\n        \"company_payables\": [\n          {\n            \"amount_cents\": 893,\n            \"identifier\": \"string\",\n            \"remittance_memo\": \"string\"\n          },\n          {\n            \"amount_cents\": 9008,\n            \"identifier\": \"string\",\n            \"remittance_memo\": \"string\"\n          }\n        ],\n        \"organization_account_payables\": [\n          {\n            \"amount_cents\": 7892,\n            \"organization_account_id\": \"string\",\n            \"remittance_memo\": \"string\"\n          },\n          {\n            \"amount_cents\": 9316,\n            \"organization_account_id\": \"string\",\n            \"remittance_memo\": \"string\"\n          }\n        ],\n        \"payables\": [\n          {\n            \"account_type\": \"commission_account\",\n            \"amount_cents\": 8864,\n            \"remittance_memo\": \"string\"\n          },\n          {\n            \"account_type\": \"commission_account\",\n            \"amount_cents\": 9976,\n            \"remittance_memo\": \"string\"\n          }\n        ]\n      },\n      \"insured_id\": \"d6a637a2-55f5-abba-a7f5-665a0abb1f63\",\n      \"invoice_documents\": [\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"invoice_items\": [\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        },\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        }\n      ],\n      \"invoice_number\": \"I909821\",\n      \"memo\": \"Additional premium for auto policy\",\n      \"metadata\": {},\n      \"organization_account_id\": \"b355bdf6-67fb-487e-0ee5-66996865ae77\",\n      \"paid_at\": \"1949-12-02T20:53:55.489Z\",\n      \"payer\": {\n        \"id\": \"ec47e925-6e0b-fed0-2230-71628d62c5d6\",\n        \"type\": \"OrganizationAccount\"\n      },\n      \"status\": \"awaiting_payment\",\n      \"total_amount_cents\": 10000\n    },\n    {\n      \"id\": \"4ee2bc73-bc42-a2f5-d249-5d92771dbb1f\",\n      \"account_manager\": {\n        \"email\": \"I2EuH6aZyyhGxK@AGWrkpDJXddEytmdsyR.wpe\",\n        \"phone\": \"string\",\n        \"id\": \"d64b7727-f140-4aef-c08a-77260ef4dafb\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"secondary_account_manager\": {\n        \"email\": \"J4U@JVtzP.hs\",\n        \"phone\": \"string\",\n        \"id\": \"ad8f7f7e-2282-4a84-c980-9f5587aaafec\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"billing_type\": \"direct_bill\",\n      \"checkout_url\": \"string\",\n      \"due_date\": \"1948-10-12\",\n      \"funds_distribution\": {\n        \"company_payables\": [\n          {\n            \"amount_cents\": 5174,\n            \"identifier\": \"string\",\n            \"remittance_memo\": \"string\"\n          },\n          {\n            \"amount_cents\": 6822,\n            \"identifier\": \"string\",\n            \"remittance_memo\": \"string\"\n          }\n        ],\n        \"organization_account_payables\": [\n          {\n            \"amount_cents\": 8598,\n            \"organization_account_id\": \"string\",\n            \"remittance_memo\": \"string\"\n          },\n          {\n            \"amount_cents\": 8779,\n            \"organization_account_id\": \"string\",\n            \"remittance_memo\": \"string\"\n          }\n        ],\n        \"payables\": [\n          {\n            \"account_type\": \"commission_account\",\n            \"amount_cents\": 9809,\n            \"remittance_memo\": \"string\"\n          },\n          {\n            \"account_type\": \"commission_account\",\n            \"amount_cents\": 6994,\n            \"remittance_memo\": \"string\"\n          }\n        ]\n      },\n      \"insured_id\": \"e5339b8b-b81c-1382-3809-1a32a1566388\",\n      \"invoice_documents\": [\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"invoice_items\": [\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        },\n        {\n          \"amount_cents\": 10000,\n          \"title\": \"Policy Tax\"\n        }\n      ],\n      \"invoice_number\": \"I909821\",\n      \"memo\": \"Additional premium for auto policy\",\n      \"metadata\": {},\n      \"organization_account_id\": \"cdaa5f3a-0a46-9a30-678f-01d1e5b4b6cb\",\n      \"paid_at\": \"1977-01-05T17:14:28.647Z\",\n      \"payer\": {\n        \"id\": \"3fafba39-dc1f-3672-77bd-5aed20bb13a6\",\n        \"type\": \"Insured\"\n      },\n      \"status\": \"awaiting_payment\",\n      \"total_amount_cents\": 10000\n    }\n  ],\n  \"meta\": {\n    \"count\": 9862,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2e222c2-0e6b-4220-98a9-b5639b58b1b2",
+          "name": "Get One Time Payment",
+          "request": {
+            "name": "Get One Time Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The one time payment identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eab62edf-9336-40aa-a3d8-66c3f3f6a84c",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The one time payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c22cf21a-c41a-5ca4-3799-f9184926c65c\",\n  \"account_manager\": {\n    \"email\": \"yrzF0hPCD9hSF@aknZbfTspvlYMYLAux.ctm\",\n    \"phone\": \"string\",\n    \"id\": \"11dfb79f-5fa9-7355-0f17-635ae9b1b2e2\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"yADlq0zmfgulUU@Hsmy.cd\",\n    \"phone\": \"string\",\n    \"id\": \"f81dc7a0-d7fa-04f1-de04-6cc10183744b\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"billing_type\": \"agency_bill\",\n  \"checkout_url\": \"string\",\n  \"due_date\": \"1997-05-27\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": 2301,\n        \"identifier\": \"string\",\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"amount_cents\": 9175,\n        \"identifier\": \"string\",\n        \"remittance_memo\": \"string\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": 8374,\n        \"organization_account_id\": \"string\",\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"amount_cents\": 1874,\n        \"organization_account_id\": \"string\",\n        \"remittance_memo\": \"string\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"commission_account\",\n        \"amount_cents\": 3256,\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"account_type\": \"trust_account\",\n        \"amount_cents\": 9030,\n        \"remittance_memo\": \"string\"\n      }\n    ]\n  },\n  \"insured_id\": \"4e17bf5e-1250-72ac-9122-b93ab09dff5b\",\n  \"invoice_documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": {},\n  \"organization_account_id\": \"4a345993-91c5-6f43-ea2d-644f3eae31c9\",\n  \"paid_at\": \"2003-07-10T02:05:46.260Z\",\n  \"payer\": {\n    \"id\": \"7bc4180e-86b6-ce54-60ca-901b515a1ae6\",\n    \"type\": \"Insured\"\n  },\n  \"status\": \"awaiting_payment\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02266b69-25ce-44e9-9fd7-9d4747a619e3",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The one time payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "715efb48-7eaa-4bf0-864e-8c8e498d8e57",
+          "name": "Update One Time Payment",
+          "request": {
+            "name": "Update One Time Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The one time payment identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"invoice_items\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"memo\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1aadb1f0-57d1-4c33-99a8-7633673905d9",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The one time payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c22cf21a-c41a-5ca4-3799-f9184926c65c\",\n  \"account_manager\": {\n    \"email\": \"yrzF0hPCD9hSF@aknZbfTspvlYMYLAux.ctm\",\n    \"phone\": \"string\",\n    \"id\": \"11dfb79f-5fa9-7355-0f17-635ae9b1b2e2\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"yADlq0zmfgulUU@Hsmy.cd\",\n    \"phone\": \"string\",\n    \"id\": \"f81dc7a0-d7fa-04f1-de04-6cc10183744b\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"billing_type\": \"agency_bill\",\n  \"checkout_url\": \"string\",\n  \"due_date\": \"1997-05-27\",\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": 2301,\n        \"identifier\": \"string\",\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"amount_cents\": 9175,\n        \"identifier\": \"string\",\n        \"remittance_memo\": \"string\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": 8374,\n        \"organization_account_id\": \"string\",\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"amount_cents\": 1874,\n        \"organization_account_id\": \"string\",\n        \"remittance_memo\": \"string\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"commission_account\",\n        \"amount_cents\": 3256,\n        \"remittance_memo\": \"string\"\n      },\n      {\n        \"account_type\": \"trust_account\",\n        \"amount_cents\": 9030,\n        \"remittance_memo\": \"string\"\n      }\n    ]\n  },\n  \"insured_id\": \"4e17bf5e-1250-72ac-9122-b93ab09dff5b\",\n  \"invoice_documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": {},\n  \"organization_account_id\": \"4a345993-91c5-6f43-ea2d-644f3eae31c9\",\n  \"paid_at\": \"2003-07-10T02:05:46.260Z\",\n  \"payer\": {\n    \"id\": \"7bc4180e-86b6-ce54-60ca-901b515a1ae6\",\n    \"type\": \"Insured\"\n  },\n  \"status\": \"awaiting_payment\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3e1167b-ecaf-4e6e-9275-3810ee9de07d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The one time payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04cf49b7-e3f2-41dd-b72b-102640525ad7",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The one time payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"funds_distribution\": {\n    \"company_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"organization_account_payables\": [\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"amount_cents\": \"<integer>\",\n        \"organization_account_id\": \"<string>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ],\n    \"payables\": [\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      },\n      {\n        \"account_type\": \"<string>\",\n        \"amount_cents\": \"<integer>\",\n        \"remittance_memo\": \"<string>\"\n      }\n    ]\n  },\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"due_date\": \"<date>\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41c6eaba-f80e-4f16-ad7b-d678fc8e9138",
+          "name": "Void One Time Payment",
+          "request": {
+            "name": "Void One Time Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The one time payment identifier"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87ce09f6-a16e-4bad-a850-bff7b990a777",
+              "name": "One Time Payment Voided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The one time payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e40e0412-cef4-4c19-bcc3-b81db68b0405",
+          "name": "Notify User",
+          "request": {
+            "name": "Notify User",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":id",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the one_time_payment"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c9cc91c-de98-4b26-94a1-b777fa735d99",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the one_time_payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3125fe56-8821-40b6-af19-c98326d8c0c9",
+    "name": "Ascend API V1 Accounts OneTimePayments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

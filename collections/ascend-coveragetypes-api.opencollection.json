@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts CoverageTypes API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CoverageTypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List CoverageTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/coverage_types",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List CoverageTypes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,118 @@
+{
+  "item": [
+    {
+      "id": "a6659944-2c15-40f1-9178-e2be3b623e9a",
+      "name": "CoverageTypes",
+      "description": {
+        "content": "Represents the coverage types Ascend supports for quote creation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb4238b0-d78d-49b7-83f7-badd7c8a5f73",
+          "name": "List CoverageTypes",
+          "request": {
+            "name": "List CoverageTypes",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "coverage_types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78fa9371-7816-481c-9c74-a81fc4e07de0",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "coverage_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4f230465-c966-44d8-a38d-62606f33012a",
+    "name": "Ascend API V1 Accounts CoverageTypes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

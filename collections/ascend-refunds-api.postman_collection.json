@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "031bda90-327d-41de-b449-ef4e88980d21",
+      "name": "Refunds",
+      "description": {
+        "content": "A collection of refunds to the insured.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6540f67d-573a-4d03-90f7-85d8ff7148be",
+          "name": "List Refunds",
+          "request": {
+            "name": "List Refunds",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "refunds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "billable_id",
+                  "value": "<string>",
+                  "description": "Filter by associated billable"
+                },
+                {
+                  "disabled": false,
+                  "key": "program_id",
+                  "value": "<string>",
+                  "description": "Filter by associated program"
+                },
+                {
+                  "disabled": false,
+                  "key": "invoice_id",
+                  "value": "<string>",
+                  "description": "Filter by associated invoice"
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return refunds paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return refunds paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return refunds created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return refunds created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return refunds that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return refunds that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "082993e7-8e30-4a0b-9b18-e6aae859d8ab",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billable_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "program_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "invoice_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paid_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "paid_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount_cents\": 6611,\n  \"status\": \"paid\",\n  \"refundable_id\": \"9c7363a1-a245-348b-d3a7-3cb2696583b9\",\n  \"refundable_type\": \"Program\",\n  \"id\": \"e707b2a7-3b74-acf4-ee23-1d4a1f11acd8\",\n  \"created_at\": \"string\",\n  \"paid_at\": \"string\",\n  \"return_id\": \"a98614b5-c495-94eb-258f-676fa1f6acb1\",\n  \"return_type\": \"ReducingEndorsementReturn\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f5bb31f-6910-4e3e-9403-ab8c71608ed2",
+    "name": "Ascend API V1 Accounts Refunds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

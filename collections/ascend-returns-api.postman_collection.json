@@ -1,0 +1,1400 @@
+{
+  "item": [
+    {
+      "id": "680b041a-697f-4e87-b407-b9ece5121250",
+      "name": "Returns",
+      "description": {
+        "content": "A collection of returns on one time payments or installment plans.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71b4c787-dd4f-4071-ad74-a7353636feed",
+          "name": "Get returns",
+          "request": {
+            "name": "Get returns",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":installment_plan_id",
+                "returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return installment plan returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return installment plan returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return installment plan returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return installment plan returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "installment_plan_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4221df63-fb63-467c-89b5-5837c75569d5",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":installment_plan_id",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "installment_plan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"a41eda9a-c602-dd8b-8ecc-e25abdbaa224\",\n      \"amount_cents\": 6430,\n      \"due_date\": \"2019-04-08\",\n      \"installment_plan_id\": \"52b3ed33-32ae-d577-56e4-6e38779f82e9\",\n      \"one_time_payment_id\": \"c61c7f05-2620-b0c4-3540-d8dce4c5e77b\",\n      \"remittance_memo\": \"string\",\n      \"status\": \"awaiting_payment\"\n    },\n    {\n      \"id\": \"3a2ca760-3229-f624-2e43-e91c1ba23c02\",\n      \"amount_cents\": 2044,\n      \"due_date\": \"1991-10-19\",\n      \"installment_plan_id\": \"9a18ea74-dc13-18ef-b14b-a7d327272833\",\n      \"one_time_payment_id\": \"57cdc1de-0839-a58e-f958-739649d55f57\",\n      \"remittance_memo\": \"string\",\n      \"status\": \"awaiting_payment\"\n    }\n  ],\n  \"meta\": {\n    \"count\": 1987,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "903b5d49-5a62-4e3d-89e8-b1ff3e297595",
+          "name": "Create a return",
+          "request": {
+            "name": "Create a return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":installment_plan_id",
+                "returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "installment_plan_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6348aa3a-4023-4f83-b78e-664c30646c94",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":installment_plan_id",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "installment_plan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1bb3d293-e472-97c0-f741-aa33445565d8\",\n  \"amount_cents\": 1033,\n  \"due_date\": \"2006-06-30\",\n  \"installment_plan_id\": \"032fc8d9-c141-6373-de90-360547297a1a\",\n  \"one_time_payment_id\": \"22f51918-18f8-58c2-2c40-68148a8dbef2\",\n  \"remittance_memo\": \"string\",\n  \"status\": \"awaiting_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac611582-0016-446c-94b4-c229bef8f1b0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":installment_plan_id",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "installment_plan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9072d388-a5d3-4f4d-86bc-565dc40110b8",
+          "name": "Void return",
+          "request": {
+            "name": "Void return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":installment_plan_id",
+                "returns",
+                ":return_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "installment_plan_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "return_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a3cb176a-4953-4ed6-a9ad-9bfebb5f1b5b",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":installment_plan_id",
+                    "returns",
+                    ":return_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "installment_plan_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "return_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61e0031c-b062-4238-8a08-7c5c0e46b13d",
+          "name": "Get a return",
+          "request": {
+            "name": "Get a return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":installment_plan_id",
+                "returns",
+                ":return_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "installment_plan_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "return_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "508f5354-8a85-4859-bf35-d2e0e0b80806",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":installment_plan_id",
+                    "returns",
+                    ":return_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "installment_plan_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "return_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1bb3d293-e472-97c0-f741-aa33445565d8\",\n  \"amount_cents\": 1033,\n  \"due_date\": \"2006-06-30\",\n  \"installment_plan_id\": \"032fc8d9-c141-6373-de90-360547297a1a\",\n  \"one_time_payment_id\": \"22f51918-18f8-58c2-2c40-68148a8dbef2\",\n  \"remittance_memo\": \"string\",\n  \"status\": \"awaiting_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bd9379d-6bec-4978-b37b-ec9c13db5716",
+          "name": "Update a return",
+          "request": {
+            "name": "Update a return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":installment_plan_id",
+                "returns",
+                ":return_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "installment_plan_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "return_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ce82ada-29ed-4e26-b2a9-b1768b4ac9da",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":installment_plan_id",
+                    "returns",
+                    ":return_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "installment_plan_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "return_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1bb3d293-e472-97c0-f741-aa33445565d8\",\n  \"amount_cents\": 1033,\n  \"due_date\": \"2006-06-30\",\n  \"installment_plan_id\": \"032fc8d9-c141-6373-de90-360547297a1a\",\n  \"one_time_payment_id\": \"22f51918-18f8-58c2-2c40-68148a8dbef2\",\n  \"remittance_memo\": \"string\",\n  \"status\": \"awaiting_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9182ce07-9d83-4d53-b13c-5ee6a14a7ca0",
+          "name": "Get returns",
+          "request": {
+            "name": "Get returns",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":one_time_payment_id",
+                "returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "one_time_payment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7fb6be24-5905-4fa9-bb8e-aec240208002",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":one_time_payment_id",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "one_time_payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"a41eda9a-c602-dd8b-8ecc-e25abdbaa224\",\n      \"amount_cents\": 6430,\n      \"due_date\": \"2019-04-08\",\n      \"installment_plan_id\": \"52b3ed33-32ae-d577-56e4-6e38779f82e9\",\n      \"one_time_payment_id\": \"c61c7f05-2620-b0c4-3540-d8dce4c5e77b\",\n      \"remittance_memo\": \"string\",\n      \"status\": \"awaiting_payment\"\n    },\n    {\n      \"id\": \"3a2ca760-3229-f624-2e43-e91c1ba23c02\",\n      \"amount_cents\": 2044,\n      \"due_date\": \"1991-10-19\",\n      \"installment_plan_id\": \"9a18ea74-dc13-18ef-b14b-a7d327272833\",\n      \"one_time_payment_id\": \"57cdc1de-0839-a58e-f958-739649d55f57\",\n      \"remittance_memo\": \"string\",\n      \"status\": \"awaiting_payment\"\n    }\n  ],\n  \"meta\": {\n    \"count\": 1987,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6c8686a-a58d-4149-8694-5fb391e0a2eb",
+          "name": "Create a return",
+          "request": {
+            "name": "Create a return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":one_time_payment_id",
+                "returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "one_time_payment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67aec964-a86f-4b68-ab75-d07bdd23de49",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":one_time_payment_id",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "one_time_payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1bb3d293-e472-97c0-f741-aa33445565d8\",\n  \"amount_cents\": 1033,\n  \"due_date\": \"2006-06-30\",\n  \"installment_plan_id\": \"032fc8d9-c141-6373-de90-360547297a1a\",\n  \"one_time_payment_id\": \"22f51918-18f8-58c2-2c40-68148a8dbef2\",\n  \"remittance_memo\": \"string\",\n  \"status\": \"awaiting_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b1d05fb-f3ec-4e10-8672-93150caa983e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":one_time_payment_id",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "one_time_payment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "017af8be-f64e-490d-8ba7-2731eca53496",
+          "name": "Void return",
+          "request": {
+            "name": "Void return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":one_time_payment_id",
+                "returns",
+                ":return_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "one_time_payment_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "return_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fd597356-ccf3-44c7-a3b9-caba725b7b3e",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":one_time_payment_id",
+                    "returns",
+                    ":return_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "one_time_payment_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "return_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f548dd8e-6350-4909-a213-a9a5b3e25c03",
+          "name": "Get a return",
+          "request": {
+            "name": "Get a return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":one_time_payment_id",
+                "returns",
+                ":return_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "one_time_payment_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "return_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d83dc331-d7ff-4bcb-b8c8-125afedf00ce",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":one_time_payment_id",
+                    "returns",
+                    ":return_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "one_time_payment_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "return_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1bb3d293-e472-97c0-f741-aa33445565d8\",\n  \"amount_cents\": 1033,\n  \"due_date\": \"2006-06-30\",\n  \"installment_plan_id\": \"032fc8d9-c141-6373-de90-360547297a1a\",\n  \"one_time_payment_id\": \"22f51918-18f8-58c2-2c40-68148a8dbef2\",\n  \"remittance_memo\": \"string\",\n  \"status\": \"awaiting_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7eb9402-b7a4-4353-92ff-8ccaefcd2d6c",
+          "name": "Update a return",
+          "request": {
+            "name": "Update a return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "one_time_payments",
+                ":one_time_payment_id",
+                "returns",
+                ":return_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "one_time_payment_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "return_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd58f8bb-a0d5-49b0-b7b3-0245ab529a3b",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "one_time_payments",
+                    ":one_time_payment_id",
+                    "returns",
+                    ":return_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "one_time_payment_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "return_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount_cents\": \"<integer>\",\n  \"remittance_memo\": \"Refund for one time payment\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1bb3d293-e472-97c0-f741-aa33445565d8\",\n  \"amount_cents\": 1033,\n  \"due_date\": \"2006-06-30\",\n  \"installment_plan_id\": \"032fc8d9-c141-6373-de90-360547297a1a\",\n  \"one_time_payment_id\": \"22f51918-18f8-58c2-2c40-68148a8dbef2\",\n  \"remittance_memo\": \"string\",\n  \"status\": \"awaiting_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e7226c81-a51c-4610-8cca-010c21895ffe",
+    "name": "Ascend API V1 Accounts Returns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

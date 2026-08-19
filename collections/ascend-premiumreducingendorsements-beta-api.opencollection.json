@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts PremiumReducingEndorsements (Beta) API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PremiumReducingEndorsements (Beta)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create premium reducing endorsement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/premium_reducing_endorsements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create premium reducing endorsement"
+        },
+        {
+          "info": {
+            "name": "Show a premium reducing endorsement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/premium_reducing_endorsements/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Endorsement ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Show a premium reducing endorsement"
+        },
+        {
+          "info": {
+            "name": "Update a premium reducing endorsement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandbox.api.useascend.com/v1/premium_reducing_endorsements/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Endorsement ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a premium reducing endorsement"
+        },
+        {
+          "info": {
+            "name": "delete premium reducing endorsement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.api.useascend.com/v1/premium_reducing_endorsements/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Endorsement ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "delete premium reducing endorsement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

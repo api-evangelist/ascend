@@ -1,0 +1,2037 @@
+{
+  "item": [
+    {
+      "id": "89c6a20e-eeec-4125-9c3c-5fbf40bcc0d9",
+      "name": "Programs",
+      "description": {
+        "content": "A collection of insurance quotes pooled to produce 1 checkout link.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b43cfdc0-2d33-40ae-8a5a-db775ea1a573",
+          "name": "Create Program",
+          "request": {
+            "name": "Create Program",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"producer_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"billing_type\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c88b51f-2545-4780-9c42-be3ff07d0937",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"producer_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"billing_type\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"48b9de4b-e384-4a88-fffb-c45655d8d6ad\",\n  \"account_manager\": {\n    \"email\": \"KDSKG@lvZmOEbfbsHq.xzi\",\n    \"phone\": \"string\",\n    \"id\": \"7c0ffc1a-9ab9-691d-bf1d-03b5e461e06a\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"vvJRuLcu6524A@EPSWlRsxjdolQxIcaiPdlCt.uks\",\n    \"phone\": \"string\",\n    \"id\": \"c44e0962-be82-bfb5-d8d9-07b49fdf776c\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"allowed_payment_methods\": [\n    \"check\",\n    \"check\"\n  ],\n  \"archived_at\": \"2015-01-19T19:37:29.568Z\",\n  \"autopay_enabled\": true,\n  \"billing_type\": \"agency_bill\",\n  \"checkedout_at\": \"1960-12-19T01:48:18.869Z\",\n  \"created_at\": \"2014-04-28T23:19:27.702Z\",\n  \"due_date\": \"1960-09-09\",\n  \"endorsement_due_date\": \"1984-05-30\",\n  \"failure_callback_url\": \"string\",\n  \"hidden_payment_options\": [\n    \"annual_pay_in_full\",\n    \"annual_pay_in_full\"\n  ],\n  \"insured\": {\n    \"id\": \"string\",\n    \"email\": \"u6MHAZcQ@sSsTILP.kq\",\n    \"is_business\": false,\n    \"phone\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"KY\",\n    \"mailing_address_zip_code\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"business_name\": \"string\",\n    \"formatted_address\": \"string\",\n    \"mailing_address_street_two\": \"string\"\n  },\n  \"premium_cents\": 1607,\n  \"producer\": {\n    \"email\": \"c6zi@COwMDxeHqsRbJGwNzNqZmf.hymf\",\n    \"phone\": \"string\",\n    \"id\": \"eaee0f84-a5ff-3cad-b012-f75a88061781\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"program_url\": \"string\",\n  \"return_url\": \"string\",\n  \"selected_payment_option_type\": \"string\",\n  \"status\": \"checked_out\",\n  \"sub_total_cents\": 8566,\n  \"success_callback_url\": \"string\",\n  \"updated_at\": \"2008-07-05T17:21:02.822Z\",\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "986bb691-39b7-41ae-b290-8f688754d24a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"producer_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"billing_type\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "796d9fa1-df73-46ba-9557-10e81a3c5966",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"producer_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"billing_type\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29ef3fa2-7ba8-49ee-a4ce-acfbe3f6684a",
+          "name": "List Programs",
+          "request": {
+            "name": "List Programs",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "insured_id",
+                  "value": "<string>",
+                  "description": "Filter by associated insured"
+                },
+                {
+                  "disabled": false,
+                  "key": "purchased_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return programs that were purchased during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "purchased_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return programs that were purchased during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return programs that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return programs that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return programs that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return programs that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "03b7ae6d-6d32-4f69-a814-85ced60fe583",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "insured_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "purchased_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "purchased_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aade011-f182-4901-8487-9759048232cd",
+          "name": "Archive Program",
+          "request": {
+            "name": "Archive Program",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The program identifier"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f6d9c817-249f-4a40-8d39-8cb04c2c7f6b",
+              "name": "Program archived",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6499f43-89b4-404c-89e8-48b2ab30182c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d485eba1-3e59-4562-a420-757d9606e522",
+              "name": "Program not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92928942-abc3-4dbc-8505-042f3793aaa5",
+              "name": "Can't archive program, rolling back",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3d2f6c9-daf6-4669-bbf4-9e0de835c628",
+          "name": "Get Program",
+          "request": {
+            "name": "Get Program",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_archived",
+                  "value": "<boolean>",
+                  "description": "Include archived programs"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The program identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "53f3ff72-3aa0-4a24-9c03-b6b3136d835d",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_archived",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1aa2175c-d618-eacd-12d8-40fdb295c1e8\",\n  \"account_manager\": {\n    \"email\": \"ewguKeTHmR@KtLeRWSRBBOp.bnw\",\n    \"phone\": \"string\",\n    \"id\": \"fa19fbfd-9fcd-53ab-db23-dfd7fe2700f5\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"uwNL5eZ-bLxCdzU@FxFhSuZXbCvj.fo\",\n    \"phone\": \"string\",\n    \"id\": \"9cf9fe55-e2ad-00b7-93f1-a1baeaf0eba2\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"allowed_payment_methods\": [\n    \"card\",\n    \"ach_debit\"\n  ],\n  \"archived_at\": \"1996-01-22T17:10:18.046Z\",\n  \"autopay_enabled\": true,\n  \"billing_type\": \"agency_bill\",\n  \"checkedout_at\": \"2016-06-26T15:08:18.192Z\",\n  \"created_at\": \"2008-10-22T14:24:16.844Z\",\n  \"due_date\": \"1997-01-07\",\n  \"endorsement_due_date\": \"1950-02-08\",\n  \"failure_callback_url\": \"string\",\n  \"hidden_payment_options\": [\n    \"annual_pay_in_full\",\n    \"annual_pay_in_full\"\n  ],\n  \"insured\": {\n    \"id\": \"string\",\n    \"email\": \"C68dw@fIxXZaud.yjh\",\n    \"is_business\": true,\n    \"phone\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"FL\",\n    \"mailing_address_zip_code\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"business_name\": \"string\",\n    \"formatted_address\": \"string\",\n    \"mailing_address_street_two\": \"string\"\n  },\n  \"premium_cents\": 7167,\n  \"producer\": {\n    \"email\": \"3zyVD@pkrfnWosQckfmIKQCQuyIkLLiav.wxdl\",\n    \"phone\": \"string\",\n    \"id\": \"76c870e7-74bc-42c4-092d-fbb5113d2d09\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"program_url\": \"string\",\n  \"return_url\": \"string\",\n  \"selected_payment_option_type\": \"string\",\n  \"status\": \"purchased\",\n  \"sub_total_cents\": 8037,\n  \"success_callback_url\": \"string\",\n  \"updated_at\": \"1949-10-21T15:36:41.359Z\",\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac8433a6-7268-4826-b706-b34ca292995e",
+              "name": "Program not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_archived",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9f47f56-4ef8-4c8f-940d-b842ea72302d",
+          "name": "Update program",
+          "request": {
+            "name": "Update program",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The program identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"due_date\": \"<date>\",\n  \"endorsement_due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"producer_id\": \"<uuid>\",\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "451eaffb-7284-45fe-affb-050e8298cf38",
+              "name": "Successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"due_date\": \"<date>\",\n  \"endorsement_due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"producer_id\": \"<uuid>\",\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1aa2175c-d618-eacd-12d8-40fdb295c1e8\",\n  \"account_manager\": {\n    \"email\": \"ewguKeTHmR@KtLeRWSRBBOp.bnw\",\n    \"phone\": \"string\",\n    \"id\": \"fa19fbfd-9fcd-53ab-db23-dfd7fe2700f5\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"uwNL5eZ-bLxCdzU@FxFhSuZXbCvj.fo\",\n    \"phone\": \"string\",\n    \"id\": \"9cf9fe55-e2ad-00b7-93f1-a1baeaf0eba2\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"allowed_payment_methods\": [\n    \"card\",\n    \"ach_debit\"\n  ],\n  \"archived_at\": \"1996-01-22T17:10:18.046Z\",\n  \"autopay_enabled\": true,\n  \"billing_type\": \"agency_bill\",\n  \"checkedout_at\": \"2016-06-26T15:08:18.192Z\",\n  \"created_at\": \"2008-10-22T14:24:16.844Z\",\n  \"due_date\": \"1997-01-07\",\n  \"endorsement_due_date\": \"1950-02-08\",\n  \"failure_callback_url\": \"string\",\n  \"hidden_payment_options\": [\n    \"annual_pay_in_full\",\n    \"annual_pay_in_full\"\n  ],\n  \"insured\": {\n    \"id\": \"string\",\n    \"email\": \"C68dw@fIxXZaud.yjh\",\n    \"is_business\": true,\n    \"phone\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"FL\",\n    \"mailing_address_zip_code\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"business_name\": \"string\",\n    \"formatted_address\": \"string\",\n    \"mailing_address_street_two\": \"string\"\n  },\n  \"premium_cents\": 7167,\n  \"producer\": {\n    \"email\": \"3zyVD@pkrfnWosQckfmIKQCQuyIkLLiav.wxdl\",\n    \"phone\": \"string\",\n    \"id\": \"76c870e7-74bc-42c4-092d-fbb5113d2d09\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"program_url\": \"string\",\n  \"return_url\": \"string\",\n  \"selected_payment_option_type\": \"string\",\n  \"status\": \"purchased\",\n  \"sub_total_cents\": 8037,\n  \"success_callback_url\": \"string\",\n  \"updated_at\": \"1949-10-21T15:36:41.359Z\",\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e15aa094-0024-40f9-8ba0-a1092388156d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"due_date\": \"<date>\",\n  \"endorsement_due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"producer_id\": \"<uuid>\",\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1aac95dd-a08c-4042-a875-bf7a3e5641a4",
+              "name": "Program not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"allowed_payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"due_date\": \"<date>\",\n  \"endorsement_due_date\": \"<date>\",\n  \"failure_callback_url\": \"<string>\",\n  \"hidden_payment_options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_checkout_overview_page_visible\": \"<boolean>\",\n  \"is_checkout_receipt_page_visible\": \"<boolean>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"producer_id\": \"<uuid>\",\n  \"return_url\": \"<string>\",\n  \"success_callback_url\": \"<string>\",\n  \"metadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7f8b3cf-d7c6-467c-9ab8-47756c63bec6",
+          "name": "Create loan payoff invoice",
+          "request": {
+            "name": "Create loan payoff invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id",
+                "loan_payoff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Program id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "267aa03f-3a98-44ac-8af7-fc581c3d0a21",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Program id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3a4c73cb-d9ae-5d9a-9835-a94b78626dcf\",\n  \"account_manager_id\": \"672b81ed-31e2-ab13-1e1c-abb0a407380f\",\n  \"agent_invoice_docs\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"checkout_url\": \"string\",\n  \"due_date\": \"1956-11-21\",\n  \"installment_id\": \"e710927a-0034-de6b-6ce8-63ce22632f33\",\n  \"installment_plan_id\": \"692d65f1-a933-404c-a9e2-60a4b0ccbca4\",\n  \"insured_id\": \"c600f7d9-0f87-4231-87e8-648261996b10\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n  \"issued_at\": \"1963-01-18T20:07:59.706Z\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"one_time_payment_id\": \"71c76645-3e46-a120-3654-ef6b1d940e0b\",\n  \"paid_at\": \"2012-05-31T02:09:02.049Z\",\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"payment_method\": {\n    \"id\": \"d836e586-236c-b0d2-d1bd-f3fc789e77ae\",\n    \"payment_type\": \"check\",\n    \"card\": {\n      \"brand\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_debit\": {\n      \"bank_name\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_credit\": {\n      \"bank_name\": \"string\"\n    }\n  },\n  \"program_id\": \"36819ff4-c239-159e-bf40-c8dd099986d9\",\n  \"status\": \"draft\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baa677b4-2e59-4372-886b-da7439dfb88d",
+          "name": "Get loan payoff invoice",
+          "request": {
+            "name": "Get loan payoff invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id",
+                "loan_payoff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Program id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9aca8cab-bba6-4b20-b6ee-de03488be939",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Program id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b4515b96-60d8-9568-7bb7-81f6ff05e3f4\",\n  \"account_manager_id\": \"397bc0c1-6510-f1ef-284d-2fbf4f0b8a73\",\n  \"agent_invoice_docs\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"checkout_url\": \"string\",\n  \"due_date\": \"2025-03-20\",\n  \"installment_id\": \"3b92d70f-7834-4404-d578-5754191de41e\",\n  \"installment_plan_id\": \"237b7e1c-187f-5263-9ab3-8ee64e27c91d\",\n  \"insured_id\": \"3061d57e-b004-c1fe-f264-144df5830899\",\n  \"invoice_items\": [\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    },\n    {\n      \"amount_cents\": 10000,\n      \"title\": \"Policy Tax\"\n    }\n  ],\n  \"invoice_number\": \"I909821\",\n  \"invoice_url\": \"http://res.cloudinary.com/useascend.pdf\",\n  \"issued_at\": \"1958-11-21T16:12:06.636Z\",\n  \"memo\": \"Additional premium for auto policy\",\n  \"one_time_payment_id\": \"ce627044-37c9-ccac-0e4c-4ccde6546b96\",\n  \"paid_at\": \"1947-11-21T15:48:55.755Z\",\n  \"payer_name\": \"Auto Sales Inc.\",\n  \"payment_method\": {\n    \"id\": \"b5f0400f-5ecb-0b23-58b8-fbc06c5af0e7\",\n    \"payment_type\": \"us_bank_account\",\n    \"card\": {\n      \"brand\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_debit\": {\n      \"bank_name\": \"string\",\n      \"last_four_digits\": \"string\"\n    },\n    \"ach_credit\": {\n      \"bank_name\": \"string\"\n    }\n  },\n  \"program_id\": \"95d46b0a-17e3-3533-0f96-552b0c5be1c9\",\n  \"status\": \"draft\",\n  \"total_amount_cents\": 10000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd1f7226-8ec0-42dd-86a8-e197f42304ed",
+              "name": "no active early payoff invoice",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Program id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6be5b77-45fe-4e02-adaa-6e395b59b3a1",
+          "name": "Void loan payoff invoice",
+          "request": {
+            "name": "Void loan payoff invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id",
+                "loan_payoff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Program id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "df37505a-de59-460b-98c9-de24431555ac",
+              "name": "no content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Program id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94d9d7e9-0537-4b74-920d-abb79d1aa221",
+              "name": "cannot void invoice",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Program id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba727001-4e16-4ea8-8c1b-f48d71393b5c",
+          "name": "Loan Payoff Estimate",
+          "request": {
+            "name": "Loan Payoff Estimate",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id",
+                "loan_payoff_estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) the id of the program"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ffbecff5-571a-425d-8016-57dd6c1bec5e",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff_estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pay_off_amount_cents\": 19775000,\n  \"program_id\": \"e31d8cec-cad7-b21f-11aa-a9cba89b8a51\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c052bc8a-b652-44eb-8eeb-1bb44aa02a7b",
+              "name": "Program not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff_estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16245d57-5f51-44ff-9605-8cfbf0f4f924",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff_estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e243ad0-ce59-47a0-98c0-61d1c7b40f19",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "loan_payoff_estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe326a6a-713e-4643-bee1-a6f594d12792",
+          "name": "Notify User",
+          "request": {
+            "name": "Notify User",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) the id of the program"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3dbf2eaf-4fb2-4ee2-9fca-6c388e96ec7d",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ef9e1b7-7cdf-4438-8b86-5876fe93c053",
+              "name": "Program not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0fa9d7a-f934-4108-a0cd-d95b2769c74f",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81abf928-d464-42da-a09b-a323c1d4b197",
+          "name": "Unarchive program",
+          "request": {
+            "name": "Unarchive program",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "programs",
+                ":id",
+                "unarchive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the program"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb5a859d-5919-4f35-acca-3cfa78fb021e",
+              "name": "Successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1aefec7-bf69-49af-a0d7-bc4a5f1b6cce",
+              "name": "Program not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "programs",
+                    ":id",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the program"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04928c23-2f63-41ac-9ece-c60550b88a0f",
+    "name": "Ascend API V1 Accounts Programs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

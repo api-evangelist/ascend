@@ -1,0 +1,186 @@
+{
+  "item": [
+    {
+      "id": "323a76cc-0696-460c-9ab0-7086d6c3fd2a",
+      "name": "FinanceEstimate",
+      "description": {
+        "content": "Estimated financing terms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02085ada-e4eb-4da4-8fba-0133b89022cd",
+          "name": "Create FinanceEstimate",
+          "request": {
+            "name": "Create FinanceEstimate",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "finance_estimates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"premium_cents\": \"<integer>\",\n  \"minimum_earned_rate\": \"<float>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"custom_terms\": {\n    \"downpayment_rate\": \"<float>\",\n    \"interest_rate\": \"<float>\",\n    \"number_of_payments\": \"<integer>\",\n    \"payment_frequency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9138d852-39b3-483f-8492-45b20298066d",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "finance_estimates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"premium_cents\": \"<integer>\",\n  \"minimum_earned_rate\": \"<float>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"custom_terms\": {\n    \"downpayment_rate\": \"<float>\",\n    \"interest_rate\": \"<float>\",\n    \"number_of_payments\": 10,\n    \"payment_frequency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"downpayment_cents\": 3955000,\n  \"term_payment_cents\": 2027691,\n  \"number_of_payments\": 10,\n  \"payment_frequency\": \"monthly\",\n  \"total_sale_price_cents\": 5012285,\n  \"apr\": 0.055,\n  \"total_interest_cents\": 0.055\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "820937ef-7b4f-49da-ad22-6298406746db",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "finance_estimates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"premium_cents\": \"<integer>\",\n  \"minimum_earned_rate\": \"<float>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"custom_terms\": {\n    \"downpayment_rate\": \"<float>\",\n    \"interest_rate\": \"<float>\",\n    \"number_of_payments\": 10,\n    \"payment_frequency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "00d09223-18c3-41a9-b360-e9a54f217df8",
+    "name": "Ascend API V1 Accounts FinanceEstimate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

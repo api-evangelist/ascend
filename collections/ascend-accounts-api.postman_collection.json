@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "99112ec2-e32d-42ae-8a19-f6772ed0d630",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1af0a3f-5aab-4eab-b45c-0c2b0aff4126",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return accounts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return accounts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return accounts that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return accounts that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db2f7c7f-3fa7-4467-98ba-cf8716ea9fff",
+              "name": "List accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8e4456c-7d0d-4999-a53e-327de261d6f2",
+          "name": "Create Accounts",
+          "request": {
+            "name": "Create Accounts",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organization_account\": {\n    \"contact\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"agency\": {\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mailing_address\": {\n        \"street_one\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"street_two\": \"<string>\"\n      },\n      \"doing_business_as\": \"<string>\",\n      \"federal_tax_identification_number\": \"<string>\",\n      \"business_type\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"default_seller_commission_rate\": \"<number>\",\n    \"billing_type\": \"<string>\",\n    \"default_account_fees_cents\": \"<number>\",\n    \"payment_schedule\": \"<string>\",\n    \"payment_settlement_period_max_days\": \"<number>\",\n    \"payable_account\": {\n      \"account_holder_name\": \"<string>\",\n      \"account_holder_type\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"confirm_account_number\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"routing_number\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7277825-550a-4b52-bbce-3e07de4b495e",
+              "name": "Create a new account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_account\": {\n    \"contact\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"agency\": {\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mailing_address\": {\n        \"street_one\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"street_two\": \"<string>\"\n      },\n      \"doing_business_as\": \"<string>\",\n      \"federal_tax_identification_number\": \"<string>\",\n      \"business_type\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"default_seller_commission_rate\": \"<number>\",\n    \"billing_type\": \"<string>\",\n    \"default_account_fees_cents\": \"<number>\",\n    \"payment_schedule\": \"<string>\",\n    \"payment_settlement_period_max_days\": \"<number>\",\n    \"payable_account\": {\n      \"account_holder_name\": \"<string>\",\n      \"account_holder_type\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"confirm_account_number\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"routing_number\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"53905bc6-d418-ced6-addb-7f73566d5854\",\n  \"default_account_fees_cents\": 7808,\n  \"default_seller_commission_rate\": \"string\",\n  \"status\": \"created\",\n  \"payable_accounts\": [\n    {\n      \"type\": \"check\",\n      \"status\": \"verified\"\n    },\n    {\n      \"type\": \"check\",\n      \"status\": \"unverified\"\n    }\n  ],\n  \"billing_type\": \"agency\",\n  \"name\": \"string\",\n  \"contact\": {\n    \"id\": \"298aa797-23d4-bf54-e478-ec63455c4802\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"pfCTod@JNMGtyzTBUTzmaMggGzeym.snw\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe63f89f-c1fb-41ce-a87b-aef6c2a7ea66",
+              "name": "Contact email domain matches an owner organization admin's domain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_account\": {\n    \"contact\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"agency\": {\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mailing_address\": {\n        \"street_one\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip_code\": \"<string>\",\n        \"street_two\": \"<string>\"\n      },\n      \"doing_business_as\": \"<string>\",\n      \"federal_tax_identification_number\": \"<string>\",\n      \"business_type\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"default_seller_commission_rate\": \"<number>\",\n    \"billing_type\": \"<string>\",\n    \"default_account_fees_cents\": \"<number>\",\n    \"payment_schedule\": \"<string>\",\n    \"payment_settlement_period_max_days\": \"<number>\",\n    \"payable_account\": {\n      \"account_holder_name\": \"<string>\",\n      \"account_holder_type\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"confirm_account_number\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"routing_number\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"title\": \"Bad Request\",\n      \"detail\": \"Contact email domain 'test.com' is not allowed: it matches a domain used by an admin of the owner organization.\",\n      \"source\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98cdb8de-2118-439e-944c-20266191d4da",
+          "name": "Get account",
+          "request": {
+            "name": "Get account",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Account identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82a2d799-fc5c-4121-ba11-5c563c213694",
+              "name": "found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Account identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8f266fdd-b0c9-beb4-0f8e-6e239588ac1a\",\n  \"default_account_fees_cents\": 3749,\n  \"default_seller_commission_rate\": \"string\",\n  \"status\": \"active\",\n  \"payable_accounts\": [\n    {\n      \"type\": \"bank_account\",\n      \"status\": \"verifying\"\n    },\n    {\n      \"type\": \"check\",\n      \"status\": \"unverified\"\n    }\n  ],\n  \"billing_type\": \"agency\",\n  \"name\": \"string\",\n  \"contact\": {\n    \"id\": \"fc641f04-a513-7186-cc37-cbf8f3b54b27\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"Ah0r@mAbGBzvCsLDpTF.azu\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea409dcf-b14f-48d7-95f6-78c3a62cafb0",
+          "name": "Update account",
+          "request": {
+            "name": "Update account",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Account identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organization_account\": {\n    \"default_seller_commission_rate\": \"<number>\",\n    \"default_account_fees_cents\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c8f8b63-f21c-40b6-b6be-05ae012ae90b",
+              "name": "found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Account identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_account\": {\n    \"default_seller_commission_rate\": \"<number>\",\n    \"default_account_fees_cents\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8f266fdd-b0c9-beb4-0f8e-6e239588ac1a\",\n  \"default_account_fees_cents\": 3749,\n  \"default_seller_commission_rate\": \"string\",\n  \"status\": \"active\",\n  \"payable_accounts\": [\n    {\n      \"type\": \"bank_account\",\n      \"status\": \"verifying\"\n    },\n    {\n      \"type\": \"check\",\n      \"status\": \"unverified\"\n    }\n  ],\n  \"billing_type\": \"agency\",\n  \"name\": \"string\",\n  \"contact\": {\n    \"id\": \"fc641f04-a513-7186-cc37-cbf8f3b54b27\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"Ah0r@mAbGBzvCsLDpTF.azu\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6da3f01b-937b-4941-aa0e-0ce56e8db98b",
+    "name": "Ascend API V1 Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

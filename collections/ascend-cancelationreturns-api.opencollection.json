@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts CancelationReturns API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CancelationReturns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cancelation Returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/cancelation_returns",
+            "params": [
+              {
+                "name": "program_id",
+                "value": "",
+                "type": "query",
+                "description": "The program identifier"
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return cancelation returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return cancelation returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List Cancelation Returns"
+        },
+        {
+          "info": {
+            "name": "Create Cancelation Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/cancelation_returns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create Cancelation Return"
+        },
+        {
+          "info": {
+            "name": "Get Cancelation Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/cancelation_returns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The cancelation return identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Cancelation Return"
+        },
+        {
+          "info": {
+            "name": "Update Cancelation Returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandbox.api.useascend.com/v1/cancelation_returns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The cancelation return identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update Cancelation Returns"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

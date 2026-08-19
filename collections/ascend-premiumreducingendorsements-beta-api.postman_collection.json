@@ -1,0 +1,458 @@
+{
+  "item": [
+    {
+      "id": "7e30bb25-bf0e-4eaf-b050-5ffcf164e72d",
+      "name": "PremiumReducingEndorsements (Beta)",
+      "description": {
+        "content": "Represents a premium reducing endorsement for an insurance quote.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30885903-e4c6-4839-95db-49264487beee",
+          "name": "Create premium reducing endorsement",
+          "request": {
+            "name": "Create premium reducing endorsement",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "premium_reducing_endorsements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parent_billable_id\": \"<uuid>\",\n  \"billable_identifier\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"effective_date\": \"<date>\",\n  \"return_premium_cents\": \"<integer>\",\n  \"unearned_commission_cents\": \"<integer>\",\n  \"supporting_docs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3608a139-ff2f-4239-87fc-4b44deb9fe26",
+              "name": "successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "premium_reducing_endorsements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parent_billable_id\": \"<uuid>\",\n  \"billable_identifier\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"effective_date\": \"<date>\",\n  \"return_premium_cents\": \"<integer>\",\n  \"unearned_commission_cents\": \"<integer>\",\n  \"supporting_docs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"4ed33a80-b28e-bc95-cba1-5b611d29e64d\",\n  \"program_id\": \"39d031b0-8b8c-9ce4-2d6d-e4abdf5e712a\",\n  \"billable_identifier\": \"string\",\n  \"effective_date\": \"1957-09-21\",\n  \"description\": \"string\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"parent_billable_id\": \"8082be48-4904-f6d8-4320-1b4416c75d8f\",\n  \"premium_cents\": 5889,\n  \"taxes_and_fees_cents\": 6568,\n  \"surplus_lines_tax_cents\": 2014,\n  \"return_premium_cents\": 7989,\n  \"unearned_commission_cents\": 2958\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd57b329-de84-4174-b414-76d704128054",
+          "name": "delete premium reducing endorsement",
+          "request": {
+            "name": "delete premium reducing endorsement",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "premium_reducing_endorsements",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Endorsement ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bf291696-ab52-422a-a0b6-63930daf63ed",
+              "name": "sucessfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "premium_reducing_endorsements",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endorsement ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "781f1c3b-5764-4115-bb0a-fef77a089212",
+          "name": "Show a premium reducing endorsement",
+          "request": {
+            "name": "Show a premium reducing endorsement",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "premium_reducing_endorsements",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Endorsement ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa25e209-a720-4e72-b1e5-2f8489262033",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "premium_reducing_endorsements",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endorsement ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cc0fcba8-b6c6-cd46-f41a-4f20fde7b708\",\n  \"program_id\": \"eceea72c-fe95-a557-bab6-de2ab21d995a\",\n  \"billable_identifier\": \"string\",\n  \"effective_date\": \"2021-11-09\",\n  \"description\": \"string\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"parent_billable_id\": \"9b780dc3-916d-fa2b-8e10-b566552ed4b7\",\n  \"premium_cents\": 678,\n  \"taxes_and_fees_cents\": 2083,\n  \"surplus_lines_tax_cents\": 6871,\n  \"return_premium_cents\": 9492,\n  \"unearned_commission_cents\": 5923\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "732d6ac0-fb98-460e-b482-aea3e81ed07d",
+          "name": "Update a premium reducing endorsement",
+          "request": {
+            "name": "Update a premium reducing endorsement",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "premium_reducing_endorsements",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Endorsement ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attachments\": [\n    {\n      \"url\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\"\n    }\n  ],\n  \"parent_billable_id\": \"<uuid>\",\n  \"billable_identifier\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"effective_date\": \"<date>\",\n  \"return_premium_cents\": \"<integer>\",\n  \"unearned_commission_cents\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f44f0bf4-df9a-41c4-8b8e-d4c3c0899a8f",
+              "name": "successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "premium_reducing_endorsements",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endorsement ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attachments\": [\n    {\n      \"url\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\"\n    }\n  ],\n  \"parent_billable_id\": \"<uuid>\",\n  \"billable_identifier\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"effective_date\": \"<date>\",\n  \"return_premium_cents\": \"<integer>\",\n  \"unearned_commission_cents\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cc0fcba8-b6c6-cd46-f41a-4f20fde7b708\",\n  \"program_id\": \"eceea72c-fe95-a557-bab6-de2ab21d995a\",\n  \"billable_identifier\": \"string\",\n  \"effective_date\": \"2021-11-09\",\n  \"description\": \"string\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"parent_billable_id\": \"9b780dc3-916d-fa2b-8e10-b566552ed4b7\",\n  \"premium_cents\": 678,\n  \"taxes_and_fees_cents\": 2083,\n  \"surplus_lines_tax_cents\": 6871,\n  \"return_premium_cents\": 9492,\n  \"unearned_commission_cents\": 5923\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a11a104-cc91-4ba4-8544-a8d9afe408f7",
+    "name": "Ascend API V1 Accounts PremiumReducingEndorsements (Beta) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "item": [
+    {
+      "id": "ef1b9469-9eb9-4af0-bd76-800169068bc3",
+      "name": "Installments",
+      "description": {
+        "content": "An single installment on a installment plan",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf113c09-bcbb-4e16-ac9c-a8c4b421f017",
+          "name": "Get installment",
+          "request": {
+            "name": "Get installment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the installment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fedcf9c3-ad7e-4c7c-a56d-9f476b407c9b",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the installment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0375e615-9e6f-9c29-ca02-0b3e52924d22\",\n  \"status\": \"void\",\n  \"checkout_url\": \"http://XQAAZ.xlja22uL0SoTyd.NZY3DAXHkZOJlRBY.OcLMIPCQ6dWa\",\n  \"due_date\": \"1993-10-30\",\n  \"amount_cents\": 4546,\n  \"payables\": [\n    {\n      \"amount_cents\": 8837,\n      \"account_type\": \"trust_account\",\n      \"remittance_memo\": \"string\"\n    },\n    {\n      \"amount_cents\": 2701,\n      \"account_type\": \"commission_account\",\n      \"remittance_memo\": \"string\"\n    }\n  ],\n  \"company_payables\": [\n    {\n      \"amount_cents\": 209,\n      \"identifier\": \"string\",\n      \"remittance_memo\": \"string\"\n    },\n    {\n      \"amount_cents\": 8169,\n      \"identifier\": \"string\",\n      \"remittance_memo\": \"string\"\n    }\n  ],\n  \"organization_account_payables\": [\n    {\n      \"amount_cents\": 7265,\n      \"organization_account_id\": \"string\",\n      \"remittance_memo\": \"string\"\n    },\n    {\n      \"amount_cents\": 4401,\n      \"organization_account_id\": \"string\",\n      \"remittance_memo\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c59ede4-2ab5-4134-997b-32c4113e6d85",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the installment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14bf4a0e-0003-44aa-84e5-c7addc5be50c",
+          "name": "Update installment",
+          "request": {
+            "name": "Update installment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the installment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"due_date\": \"<date>\",\n  \"amount_cents\": \"<integer>\",\n  \"payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"account_type\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"account_type\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ],\n  \"company_payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"identifier\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"identifier\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ],\n  \"organization_account_payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"organization_account_id\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"organization_account_id\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c47a63e-c562-4267-ad61-a310abf35e0e",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the installment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"due_date\": \"<date>\",\n  \"amount_cents\": \"<integer>\",\n  \"payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"account_type\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"account_type\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ],\n  \"company_payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"identifier\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"identifier\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ],\n  \"organization_account_payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"organization_account_id\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"organization_account_id\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8696e205-71d4-a3e9-052a-b8ced74d40b8\",\n  \"status\": \"awaiting_payment\",\n  \"checkout_url\": \"http://CMyEJOw.iwQnWLGTqs9SlT6ZQJeFS8uTmzNJEkYSxSjWFadOGFNd-xuD6K\",\n  \"due_date\": \"1983-07-15\",\n  \"amount_cents\": 6419,\n  \"payables\": [\n    {\n      \"amount_cents\": 8750,\n      \"account_type\": \"trust_account\",\n      \"remittance_memo\": \"string\"\n    },\n    {\n      \"amount_cents\": 5629,\n      \"account_type\": \"trust_account\",\n      \"remittance_memo\": \"string\"\n    }\n  ],\n  \"company_payables\": [\n    {\n      \"amount_cents\": 9270,\n      \"identifier\": \"string\",\n      \"remittance_memo\": \"string\"\n    },\n    {\n      \"amount_cents\": 9434,\n      \"identifier\": \"string\",\n      \"remittance_memo\": \"string\"\n    }\n  ],\n  \"organization_account_payables\": [\n    {\n      \"amount_cents\": 8154,\n      \"organization_account_id\": \"string\",\n      \"remittance_memo\": \"string\"\n    },\n    {\n      \"amount_cents\": 96,\n      \"organization_account_id\": \"string\",\n      \"remittance_memo\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1a7d16e-fca3-4df8-9e82-494b06ec3c75",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the installment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"due_date\": \"<date>\",\n  \"amount_cents\": \"<integer>\",\n  \"payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"account_type\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"account_type\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ],\n  \"company_payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"identifier\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"identifier\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ],\n  \"organization_account_payables\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"organization_account_id\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"organization_account_id\": \"<string>\",\n      \"remittance_memo\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "60be6fca-bbee-40a9-b5b8-b8a738e784cc",
+    "name": "Ascend API V1 Accounts Installments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

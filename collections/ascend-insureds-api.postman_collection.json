@@ -1,0 +1,875 @@
+{
+  "item": [
+    {
+      "id": "5a5f6fef-7742-4d91-aafd-1fcbb4053638",
+      "name": "Insureds",
+      "description": {
+        "content": "Represents the person or business entity that is purchasing the collection of insurance quotes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0898538-d5ee-46fa-a0a9-ab11c40ca624",
+          "name": "Create Insured",
+          "request": {
+            "name": "Create Insured",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "insureds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db3f0bde-ef72-407e-a103-18f01e725a50",
+              "name": "successful - multiple contact format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"eQcvqPAOWaL@VUEBtNRSUapgKc.jucu\",\n  \"is_business\": true,\n  \"phone\": \"string\",\n  \"mailing_address_street_one\": \"string\",\n  \"mailing_address_city\": \"string\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_zip_code\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"business_name\": \"string\",\n  \"formatted_address\": \"string\",\n  \"mailing_address_street_two\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fa2b35e-390d-4c85-b553-f379f28c65f9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb0721fe-3a5a-45d5-bf0e-ff3ea0444ec1",
+              "name": "Customer Contact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6c85ffa-2ec4-4e4c-a192-b7965d34ec28",
+          "name": "List Insureds",
+          "request": {
+            "name": "List Insureds",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "insureds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Filter by associated email"
+                },
+                {
+                  "disabled": false,
+                  "key": "business_name",
+                  "value": "<string>",
+                  "description": "Search by business name"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f304135-f01c-4368-bd9b-96815414f546",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "business_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eea0d6b7-c974-4ee4-b62a-e3fc4121c7ff",
+          "name": "Get Insured",
+          "request": {
+            "name": "Get Insured",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "insureds",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The insured identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b58d55ab-6d4a-4339-ab37-8fd7aa975688",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The insured identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"eQcvqPAOWaL@VUEBtNRSUapgKc.jucu\",\n  \"is_business\": true,\n  \"phone\": \"string\",\n  \"mailing_address_street_one\": \"string\",\n  \"mailing_address_city\": \"string\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_zip_code\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"business_name\": \"string\",\n  \"formatted_address\": \"string\",\n  \"mailing_address_street_two\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d32dae11-17e3-4b37-833d-4d1f611d8b52",
+          "name": "Update Insured",
+          "request": {
+            "name": "Update Insured",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "insureds",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The insured identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af838b3e-a3e6-4c92-b015-4320179890e2",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The insured identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"eQcvqPAOWaL@VUEBtNRSUapgKc.jucu\",\n  \"is_business\": true,\n  \"phone\": \"string\",\n  \"mailing_address_street_one\": \"string\",\n  \"mailing_address_city\": \"string\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_zip_code\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"business_name\": \"string\",\n  \"formatted_address\": \"string\",\n  \"mailing_address_street_two\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ea49972-f37a-4f42-a8e7-edbcb5ebc6ac",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The insured identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_business\": \"<boolean>\",\n  \"mailing_address_city\": \"<string>\",\n  \"mailing_address_state\": \"<string>\",\n  \"mailing_address_street_one\": \"<string>\",\n  \"mailing_address_zip_code\": \"<string>\",\n  \"insured_contacts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"business_name\": \"<string>\",\n  \"mailing_address_street_two\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bef332be-4c24-4fc2-b383-bd093383e52b",
+          "name": "List the insured's last-used payment method",
+          "request": {
+            "name": "List the insured's last-used payment method",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "insureds",
+                ":id",
+                "payment_methods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "items",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The id of the insured"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8840bcd7-085b-48d6-b93b-7ccd572aa4ed",
+              "name": "successful - empty when no succeeded payment intent exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds",
+                    ":id",
+                    "payment_methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "items",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The id of the insured"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"292650eb-a2ff-889c-357e-5df97a8b1558\",\n  \"payment_type\": \"us_bank_account\",\n  \"card\": {\n    \"brand\": \"string\",\n    \"last_four_digits\": \"string\"\n  },\n  \"ach_debit\": {\n    \"bank_name\": \"string\",\n    \"last_four_digits\": \"string\"\n  },\n  \"ach_credit\": {\n    \"bank_name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "395859b0-569e-49b0-a1b9-00183acd518e",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds",
+                    ":id",
+                    "payment_methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "items",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The id of the insured"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "875683a1-a197-4cb3-bd81-524bde151f30",
+              "name": "insured belongs to another organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insureds",
+                    ":id",
+                    "payment_methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "items",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The id of the insured"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7929d929-05cc-44fb-9c6f-f8b929807015",
+    "name": "Ascend API V1 Accounts Insureds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

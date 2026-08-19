@@ -1,0 +1,542 @@
+{
+  "item": [
+    {
+      "id": "2fdc5bbf-c961-48de-a3ea-8310a8b1ff2d",
+      "name": "CancelationReturns",
+      "description": {
+        "content": "Represents the cancelation of an insurance quote",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5faaabe8-6935-4643-bc1c-13d178361c67",
+          "name": "Create Cancelation Return",
+          "request": {
+            "name": "Create Cancelation Return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "cancelation_returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billable_id\": \"<string>\",\n  \"billable\": {\n    \"is_flat_cancelation\": \"<boolean>\",\n    \"cancelation_effective_date\": \"<date>\"\n  },\n  \"unearned_commission_cents\": \"<integer>\",\n  \"unearned_organization_account_commission_cents\": \"<integer>\",\n  \"unearned_surplus_lines_tax_cents\": \"<integer>\",\n  \"unearned_premium_cents\": \"<integer>\",\n  \"cancelation_docs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58b86111-a580-475f-ae76-8e6a347ec18f",
+              "name": "Create a new cancelation return",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cancelation_returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable_id\": \"<string>\",\n  \"billable\": {\n    \"is_flat_cancelation\": \"<boolean>\",\n    \"cancelation_effective_date\": \"<date>\"\n  },\n  \"unearned_commission_cents\": \"<integer>\",\n  \"unearned_organization_account_commission_cents\": \"<integer>\",\n  \"unearned_surplus_lines_tax_cents\": \"<integer>\",\n  \"unearned_premium_cents\": \"<integer>\",\n  \"cancelation_docs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44c331f0-03a5-4371-b7cf-5de6a21b38cc",
+              "name": "Cannot cancel billable if program is pending reinstatement.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cancelation_returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable_id\": \"<string>\",\n  \"billable\": {\n    \"is_flat_cancelation\": \"<boolean>\",\n    \"cancelation_effective_date\": \"<date>\"\n  },\n  \"unearned_commission_cents\": \"<integer>\",\n  \"unearned_organization_account_commission_cents\": \"<integer>\",\n  \"unearned_surplus_lines_tax_cents\": \"<integer>\",\n  \"unearned_premium_cents\": \"<integer>\",\n  \"cancelation_docs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd0e2e9a-9045-47a7-b3fa-6c3f4f603c81",
+          "name": "List Cancelation Returns",
+          "request": {
+            "name": "List Cancelation Returns",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "cancelation_returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "program_id",
+                  "value": "<string>",
+                  "description": "The program identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return cancelation returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return cancelation returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return cancelation returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return cancelation returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1dcbb7c2-6fa0-4af2-ac47-b57f74e28571",
+              "name": "List cancelation returns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cancelation_returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "program_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"billable\": {\n        \"id\": \"string\",\n        \"cancelation_effective_date\": \"1968-12-19\",\n        \"is_flat_cancelation\": false\n      },\n      \"unearned_commission_cents\": 7981,\n      \"unearned_surplus_lines_tax_cents\": 8946,\n      \"unearned_premium_cents\": 8453,\n      \"unearned_organization_account_commission_cents\": 6248,\n      \"cancelation_docs\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"url\": \"string\",\n          \"visibility\": \"public\"\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"url\": \"string\",\n          \"visibility\": \"public\"\n        }\n      ],\n      \"organization_payments\": [\n        {\n          \"id\": \"string\"\n        },\n        {\n          \"id\": \"string\"\n        }\n      ]\n    },\n    {\n      \"billable\": {\n        \"id\": \"string\",\n        \"cancelation_effective_date\": \"2010-04-23\",\n        \"is_flat_cancelation\": true\n      },\n      \"unearned_commission_cents\": 6116,\n      \"unearned_surplus_lines_tax_cents\": 7811,\n      \"unearned_premium_cents\": 9164,\n      \"unearned_organization_account_commission_cents\": 8011,\n      \"cancelation_docs\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"url\": \"string\",\n          \"visibility\": \"public\"\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"url\": \"string\",\n          \"visibility\": \"public\"\n        }\n      ],\n      \"organization_payments\": [\n        {\n          \"id\": \"string\"\n        },\n        {\n          \"id\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"count\": 1000,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67e0e9c1-0860-4fee-b5f1-f50c102d482e",
+          "name": "Get Cancelation Return",
+          "request": {
+            "name": "Get Cancelation Return",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "cancelation_returns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The cancelation return identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4770ab5c-ff9a-4e71-bf8d-97697c6fa397",
+              "name": "Get cancelation return",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cancelation_returns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The cancelation return identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"billable\": {\n    \"id\": \"string\",\n    \"cancelation_effective_date\": \"2020-04-09\",\n    \"is_flat_cancelation\": false\n  },\n  \"unearned_commission_cents\": 8101,\n  \"unearned_surplus_lines_tax_cents\": 8061,\n  \"unearned_premium_cents\": 5550,\n  \"unearned_organization_account_commission_cents\": 1758,\n  \"cancelation_docs\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"visibility\": \"public\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"visibility\": \"private\"\n    }\n  ],\n  \"organization_payments\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3c49e10-dcc3-4851-be28-e596ca13591b",
+          "name": "Update Cancelation Returns",
+          "request": {
+            "name": "Update Cancelation Returns",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "cancelation_returns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The cancelation return identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billable\": {\n    \"is_flat_cancelation\": \"<boolean>\",\n    \"cancelation_effective_date\": \"<date>\"\n  },\n  \"unearned_commission_cents\": \"<integer>\",\n  \"unearned_organization_account_commission_cents\": \"<integer>\",\n  \"unearned_surplus_lines_tax_cents\": \"<integer>\",\n  \"unearned_premium_cents\": \"<integer>\",\n  \"cancelation_docs\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14d741fc-794d-47a3-95b5-249d60e5b352",
+              "name": "Update cancelation return for agency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cancelation_returns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The cancelation return identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable\": {\n    \"is_flat_cancelation\": \"<boolean>\",\n    \"cancelation_effective_date\": \"<date>\"\n  },\n  \"unearned_commission_cents\": \"<integer>\",\n  \"unearned_organization_account_commission_cents\": \"<integer>\",\n  \"unearned_surplus_lines_tax_cents\": \"<integer>\",\n  \"unearned_premium_cents\": \"<integer>\",\n  \"cancelation_docs\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"billable\": {\n    \"id\": \"string\",\n    \"cancelation_effective_date\": \"2020-04-09\",\n    \"is_flat_cancelation\": false\n  },\n  \"unearned_commission_cents\": 8101,\n  \"unearned_surplus_lines_tax_cents\": 8061,\n  \"unearned_premium_cents\": 5550,\n  \"unearned_organization_account_commission_cents\": 1758,\n  \"cancelation_docs\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"visibility\": \"public\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"visibility\": \"private\"\n    }\n  ],\n  \"organization_payments\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0ce4d72e-2f6d-44db-aa0a-aded391ed04f",
+    "name": "Ascend API V1 Accounts CancelationReturns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

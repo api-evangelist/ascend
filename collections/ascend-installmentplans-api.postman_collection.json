@@ -1,0 +1,873 @@
+{
+  "item": [
+    {
+      "id": "35e144f2-763c-49f5-9b12-1fbbef794a94",
+      "name": "InstallmentPlans",
+      "description": {
+        "content": "A payment plan broken down over a seriies of regular installments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9f41af1-941c-4f40-ba78-eae562d17c84",
+          "name": "Create installment plan",
+          "request": {
+            "name": "Create installment plan",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"memo\": \"<string>\",\n  \"installments\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "056ae627-8a1f-4324-a9a6-a825ab10f6e5",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"memo\": \"<string>\",\n  \"installments\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0e25a305-dbc0-66b9-c486-86a208b3add3\",\n  \"account_manager\": {\n    \"email\": \"dWp7VIA85@qhYsvYgpkIiOYjafEplTDFAuCx.mu\",\n    \"phone\": \"string\",\n    \"id\": \"8557e4f6-41bc-f20c-d3d6-1b154f20af32\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"m61c@vD.rwvd\",\n    \"phone\": \"string\",\n    \"id\": \"47ec4d35-8cb8-58ac-5c67-6f9c8b6b37b4\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"autopay_enabled\": false,\n  \"billing_type\": \"agency_bill\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"installments\": [\n    {\n      \"id\": \"9d779338-aaa8-7c61-e302-b92f53f85f1e\",\n      \"status\": \"void\",\n      \"due_date\": \"1972-01-21\",\n      \"payables\": [\n        {\n          \"amount_cents\": 500,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 5872,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 9168,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 8869,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 3984,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1966,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"044fef72-3b3e-ba93-617b-9b80333ca5d3\",\n      \"status\": \"processing_payment\",\n      \"due_date\": \"1988-10-28\",\n      \"payables\": [\n        {\n          \"amount_cents\": 4382,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 7633,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 5678,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 742,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 8543,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1723,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"insured_id\": \"2af735a1-6d0d-2e9a-6d4b-0109abe4f84c\",\n  \"memo\": \"string\",\n  \"metadata\": {},\n  \"organization_account_id\": \"cf3a6e98-5305-5d01-f87b-e57061729883\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "923252e2-a825-4b95-b0ca-860dd7682acc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"memo\": \"<string>\",\n  \"installments\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a844844d-c8e1-4934-817b-2ed5a69dde18",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insured_id\": \"<uuid>\",\n  \"account_manager_id\": \"<uuid>\",\n  \"memo\": \"<string>\",\n  \"installments\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"due_date\": \"<date>\",\n      \"payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"account_type\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"identifier\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        },\n        {\n          \"amount_cents\": \"<integer>\",\n          \"organization_account_id\": \"<string>\",\n          \"remittance_memo\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"attachments\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"billing_type\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"organization_account\": {\n    \"id\": \"<uuid>\",\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57f80aae-ffa9-4432-bc7d-ff697fa445f9",
+          "name": "Archive Installment Plan",
+          "request": {
+            "name": "Archive Installment Plan",
+            "description": {
+              "content": "Archives a unpurchased installment plan. This will void all installments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the installment plan"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "60276ee7-04e8-41df-8a17-d3df721afb73",
+              "name": "Installment Plan Archived",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "038e9f8e-83b4-4cb4-8a9a-986700014c04",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1a1fcaad-3ca7-d24c-02c2-82109d9f8dd3\",\n  \"account_manager\": {\n    \"email\": \"kSs6HfAWBl3Z@wsrxXKsguouQQdUClFtZvmlNFupowG.lway\",\n    \"phone\": \"string\",\n    \"id\": \"2579e2eb-872a-5870-0bcf-62642a0c8e89\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"iwFjjHM-U-WgPa6@mtZnWaHBxkQXbKFinAJ.dd\",\n    \"phone\": \"string\",\n    \"id\": \"fe14d855-8ee5-e324-067b-71ee9371824c\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"autopay_enabled\": false,\n  \"billing_type\": \"agency_bill\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"installments\": [\n    {\n      \"id\": \"fa7d7bee-8d6d-cd77-0d85-b7fca4b047d0\",\n      \"status\": \"awaiting_payment\",\n      \"due_date\": \"1995-01-14\",\n      \"payables\": [\n        {\n          \"amount_cents\": 3158,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9988,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 808,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1776,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 1874,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 2844,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"8e5573b4-1133-6ecb-7c98-5ab9945a8419\",\n      \"status\": \"paid\",\n      \"due_date\": \"2001-05-10\",\n      \"payables\": [\n        {\n          \"amount_cents\": 7819,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 3122,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 6819,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 453,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 4804,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9604,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"insured_id\": \"f01e0dd6-eeee-ec3d-f6fe-68062cc2198c\",\n  \"memo\": \"string\",\n  \"metadata\": {},\n  \"organization_account_id\": \"d627132a-78bb-9c20-5f90-4b92fa570dc4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09d8174d-aedc-435d-a6da-cec200056d14",
+          "name": "Get installment plan",
+          "request": {
+            "name": "Get installment plan",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the installment plan"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "905437dc-0963-43ca-ac11-7c17b8f96823",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1a1fcaad-3ca7-d24c-02c2-82109d9f8dd3\",\n  \"account_manager\": {\n    \"email\": \"kSs6HfAWBl3Z@wsrxXKsguouQQdUClFtZvmlNFupowG.lway\",\n    \"phone\": \"string\",\n    \"id\": \"2579e2eb-872a-5870-0bcf-62642a0c8e89\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"iwFjjHM-U-WgPa6@mtZnWaHBxkQXbKFinAJ.dd\",\n    \"phone\": \"string\",\n    \"id\": \"fe14d855-8ee5-e324-067b-71ee9371824c\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"autopay_enabled\": false,\n  \"billing_type\": \"agency_bill\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"installments\": [\n    {\n      \"id\": \"fa7d7bee-8d6d-cd77-0d85-b7fca4b047d0\",\n      \"status\": \"awaiting_payment\",\n      \"due_date\": \"1995-01-14\",\n      \"payables\": [\n        {\n          \"amount_cents\": 3158,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9988,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 808,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1776,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 1874,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 2844,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"8e5573b4-1133-6ecb-7c98-5ab9945a8419\",\n      \"status\": \"paid\",\n      \"due_date\": \"2001-05-10\",\n      \"payables\": [\n        {\n          \"amount_cents\": 7819,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 3122,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 6819,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 453,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 4804,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9604,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"insured_id\": \"f01e0dd6-eeee-ec3d-f6fe-68062cc2198c\",\n  \"memo\": \"string\",\n  \"metadata\": {},\n  \"organization_account_id\": \"d627132a-78bb-9c20-5f90-4b92fa570dc4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d752074-fae8-4a4e-8219-818117861e29",
+          "name": "Update Installment Plan",
+          "request": {
+            "name": "Update Installment Plan",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the installment plan"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"metadata\": \"<object>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"organization_account\": {\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9a38bca-1f11-40e5-8fb1-c8bd27a77b3e",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_manager_id\": \"<uuid>\",\n  \"metadata\": \"<object>\",\n  \"secondary_account_manager_id\": \"<uuid>\",\n  \"organization_account\": {\n    \"users\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1a1fcaad-3ca7-d24c-02c2-82109d9f8dd3\",\n  \"account_manager\": {\n    \"email\": \"kSs6HfAWBl3Z@wsrxXKsguouQQdUClFtZvmlNFupowG.lway\",\n    \"phone\": \"string\",\n    \"id\": \"2579e2eb-872a-5870-0bcf-62642a0c8e89\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"iwFjjHM-U-WgPa6@mtZnWaHBxkQXbKFinAJ.dd\",\n    \"phone\": \"string\",\n    \"id\": \"fe14d855-8ee5-e324-067b-71ee9371824c\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"autopay_enabled\": false,\n  \"billing_type\": \"agency_bill\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"installments\": [\n    {\n      \"id\": \"fa7d7bee-8d6d-cd77-0d85-b7fca4b047d0\",\n      \"status\": \"awaiting_payment\",\n      \"due_date\": \"1995-01-14\",\n      \"payables\": [\n        {\n          \"amount_cents\": 3158,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9988,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 808,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1776,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 1874,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 2844,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"8e5573b4-1133-6ecb-7c98-5ab9945a8419\",\n      \"status\": \"paid\",\n      \"due_date\": \"2001-05-10\",\n      \"payables\": [\n        {\n          \"amount_cents\": 7819,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 3122,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 6819,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 453,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 4804,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9604,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"insured_id\": \"f01e0dd6-eeee-ec3d-f6fe-68062cc2198c\",\n  \"memo\": \"string\",\n  \"metadata\": {},\n  \"organization_account_id\": \"d627132a-78bb-9c20-5f90-4b92fa570dc4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b19db3f4-944f-4324-abd0-6e26f4b1cdd5",
+          "name": "Cancel Installment Plan",
+          "request": {
+            "name": "Cancel Installment Plan",
+            "description": {
+              "content": "Cancels a purchased installment plan. This will void any unpaid installments, but existing payments will not be reversed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the installment plan"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e2927512-15bd-40c7-9b35-4afe7ae4eea7",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1a1fcaad-3ca7-d24c-02c2-82109d9f8dd3\",\n  \"account_manager\": {\n    \"email\": \"kSs6HfAWBl3Z@wsrxXKsguouQQdUClFtZvmlNFupowG.lway\",\n    \"phone\": \"string\",\n    \"id\": \"2579e2eb-872a-5870-0bcf-62642a0c8e89\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"iwFjjHM-U-WgPa6@mtZnWaHBxkQXbKFinAJ.dd\",\n    \"phone\": \"string\",\n    \"id\": \"fe14d855-8ee5-e324-067b-71ee9371824c\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"autopay_enabled\": false,\n  \"billing_type\": \"agency_bill\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"installments\": [\n    {\n      \"id\": \"fa7d7bee-8d6d-cd77-0d85-b7fca4b047d0\",\n      \"status\": \"awaiting_payment\",\n      \"due_date\": \"1995-01-14\",\n      \"payables\": [\n        {\n          \"amount_cents\": 3158,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9988,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 808,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1776,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 1874,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 2844,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"8e5573b4-1133-6ecb-7c98-5ab9945a8419\",\n      \"status\": \"paid\",\n      \"due_date\": \"2001-05-10\",\n      \"payables\": [\n        {\n          \"amount_cents\": 7819,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 3122,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 6819,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 453,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 4804,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9604,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"insured_id\": \"f01e0dd6-eeee-ec3d-f6fe-68062cc2198c\",\n  \"memo\": \"string\",\n  \"metadata\": {},\n  \"organization_account_id\": \"d627132a-78bb-9c20-5f90-4b92fa570dc4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a682555-b73d-42c2-82b7-ae00cd900a04",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1a1fcaad-3ca7-d24c-02c2-82109d9f8dd3\",\n  \"account_manager\": {\n    \"email\": \"kSs6HfAWBl3Z@wsrxXKsguouQQdUClFtZvmlNFupowG.lway\",\n    \"phone\": \"string\",\n    \"id\": \"2579e2eb-872a-5870-0bcf-62642a0c8e89\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"secondary_account_manager\": {\n    \"email\": \"iwFjjHM-U-WgPa6@mtZnWaHBxkQXbKFinAJ.dd\",\n    \"phone\": \"string\",\n    \"id\": \"fe14d855-8ee5-e324-067b-71ee9371824c\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"autopay_enabled\": false,\n  \"billing_type\": \"agency_bill\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"installments\": [\n    {\n      \"id\": \"fa7d7bee-8d6d-cd77-0d85-b7fca4b047d0\",\n      \"status\": \"awaiting_payment\",\n      \"due_date\": \"1995-01-14\",\n      \"payables\": [\n        {\n          \"amount_cents\": 3158,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9988,\n          \"account_type\": \"trust_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 808,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 1776,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 1874,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 2844,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"8e5573b4-1133-6ecb-7c98-5ab9945a8419\",\n      \"status\": \"paid\",\n      \"due_date\": \"2001-05-10\",\n      \"payables\": [\n        {\n          \"amount_cents\": 7819,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 3122,\n          \"account_type\": \"commission_account\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"company_payables\": [\n        {\n          \"amount_cents\": 6819,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 453,\n          \"identifier\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ],\n      \"organization_account_payables\": [\n        {\n          \"amount_cents\": 4804,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        },\n        {\n          \"amount_cents\": 9604,\n          \"organization_account_id\": \"string\",\n          \"remittance_memo\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"insured_id\": \"f01e0dd6-eeee-ec3d-f6fe-68062cc2198c\",\n  \"memo\": \"string\",\n  \"metadata\": {},\n  \"organization_account_id\": \"d627132a-78bb-9c20-5f90-4b92fa570dc4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b32552c-dfde-49ca-b868-a2b4dcb9010e",
+          "name": "Notify User",
+          "request": {
+            "name": "Notify User",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "installment_plans",
+                ":id",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the installment plan"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5beb4983-1816-4891-8675-fdc756111909",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "installment_plans",
+                    ":id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the installment plan"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "db0772f3-181c-4b9b-9637-cf11cb9b61f6",
+    "name": "Ascend API V1 Accounts InstallmentPlans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

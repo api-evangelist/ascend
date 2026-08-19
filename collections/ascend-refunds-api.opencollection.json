@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts Refunds API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Refunds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/refunds",
+            "params": [
+              {
+                "name": "billable_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by associated billable"
+              },
+              {
+                "name": "program_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by associated program"
+              },
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by associated invoice"
+              },
+              {
+                "name": "paid_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return refunds paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return refunds created during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return refunds that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List Refunds"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

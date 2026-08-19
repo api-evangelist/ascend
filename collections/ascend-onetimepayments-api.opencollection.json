@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts OneTimePayments API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OneTimePayments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List One Time Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments",
+            "params": [
+              {
+                "name": "insured_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "due_date_start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "due_date_end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paid_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return one time payments paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginating results. Default is 1."
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return one time payments that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return one time payments that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List One Time Payments"
+        },
+        {
+          "info": {
+            "name": "Create One Time Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create One Time Payment"
+        },
+        {
+          "info": {
+            "name": "Get One Time Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The one time payment identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get One Time Payment"
+        },
+        {
+          "info": {
+            "name": "Update One Time Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The one time payment identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update One Time Payment"
+        },
+        {
+          "info": {
+            "name": "Void One Time Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The one time payment identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Void One Time Payment"
+        },
+        {
+          "info": {
+            "name": "Notify User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:id/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the one_time_payment"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Notify User"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

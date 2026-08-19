@@ -1,0 +1,198 @@
+{
+  "item": [
+    {
+      "id": "992e4f58-7cbb-4690-9588-e352f5af7cc1",
+      "name": "Payouts",
+      "description": {
+        "content": "Money transfers between accounts triggered after an insured pays a quote.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f99daf31-fae2-43cc-bc07-0e24340f3234",
+          "name": "List Payouts",
+          "request": {
+            "name": "List Payouts",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "payouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return payouts paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "paid_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return payouts paid during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return payouts created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return payouts created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return payouts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return payouts that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17bb8fc5-96fc-425f-bcf7-8d7e2698ec81",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paid_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "paid_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"f43d8da4-17ac-574f-7ccf-63988ff32325\",\n      \"created_at\": \"1953-11-02T14:12:06.719Z\",\n      \"failed_at\": \"1975-08-05T00:51:33.278Z\",\n      \"gross_payout_amount_cents\": 1094,\n      \"gross_payout_amount_currency\": \"string\",\n      \"installment_id\": \"bf0ef14d-ec66-b4a1-109d-9fc7cd18d744\",\n      \"installment_plan_id\": \"1c121cfe-ee35-aaab-a5ae-ca03e8416bdb\",\n      \"invoice_id\": \"8b06aaf3-c7e8-3452-beb5-9955eafa0d66\",\n      \"net_payout_amount_cents\": 7215,\n      \"net_payout_amount_currency\": \"string\",\n      \"paid_at\": \"1964-03-15T13:43:49.063Z\",\n      \"payable_account\": {\n        \"id\": \"74cfb162-9d80-ff71-a114-1de434d98274\",\n        \"bank_name\": \"string\",\n        \"last_four_digits\": 2456,\n        \"routing_number\": 493,\n        \"owner_name\": \"string\",\n        \"usage_type\": \"trust_account\"\n      },\n      \"paying_at\": \"1994-11-05T13:27:22.725Z\",\n      \"payout_type\": \"full_premium\",\n      \"program_id\": \"9709f670-f7e1-473f-c1e8-dc760cc4bb0f\",\n      \"quote_id\": \"f5724440-2b8c-c7a3-276f-f34b49d7e493\",\n      \"recipient\": {\n        \"type\": \"account\"\n      },\n      \"reference\": \"string\",\n      \"status\": \"unpaid\",\n      \"subscription_id\": \"e643b7e7-c247-7995-fbee-d52c138e2394\",\n      \"updated_at\": \"2009-11-28T16:09:31.054Z\"\n    },\n    {\n      \"id\": \"a72642a6-d5e2-4174-0611-9de1f67c98dd\",\n      \"created_at\": \"1980-11-06T20:08:35.395Z\",\n      \"failed_at\": \"2021-11-01T10:23:02.311Z\",\n      \"gross_payout_amount_cents\": 4720,\n      \"gross_payout_amount_currency\": \"string\",\n      \"installment_id\": \"0f58925b-abf0-fd06-cc29-7ec1e3852101\",\n      \"installment_plan_id\": \"40c84b4f-8d96-0f02-7997-d7d95bcdd831\",\n      \"invoice_id\": \"b414933c-2568-a658-1d5d-8f5cb5eba716\",\n      \"net_payout_amount_cents\": 5277,\n      \"net_payout_amount_currency\": \"string\",\n      \"paid_at\": \"1948-02-24T15:06:17.034Z\",\n      \"payable_account\": {\n        \"id\": \"43de6840-a7c7-d785-e87d-d4df1973fafe\",\n        \"bank_name\": \"string\",\n        \"last_four_digits\": 1810,\n        \"routing_number\": 7337,\n        \"owner_name\": \"string\",\n        \"usage_type\": \"trust_account\"\n      },\n      \"paying_at\": \"1949-12-19T10:47:54.388Z\",\n      \"payout_type\": \"commission\",\n      \"program_id\": \"5b05a4f3-f7d0-a86f-a7a9-bc523045e866\",\n      \"quote_id\": \"84157ed0-42f0-30a7-9ad1-452094b31ba4\",\n      \"recipient\": {\n        \"type\": \"wholesaler\"\n      },\n      \"reference\": \"string\",\n      \"status\": \"pending_servicer_payment\",\n      \"subscription_id\": \"d1a3bd63-708b-b57a-23aa-60b113dc8583\",\n      \"updated_at\": \"1952-01-10T11:46:52.464Z\"\n    }\n  ],\n  \"meta\": {\n    \"count\": 8796,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fe9099d0-ced9-4e68-a9d4-5ca7339b720b",
+    "name": "Ascend API V1 Accounts Payouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

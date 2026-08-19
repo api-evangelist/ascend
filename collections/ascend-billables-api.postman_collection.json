@@ -1,0 +1,1008 @@
+{
+  "item": [
+    {
+      "id": "b572830d-451d-4e7b-93f9-8cf325bbf054",
+      "name": "Billables",
+      "description": {
+        "content": "Represents an insurance quote or endorsement to be billed to the insured.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9fd8845c-18ce-4c3b-a003-03adaa12afde",
+          "name": "Create Billable",
+          "request": {
+            "name": "Create Billable",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "billables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billable_identifier\": \"<string>\",\n  \"carrier_identifier\": \"<string>\",\n  \"coverage_identifier\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"premium_cents\": \"<integer>\",\n  \"program_id\": \"<uuid>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"broker_fee_cents\": \"<integer>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39579e34-2d5a-4bfc-b8c3-1f283bf65e85",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable_identifier\": \"<string>\",\n  \"carrier_identifier\": \"<string>\",\n  \"coverage_identifier\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"premium_cents\": \"<integer>\",\n  \"program_id\": \"<uuid>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"broker_fee_cents\": \"<integer>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"eb9019af-a36b-ec86-27e2-fb47314b380d\",\n  \"agency_fees_cents\": 2778,\n  \"billable_identifier\": \"string\",\n  \"broker_fee_cents\": 5775,\n  \"carrier\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_street_two\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"ID\",\n    \"mailing_address_zip_code\": \"string\"\n  },\n  \"description\": \"string\",\n  \"coverage_type\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\"\n  },\n  \"effective_date\": \"1950-10-24\",\n  \"expiration_date\": \"2008-02-07\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"is_auditable\": true,\n  \"is_filed\": true,\n  \"is_short_rate\": false,\n  \"min_days_to_cancel\": 1610,\n  \"min_earned_rate\": 425.5217952743162,\n  \"other_fees_cents\": 6801,\n  \"parent_billable_id\": \"17bf890f-b3b3-5050-49d6-55d411559cfb\",\n  \"policy_fee_cents\": 1574,\n  \"policy_number\": \"string\",\n  \"premium_cents\": 4448,\n  \"seller_commission_amount_cents\": 9619.122111500152,\n  \"seller_commission_rate\": 2213.6843781935877,\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"string\",\n      \"commission_cents\": 5065.014070387887\n    },\n    {\n      \"organization_account_id\": \"string\",\n      \"commission_cents\": 7605.191550876801\n    }\n  ],\n  \"taxes_and_fees_cents\": 1759,\n  \"program_id\": \"044d6ad6-f349-05ec-5ece-2ec236731ea1\",\n  \"surplus_lines_tax_cents\": 8740,\n  \"wholesaler\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_street_two\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"AL\",\n    \"mailing_address_zip_code\": \"string\"\n  },\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "774236cc-a56a-40cf-8e67-e76966694880",
+              "name": "Conflicting commission parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable_identifier\": \"<string>\",\n  \"carrier_identifier\": \"<string>\",\n  \"coverage_identifier\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"premium_cents\": \"<integer>\",\n  \"program_id\": \"<uuid>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"broker_fee_cents\": \"<integer>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1cc14e6-0213-4eaf-8984-c40b1c66480a",
+              "name": "Record not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable_identifier\": \"<string>\",\n  \"carrier_identifier\": \"<string>\",\n  \"coverage_identifier\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"premium_cents\": \"<integer>\",\n  \"program_id\": \"<uuid>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"broker_fee_cents\": \"<integer>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ea96e95-01c3-4eac-96ff-3854b226e92f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billable_identifier\": \"<string>\",\n  \"carrier_identifier\": \"<string>\",\n  \"coverage_identifier\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"premium_cents\": \"<integer>\",\n  \"program_id\": \"<uuid>\",\n  \"agency_fees_cents\": \"<integer>\",\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"broker_fee_cents\": \"<integer>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca0bb3a9-72b9-462d-aaa4-e12647275caa",
+          "name": "List Billables",
+          "request": {
+            "name": "List Billables",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "billables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "program_id",
+                  "value": "<uuid>",
+                  "description": "Filter by the ID of the associated program"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return billables that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return billables that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<dateTime>",
+                  "description": "Only return billables that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<dateTime>",
+                  "description": "Only return billables that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d385405-a15e-469e-8883-7a4ec6469003",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "program_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "updated_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at[gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"625a161b-2646-e774-4ec9-7d05e915c309\",\n      \"agency_fees_cents\": 8428,\n      \"billable_identifier\": \"string\",\n      \"broker_fee_cents\": 4126,\n      \"carrier\": {\n        \"identifier\": \"string\",\n        \"title\": \"string\",\n        \"mailing_address_street_one\": \"string\",\n        \"mailing_address_street_two\": \"string\",\n        \"mailing_address_city\": \"string\",\n        \"mailing_address_state\": \"NC\",\n        \"mailing_address_zip_code\": \"string\"\n      },\n      \"description\": \"string\",\n      \"coverage_type\": {\n        \"identifier\": \"string\",\n        \"title\": \"string\"\n      },\n      \"effective_date\": \"1997-08-05\",\n      \"expiration_date\": \"1963-09-14\",\n      \"documents\": [\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"is_auditable\": false,\n      \"is_filed\": false,\n      \"is_short_rate\": true,\n      \"min_days_to_cancel\": 7766,\n      \"min_earned_rate\": 7190.384330439049,\n      \"other_fees_cents\": 9972,\n      \"parent_billable_id\": \"349adc1d-b76f-7b42-acef-c60c932a8a27\",\n      \"policy_fee_cents\": 2169,\n      \"policy_number\": \"string\",\n      \"premium_cents\": 3309,\n      \"seller_commission_amount_cents\": 9809.754509061446,\n      \"seller_commission_rate\": 863.4624764392385,\n      \"commission_terms\": [\n        {\n          \"organization_account_id\": \"string\",\n          \"commission_cents\": 6857.342832006111\n        },\n        {\n          \"organization_account_id\": \"string\",\n          \"commission_cents\": 6581.434950823318\n        }\n      ],\n      \"taxes_and_fees_cents\": 2123,\n      \"program_id\": \"94563391-cfb6-17f2-ac8d-81fdd478f69b\",\n      \"surplus_lines_tax_cents\": 3264,\n      \"wholesaler\": {\n        \"identifier\": \"string\",\n        \"title\": \"string\",\n        \"mailing_address_street_one\": \"string\",\n        \"mailing_address_street_two\": \"string\",\n        \"mailing_address_city\": \"string\",\n        \"mailing_address_state\": \"DC\",\n        \"mailing_address_zip_code\": \"string\"\n      },\n      \"metadata\": {}\n    },\n    {\n      \"id\": \"ebafe346-ac4e-aa65-bc1e-b01b1beb1c18\",\n      \"agency_fees_cents\": 7482,\n      \"billable_identifier\": \"string\",\n      \"broker_fee_cents\": 8842,\n      \"carrier\": {\n        \"identifier\": \"string\",\n        \"title\": \"string\",\n        \"mailing_address_street_one\": \"string\",\n        \"mailing_address_street_two\": \"string\",\n        \"mailing_address_city\": \"string\",\n        \"mailing_address_state\": \"MI\",\n        \"mailing_address_zip_code\": \"string\"\n      },\n      \"description\": \"string\",\n      \"coverage_type\": {\n        \"identifier\": \"string\",\n        \"title\": \"string\"\n      },\n      \"effective_date\": \"1954-02-26\",\n      \"expiration_date\": \"1998-07-09\",\n      \"documents\": [\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"is_auditable\": true,\n      \"is_filed\": true,\n      \"is_short_rate\": false,\n      \"min_days_to_cancel\": 7959,\n      \"min_earned_rate\": 2012.8129692381524,\n      \"other_fees_cents\": 4724,\n      \"parent_billable_id\": \"a6b2d15e-120c-a5ec-e6d2-3f7a1c7bca57\",\n      \"policy_fee_cents\": 6862,\n      \"policy_number\": \"string\",\n      \"premium_cents\": 6954,\n      \"seller_commission_amount_cents\": 3140.6763023962258,\n      \"seller_commission_rate\": 6165.731536142308,\n      \"commission_terms\": [\n        {\n          \"organization_account_id\": \"string\",\n          \"commission_cents\": 4165.64672736099\n        },\n        {\n          \"organization_account_id\": \"string\",\n          \"commission_cents\": 1719.3848070572926\n        }\n      ],\n      \"taxes_and_fees_cents\": 2268,\n      \"program_id\": \"072dffff-058e-dfed-8318-56577aa1324a\",\n      \"surplus_lines_tax_cents\": 2427,\n      \"wholesaler\": {\n        \"identifier\": \"string\",\n        \"title\": \"string\",\n        \"mailing_address_street_one\": \"string\",\n        \"mailing_address_street_two\": \"string\",\n        \"mailing_address_city\": \"string\",\n        \"mailing_address_state\": \"CA\",\n        \"mailing_address_zip_code\": \"string\"\n      },\n      \"metadata\": {}\n    }\n  ],\n  \"meta\": {\n    \"count\": 9119,\n    \"next\": \"string\",\n    \"prev\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c564c7a-5d63-4d34-bf55-7db55ba982d9",
+          "name": "Delete Billable",
+          "request": {
+            "name": "Delete Billable",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "billables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The billable identifier"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b1877d85-f6ce-4a20-8c1d-0ac9dd8962e5",
+              "name": "Billable deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "956db119-b2d6-45b5-8c01-933ba55f3961",
+              "name": "Billable not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d9634e4-161a-497b-90e1-e151c08de0e3",
+          "name": "Get Billable",
+          "request": {
+            "name": "Get Billable",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "billables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The billable identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e368e047-34a4-4ec6-bee4-be81d6999b70",
+              "name": "Billable found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"de70329a-a978-cb92-c12a-0547b5e016ce\",\n  \"agency_fees_cents\": 9773,\n  \"billable_identifier\": \"string\",\n  \"broker_fee_cents\": 2433,\n  \"carrier\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_street_two\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"NE\",\n    \"mailing_address_zip_code\": \"string\"\n  },\n  \"description\": \"string\",\n  \"coverage_type\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\"\n  },\n  \"effective_date\": \"1951-03-24\",\n  \"expiration_date\": \"1978-12-29\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"is_auditable\": true,\n  \"is_filed\": false,\n  \"is_short_rate\": false,\n  \"min_days_to_cancel\": 3487,\n  \"min_earned_rate\": 2628.3393208483385,\n  \"other_fees_cents\": 2614,\n  \"parent_billable_id\": \"44735b72-9fc1-44b9-0721-8605905f9305\",\n  \"policy_fee_cents\": 5449,\n  \"policy_number\": \"string\",\n  \"premium_cents\": 3930,\n  \"seller_commission_amount_cents\": 7894.121405029701,\n  \"seller_commission_rate\": 4604.467978709988,\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"string\",\n      \"commission_cents\": 1224.1779422631805\n    },\n    {\n      \"organization_account_id\": \"string\",\n      \"commission_cents\": 9156.333278299317\n    }\n  ],\n  \"taxes_and_fees_cents\": 749,\n  \"program_id\": \"1de13aa4-30bd-439b-e955-85ab71fc8ea3\",\n  \"surplus_lines_tax_cents\": 3242,\n  \"wholesaler\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_street_two\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"SD\",\n    \"mailing_address_zip_code\": \"string\"\n  },\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da28e990-f902-483a-8d1c-ad12ff9ff3fd",
+              "name": "Billable not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b534f887-9f99-4ae2-a4ae-a01ea722e1bd",
+          "name": "Update Billable",
+          "request": {
+            "name": "Update Billable",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "billables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The billable identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"agency_fees_cents\": \"<integer>\",\n  \"billable_identifier\": \"<string>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"carrier_identifier\": \"<string>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"coverage_identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"is_auditable\": \"<boolean>\",\n  \"is_filed\": \"<boolean>\",\n  \"is_short_rate\": \"<boolean>\",\n  \"metadata\": \"<object>\",\n  \"min_days_to_cancel\": \"<integer>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfb38ccc-b4bd-4b2e-92ca-88dd799a28ba",
+              "name": "Billable updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"agency_fees_cents\": \"<integer>\",\n  \"billable_identifier\": \"<string>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"carrier_identifier\": \"<string>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"coverage_identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"is_auditable\": \"<boolean>\",\n  \"is_filed\": \"<boolean>\",\n  \"is_short_rate\": \"<boolean>\",\n  \"metadata\": \"<object>\",\n  \"min_days_to_cancel\": \"<integer>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"de70329a-a978-cb92-c12a-0547b5e016ce\",\n  \"agency_fees_cents\": 9773,\n  \"billable_identifier\": \"string\",\n  \"broker_fee_cents\": 2433,\n  \"carrier\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_street_two\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"NE\",\n    \"mailing_address_zip_code\": \"string\"\n  },\n  \"description\": \"string\",\n  \"coverage_type\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\"\n  },\n  \"effective_date\": \"1951-03-24\",\n  \"expiration_date\": \"1978-12-29\",\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"is_auditable\": true,\n  \"is_filed\": false,\n  \"is_short_rate\": false,\n  \"min_days_to_cancel\": 3487,\n  \"min_earned_rate\": 2628.3393208483385,\n  \"other_fees_cents\": 2614,\n  \"parent_billable_id\": \"44735b72-9fc1-44b9-0721-8605905f9305\",\n  \"policy_fee_cents\": 5449,\n  \"policy_number\": \"string\",\n  \"premium_cents\": 3930,\n  \"seller_commission_amount_cents\": 7894.121405029701,\n  \"seller_commission_rate\": 4604.467978709988,\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"string\",\n      \"commission_cents\": 1224.1779422631805\n    },\n    {\n      \"organization_account_id\": \"string\",\n      \"commission_cents\": 9156.333278299317\n    }\n  ],\n  \"taxes_and_fees_cents\": 749,\n  \"program_id\": \"1de13aa4-30bd-439b-e955-85ab71fc8ea3\",\n  \"surplus_lines_tax_cents\": 3242,\n  \"wholesaler\": {\n    \"identifier\": \"string\",\n    \"title\": \"string\",\n    \"mailing_address_street_one\": \"string\",\n    \"mailing_address_street_two\": \"string\",\n    \"mailing_address_city\": \"string\",\n    \"mailing_address_state\": \"SD\",\n    \"mailing_address_zip_code\": \"string\"\n  },\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e45d933-c34c-4328-bcd4-40298b03bc89",
+              "name": "Billable type does not belong in checkout session",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"agency_fees_cents\": \"<integer>\",\n  \"billable_identifier\": \"<string>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"carrier_identifier\": \"<string>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"coverage_identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"is_auditable\": \"<boolean>\",\n  \"is_filed\": \"<boolean>\",\n  \"is_short_rate\": \"<boolean>\",\n  \"metadata\": \"<object>\",\n  \"min_days_to_cancel\": \"<integer>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6b6143b-a628-4d24-b0ef-8a91c6cf7b05",
+              "name": "Billable not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"agency_fees_cents\": \"<integer>\",\n  \"billable_identifier\": \"<string>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"carrier_identifier\": \"<string>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"coverage_identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"is_auditable\": \"<boolean>\",\n  \"is_filed\": \"<boolean>\",\n  \"is_short_rate\": \"<boolean>\",\n  \"metadata\": \"<object>\",\n  \"min_days_to_cancel\": \"<integer>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "602e45de-7076-42ef-9c98-476f5787005f",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The billable identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attachments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"agency_fees_cents\": \"<integer>\",\n  \"billable_identifier\": \"<string>\",\n  \"broker_fee_cents\": \"<integer>\",\n  \"carrier_identifier\": \"<string>\",\n  \"commission_terms\": [\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    },\n    {\n      \"organization_account_id\": \"<string>\",\n      \"commission_cents\": \"<integer>\",\n      \"commission_rate\": \"<float>\"\n    }\n  ],\n  \"coverage_identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"effective_date\": \"<date>\",\n  \"expiration_date\": \"<datetime>\",\n  \"is_auditable\": \"<boolean>\",\n  \"is_filed\": \"<boolean>\",\n  \"is_short_rate\": \"<boolean>\",\n  \"metadata\": \"<object>\",\n  \"min_days_to_cancel\": \"<integer>\",\n  \"min_earned_rate\": \"<float>\",\n  \"organization_account_commission_cents\": \"<integer>\",\n  \"organization_account_commission_rate\": \"<float>\",\n  \"organization_commission_cents\": \"<integer>\",\n  \"organization_commission_rate\": \"<float>\",\n  \"other_fees_cents\": \"<integer>\",\n  \"parent_billable_id\": \"<uuid>\",\n  \"policy_fee_cents\": \"<integer>\",\n  \"policy_number\": \"<string>\",\n  \"premium_cents\": \"<integer>\",\n  \"seller_commission_amount_cents\": \"<integer>\",\n  \"seller_commission_rate\": \"<float>\",\n  \"taxes_and_fees_cents\": \"<integer>\",\n  \"surplus_lines_tax_cents\": \"<integer>\",\n  \"wholesaler_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.useascend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b84c8d52-3ee8-4c42-a894-4a99f8cf945d",
+    "name": "Ascend API V1 Accounts Billables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.",
+      "type": "text/plain"
+    }
+  }
+}

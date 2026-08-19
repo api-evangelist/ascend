@@ -1,0 +1,296 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ascend API V1 Accounts Returns API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/installment_plans/:installment_plan_id/returns",
+            "params": [
+              {
+                "name": "installment_plan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return installment plan returns that were updated during the given date interval. The date should be defined as an ISO-8601 datetime."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Only return installment plan returns that were created during the given date interval. The date should be defined as an ISO-8601 datetime."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get returns"
+        },
+        {
+          "info": {
+            "name": "Create a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/installment_plans/:installment_plan_id/returns",
+            "params": [
+              {
+                "name": "installment_plan_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a return"
+        },
+        {
+          "info": {
+            "name": "Get a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/installment_plans/:installment_plan_id/returns/:return_id",
+            "params": [
+              {
+                "name": "installment_plan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "return_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a return"
+        },
+        {
+          "info": {
+            "name": "Update a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandbox.api.useascend.com/v1/installment_plans/:installment_plan_id/returns/:return_id",
+            "params": [
+              {
+                "name": "installment_plan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "return_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a return"
+        },
+        {
+          "info": {
+            "name": "Void return",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.api.useascend.com/v1/installment_plans/:installment_plan_id/returns/:return_id",
+            "params": [
+              {
+                "name": "installment_plan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "return_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Void return"
+        },
+        {
+          "info": {
+            "name": "Get returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:one_time_payment_id/returns",
+            "params": [
+              {
+                "name": "one_time_payment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get returns"
+        },
+        {
+          "info": {
+            "name": "Create a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:one_time_payment_id/returns",
+            "params": [
+              {
+                "name": "one_time_payment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a return"
+        },
+        {
+          "info": {
+            "name": "Get a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:one_time_payment_id/returns/:return_id",
+            "params": [
+              {
+                "name": "one_time_payment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "return_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a return"
+        },
+        {
+          "info": {
+            "name": "Update a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:one_time_payment_id/returns/:return_id",
+            "params": [
+              {
+                "name": "one_time_payment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "return_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a return"
+        },
+        {
+          "info": {
+            "name": "Void return",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.api.useascend.com/v1/one_time_payments/:one_time_payment_id/returns/:return_id",
+            "params": [
+              {
+                "name": "one_time_payment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "return_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Void return"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
