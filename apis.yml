@@ -32,6 +32,18 @@ tags:
 - Company
 - Fintech
 - Insurance
+- Insurtech
+- Payments
+- Premium Financing
+- Billing
+- Invoicing
+- Embedded Finance
+- REST API
+- Webhook
+tags_raw:
+- Company
+- Fintech
+- Insurance
 - InsurTech
 - Payments
 - Premium Financing
@@ -47,6 +59,8 @@ apis:
   humanURL: https://developers.useascend.com/
   baseURL: https://api.useascend.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -159,6 +173,8 @@ apis:
   humanURL: https://developers.useascend.com/
   baseURL: https://api.useascend.com
   tags:
+  - Installment Plans
+  tags_raw:
   - InstallmentPlans
   properties:
   - type: OpenAPI
@@ -230,6 +246,8 @@ apis:
   humanURL: https://developers.useascend.com/
   baseURL: https://api.useascend.com
   tags:
+  - One-Time Payments
+  tags_raw:
   - OneTimePayments
   properties:
   - type: OpenAPI
@@ -343,6 +361,8 @@ apis:
   humanURL: https://developers.useascend.com/
   baseURL: https://api.useascend.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
