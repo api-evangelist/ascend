@@ -7,6 +7,18 @@ description: Ascend is a financial operations platform built for the insurance i
   — managing insureds, programs, billables, invoices, loans, payouts, refunds, and one-time payments programmatically,
   secured with bearer tokens and HMAC-signed webhooks for invoice, payout, and refund events. Trusted
   by over 4,000 insurance businesses, including over half of the 50 largest brokers.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
