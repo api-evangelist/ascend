@@ -403,6 +403,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/ascend-capability-edges.yml
+  name: Ascend Business Capability Map
 - type: Overlay
   url: overlays/ascend-openapi-overlay.yaml
 - type: AgenticAccess

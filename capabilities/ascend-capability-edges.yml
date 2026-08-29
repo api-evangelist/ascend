@@ -1,0 +1,71 @@
+slug: ascend
+provider: Ascend
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Billables
+  spec_file: ascend-billables-api-openapi.yml
+  capability_id: BC-2150.10
+  capability_id_l1: BC-2150
+  capability_name: Premium Billing Management
+  confidence: 0.8
+  evidence: POST /v1/billables createBillable; schemas Carrier, CoverageType, Wholesaler, Billable; "billing
+    & invoicing"
+  reason: Billable items tied to carrier/coverage for insurance billing — premium billing management.
+- tag: InstallmentPlans
+  spec_file: ascend-installmentplans-api-openapi.yml
+  capability_id: BC-2150.10
+  capability_id_l1: BC-2150
+  capability_name: Premium Billing Management
+  confidence: 0.8
+  evidence: POST /v1/installment_plans    Create installment plan ... POST /v1/installment_plans/{id}/send  sendInstallmentPlanReminder
+  reason: Creation, update, cancellation and reminder of premium instalment plans matches Premium Billing
+    Management's instalment scheduling and billing adjustments for insurance premium.
+- tag: Invoices
+  spec_file: ascend-invoices-api-openapi.yml
+  capability_id: BC-2150.10
+  capability_id_l1: BC-2150
+  capability_name: Premium Billing Management
+  confidence: 0.8
+  evidence: POST /v1/invoices  createInvoice  Create invoice ... POST /v1/invoices/{id}/charge  chargeInvoice  Charge
+    a renewal program's initial checkout invoice using the insured's stored payment method
+  reason: Generation, adjustment and voiding of premium invoices for insureds is squarely premium billing;
+    the charge operation also touches collection, but invoice generation dominates.
+- tag: Installments
+  spec_file: ascend-installments-api-openapi.yml
+  capability_id: BC-2150.10
+  capability_id_l1: BC-2150
+  capability_name: Premium Billing Management
+  confidence: 0.75
+  evidence: GET /v1/installments/{id}    Get installment ... PATCH /v1/installments/{id}    Update installment
+  reason: Individual premium instalment records within the billing schedule; same premium billing/instalment
+    scheduling capability as instalment plans, though operations are thin.
+- tag: CancelationReturns
+  spec_file: ascend-cancelationreturns-api-openapi.yml
+  capability_id: BC-2150.10
+  capability_id_l1: BC-2150
+  capability_name: Premium Billing Management
+  confidence: 0.7
+  evidence: POST /v1/cancelation_returns "Create Cancelation Return"; schema CancelationReturn
+  reason: Return premium arising from policy cancellation handled in the billing/premium accounting platform;
+    billing adjustment mechanics rather than policy cancellation processing itself.
+- tag: Insureds
+  spec_file: ascend-insureds-api-openapi.yml
+  capability_id: BC-2120
+  capability_id_l1: BC-2120
+  capability_name: Insurance Customer Management
+  confidence: 0.7
+  evidence: POST /v1/insureds  createInsured  Create Insured ... GET /v1/insureds/{id}/payment_methods  listInsuredPaymentMethods
+  reason: CRUD over insured (policyholder) records including stored payment methods — insurance customer
+    master data. Which sub-capability (profile/golden record vs servicing) is not determinable, so only
+    L1 is asserted.
