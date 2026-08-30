@@ -44,7 +44,7 @@ tags:
 - Company
 - Fintech
 - Insurance
-- Insurtech
+- InsurTech
 - Payments
 - Premium Financing
 - Billing
@@ -185,7 +185,7 @@ apis:
   humanURL: https://developers.useascend.com/
   baseURL: https://api.useascend.com
   tags:
-  - Installment Plans
+  - InstallmentPlans
   tags_raw:
   - InstallmentPlans
   properties:
@@ -258,7 +258,7 @@ apis:
   humanURL: https://developers.useascend.com/
   baseURL: https://api.useascend.com
   tags:
-  - One-Time Payments
+  - OneTimePayments
   tags_raw:
   - OneTimePayments
   properties:
