@@ -181,22 +181,6 @@ apis:
     url: https://developers.useascend.com/docs
   - type: APIReference
     url: https://developers.useascend.com/reference
-- aid: ascend:ascend-installmentplans-api
-  name: Ascend InstallmentPlans API
-  description: A payment plan broken down over a seriies of regular installments
-  humanURL: https://developers.useascend.com/
-  baseURL: https://api.useascend.com
-  tags:
-  - Installment Plans
-  tags_raw:
-  - InstallmentPlans
-  properties:
-  - type: OpenAPI
-    url: openapi/ascend-installmentplans-api-openapi.yml
-  - type: Documentation
-    url: https://developers.useascend.com/docs
-  - type: APIReference
-    url: https://developers.useascend.com/reference
 - aid: ascend:ascend-installments-api
   name: Ascend Installments API
   description: An single installment on a installment plan
@@ -250,22 +234,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/ascend-loans-api-openapi.yml
-  - type: Documentation
-    url: https://developers.useascend.com/docs
-  - type: APIReference
-    url: https://developers.useascend.com/reference
-- aid: ascend:ascend-onetimepayments-api
-  name: Ascend OneTimePayments API
-  description: Represents records of a transaction between an insured and an agency or MGA.
-  humanURL: https://developers.useascend.com/
-  baseURL: https://api.useascend.com
-  tags:
-  - One-Time Payments
-  tags_raw:
-  - OneTimePayments
-  properties:
-  - type: OpenAPI
-    url: openapi/ascend-onetimepayments-api-openapi.yml
   - type: Documentation
     url: https://developers.useascend.com/docs
   - type: APIReference
@@ -395,6 +363,34 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/ascend-wholesalers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-installment-plans-api
+  name: Ascend Installment Plans API
+  description: A payment plan broken down over a seriies of regular installments
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - Installment Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-installment-plans-api-openapi.yml
+  - type: Documentation
+    url: https://developers.useascend.com/docs
+  - type: APIReference
+    url: https://developers.useascend.com/reference
+- aid: ascend:ascend-one-time-payments-api
+  name: Ascend One-Time Payments API
+  description: Represents records of a transaction between an insured and an agency or MGA.
+  humanURL: https://developers.useascend.com/
+  baseURL: https://api.useascend.com
+  tags:
+  - One-Time Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/ascend-one-time-payments-api-openapi.yml
   - type: Documentation
     url: https://developers.useascend.com/docs
   - type: APIReference
