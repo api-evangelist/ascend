@@ -23,7 +23,8 @@ edges:
     & invoicing"
   reason: Billable items tied to carrier/coverage for insurance billing — premium billing management.
 - tag: InstallmentPlans
-  spec_file: ascend-installmentplans-api-openapi.yml
+  spec_file: ascend-installment-plans-api-openapi.yml
+  reanchored_from: ascend-installmentplans-api-openapi.yml
   capability_id: BC-2150.10
   capability_id_l1: BC-2150
   capability_name: Premium Billing Management
