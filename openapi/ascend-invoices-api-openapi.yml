@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Invoices API
+  title: Ascend API V1 Invoices API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -44,17 +44,19 @@ paths:
                   format: uuid
                   type: string
                 attachments:
-                  type: array
-                  nullable: true
+                  type:
+                  - array
+                  - 'null'
                   items:
                     type: object
                     properties:
                       url:
                         type: string
                 due_date:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date
-                  nullable: true
                   description: The date by which the invoice should be paid.
                 insured_id:
                   type: string
@@ -66,10 +68,11 @@ paths:
                   items:
                     $ref: '#/components/schemas/InvoiceItem'
                 memo:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Information about the invoice shown to the insured.
                   default: Invoice for {payer_name}
-                  nullable: true
                   example: Additional premium for auto policy
                 payer_name:
                   type: string
@@ -198,11 +201,13 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
   /v1/invoices/{id}:
     parameters:
     - name: id
@@ -258,9 +263,10 @@ paths:
                   format: uuid
                   type: string
                 due_date:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date
-                  nullable: true
                   description: The date by which the invoice should be paid.
                 insured_id:
                   type: string
@@ -272,9 +278,10 @@ paths:
                   items:
                     $ref: '#/components/schemas/InvoiceItem'
                 memo:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Information about the invoice shown to the insured.
-                  nullable: true
                   example: Additional premium for auto policy
                 payee:
                   type: string
@@ -304,7 +311,7 @@ paths:
       schema:
         type: string
     post:
-      summary: Charge a renewal program's initial checkout invoice using the insured's stored payment method
+      summary: Charge a renewal program's initial checkout invoice using the insured's stored…
       tags:
       - Invoices
       operationId: chargeInvoice
@@ -389,22 +396,6 @@ components:
               description: The name of the bank institution.
           required:
           - bank_name
-    InvoiceItem:
-      type: object
-      description: Representation of a line item on the invoice.
-      properties:
-        amount_cents:
-          type: integer
-          description: The total amount charged.
-          minimum: 0
-          example: 10000
-        title:
-          type: string
-          description: Information about the invoice item.
-          example: Policy Tax
-      required:
-      - amount_cents
-      - title
     Invoice:
       type: object
       description: A document representing a transaction between the insured and Ascend.
@@ -419,40 +410,46 @@ components:
           format: uuid
           description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
         agent_invoice_docs:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: A collection of documents associated with the invoice.
           items:
             type: object
             properties:
               title:
-                type: string
+                type:
+                - string
+                - 'null'
                 description: The display name of the static asset.
-                nullable: true
               url:
                 type: string
                 description: The url to access the static asset.
         checkout_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: The checkout url of the invoice.
         due_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date by which the invoice should be paid.
         installment_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier of the installment the invoice is attached to. Only present for installment plan invoices.
-          nullable: true
           readOnly: true
         installment_plan_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier of the installment plan the invoice is attached to.
-          nullable: true
           readOnly: true
         insured_id:
           type: string
@@ -468,32 +465,37 @@ components:
           example: I909821
           readOnly: true
         invoice_url:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The url of the invoice document.
           example: http://res.cloudinary.com/useascend.pdf
-          nullable: true
           readOnly: true
         issued_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date when the invoice was shared with the insured.
           readOnly: true
         memo:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Information about the invoice shown to the insured.
-          nullable: true
           example: Additional premium for auto policy
         one_time_payment_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier of the one-time payment the invoice is attached to. Only present for one-time payment invoices.
-          nullable: true
           readOnly: true
         paid_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date when the invoice was paid by the insured.
           readOnly: true
         payer_name:
@@ -501,13 +503,13 @@ components:
           description: The name of the insured/business paying for the invoice.
           example: Auto Sales Inc.
         payment_method:
-          nullable: true
           allOf:
           - $ref: '#/components/schemas/PaymentMethod'
         program_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           description: The unique identifier of the program invoice is attached to.
           readOnly: true
         status:
@@ -528,6 +530,22 @@ components:
           minimum: 0
           example: 10000
           readOnly: true
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
   securitySchemes:
     bearer_auth:
       type: http

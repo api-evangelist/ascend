@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Returns API
+  title: Ascend API V1 Returns API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -77,11 +77,15 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
+      operationId: getV1InstallmentPlansByInstallmentPlanIdReturns
+      x-operation-id-source: derived
     post:
       summary: Create a return
       tags:
@@ -119,6 +123,8 @@ paths:
                   default: Refund for one time payment
               required:
               - amount_cents
+      operationId: postV1InstallmentPlansByInstallmentPlanIdReturns
+      x-operation-id-source: derived
   /v1/installment_plans/{installment_plan_id}/returns/{return_id}:
     delete:
       summary: Void return
@@ -140,6 +146,8 @@ paths:
       responses:
         '204':
           description: success
+      operationId: deleteV1InstallmentPlansByInstallmentPlanIdReturnsByReturnId
+      x-operation-id-source: derived
     get:
       summary: Get a return
       tags:
@@ -164,6 +172,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Return'
+      operationId: getV1InstallmentPlansByInstallmentPlanIdReturnsByReturnId
+      x-operation-id-source: derived
     patch:
       summary: Update a return
       tags:
@@ -204,6 +214,8 @@ paths:
                   default: Refund for one time payment
               required:
               - amount_cents
+      operationId: patchV1InstallmentPlansByInstallmentPlanIdReturnsByReturnId
+      x-operation-id-source: derived
   /v1/one_time_payments/{one_time_payment_id}/returns:
     get:
       summary: Get returns
@@ -235,11 +247,15 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
+      operationId: getV1OneTimePaymentsByOneTimePaymentIdReturns
+      x-operation-id-source: derived
     post:
       summary: Create a return
       tags:
@@ -277,6 +293,8 @@ paths:
                   default: Refund for one time payment
               required:
               - amount_cents
+      operationId: postV1OneTimePaymentsByOneTimePaymentIdReturns
+      x-operation-id-source: derived
   /v1/one_time_payments/{one_time_payment_id}/returns/{return_id}:
     delete:
       summary: Void return
@@ -298,6 +316,8 @@ paths:
       responses:
         '204':
           description: success
+      operationId: deleteV1OneTimePaymentsByOneTimePaymentIdReturnsByReturnId
+      x-operation-id-source: derived
     get:
       summary: Get a return
       tags:
@@ -322,6 +342,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Return'
+      operationId: getV1OneTimePaymentsByOneTimePaymentIdReturnsByReturnId
+      x-operation-id-source: derived
     patch:
       summary: Update a return
       tags:
@@ -362,6 +384,8 @@ paths:
                   default: Refund for one time payment
               required:
               - amount_cents
+      operationId: patchV1OneTimePaymentsByOneTimePaymentIdReturnsByReturnId
+      x-operation-id-source: derived
 components:
   schemas:
     Return:
@@ -384,13 +408,15 @@ components:
         installment_plan_id:
           description: The unique identifier of the installment plan the return is for.
           format: uuid
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         one_time_payment_id:
           description: The unique identifier of the one time payment the return is for.
           format: uuid
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         remittance_memo:
           type: string
           description: Information about why the funds are being returned.

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Payouts API
+  title: Ascend API V1 Payouts API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -101,11 +101,13 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
 components:
   schemas:
     Payout:
@@ -123,9 +125,10 @@ components:
           description: The date the payout was created. The date uses UTC and is represented in the iso8601 format.
           readOnly: true
         failed_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date the payout failed. The date uses UTC and is represented in the iso8601 format.
           readOnly: true
         gross_payout_amount_cents:
@@ -160,9 +163,10 @@ components:
           description: The three letter ISO-4217 currency code of the net payout amount.
           readOnly: true
         paid_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The time at which the payout was successfully transferred to the destination account. The date uses UTC and is represented in the iso8601 format.
           readOnly: true
         payable_account:
@@ -175,23 +179,27 @@ components:
               description: The unique identifier for the payout.
               readOnly: true
             bank_name:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: The name of the bank asssociated with the account.
               readOnly: true
             last_four_digits:
-              type: integer
-              nullable: true
+              type:
+              - integer
+              - 'null'
               description: The last four digits of the bank account number
               readOnly: true
             routing_number:
-              type: integer
-              nullable: true
+              type:
+              - integer
+              - 'null'
               description: The routing transit number for the bank account.
               readOnly: true
             owner_name:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: The name of the person or business that owns the account.
               readOnly: true
             usage_type:
@@ -203,9 +211,10 @@ components:
               description: The purpose for which this account is used.
               readOnly: true
         paying_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The time at which the payout was initiated. The date uses UTC and is represented in the iso8601 format.
           readOnly: true
         payout_type:
@@ -223,9 +232,10 @@ components:
           description: The unique identifier of the program associated with this payout
           readOnly: true
         quote_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           description: The unique identifier of the quote associated with this payout
           readOnly: true
         recipient:

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Loans API
+  title: Ascend API V1 Loans API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -159,10 +159,11 @@ components:
           description: The date when the loan was last updated. The date uses UTC and is represented in the iso8601 format.
           readOnly: true
         completed_disclosure_url:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The completed disclosure document url.
           readOnly: true
-          nullable: true
       required:
       - id
       - amount_financed_cents

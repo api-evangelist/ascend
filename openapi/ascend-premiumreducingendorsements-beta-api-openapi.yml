@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts PremiumReducingEndorsements (Beta) API
+  title: Ascend API V1 PremiumReducingEndorsements (Beta) API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -45,14 +45,16 @@ paths:
                   minimum: 0
                   description: The gross premium reduction for the policy.
                 taxes_and_fees_cents:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   minimum: 0
-                  nullable: true
                   description: The reduction in taxes and fees for the policy.
                 surplus_lines_tax_cents:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   minimum: 0
-                  nullable: true
                   description: 'The reduction in unearned surplus lines tax for the policy. Note: This field is only supported for organizations with surplus lines tax functionality enabled. Contact developers@useascend.com to enable this feature'
                 effective_date:
                   type: string
@@ -77,11 +79,14 @@ paths:
                     required:
                     - id
                 description:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: A short description that explains to the insured what is changing.
               required:
               - attachments
+      operationId: postV1PremiumReducingEndorsements
+      x-operation-id-source: derived
   /v1/premium_reducing_endorsements/{id}:
     delete:
       summary: delete premium reducing endorsement
@@ -99,6 +104,8 @@ paths:
       responses:
         '204':
           description: sucessfully deleted
+      operationId: deleteV1PremiumReducingEndorsementsById
+      x-operation-id-source: derived
     get:
       summary: Show a premium reducing endorsement
       tags:
@@ -119,6 +126,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PremiumReducingEndorsement'
+      operationId: getV1PremiumReducingEndorsementsById
+      x-operation-id-source: derived
     patch:
       summary: Update a premium reducing endorsement
       tags:
@@ -157,14 +166,16 @@ paths:
                   minimum: 0
                   description: The gross premium reduction for the policy.
                 taxes_and_fees_cents:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   minimum: 0
-                  nullable: true
                   description: The reduction in taxes and fees for the policy.
                 surplus_lines_tax_cents:
-                  type: integer
+                  type:
+                  - integer
+                  - 'null'
                   minimum: 0
-                  nullable: true
                   description: 'The reduction in unearned surplus lines tax for the policy. Note: This field is only supported for organizations with surplus lines tax functionality enabled. Contact developers@useascend.com to enable this feature.'
                 effective_date:
                   type: string
@@ -188,11 +199,14 @@ paths:
                     required:
                     - url
                 description:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: A short description that explains to the insured what is changing.
               required:
               - attachments
+      operationId: patchV1PremiumReducingEndorsementsById
+      x-operation-id-source: derived
 components:
   schemas:
     PremiumReducingEndorsement:
@@ -215,8 +229,9 @@ components:
           format: date
           description: 'The date when the endorsement goes into effect. Expected format: YYYY-MM-DD.'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: A short description that explains to the insured what is changing.
         documents:
           type: array
@@ -225,15 +240,17 @@ components:
             type: object
             properties:
               title:
-                type: string
+                type:
+                - string
+                - 'null'
                 description: The display name of the static asset.
-                nullable: true
               url:
                 type: string
                 description: The url to access the static asset.
         parent_billable_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier for the endorsement's parent billable.
         premium_cents:

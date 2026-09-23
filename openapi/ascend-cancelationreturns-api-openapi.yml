@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts CancelationReturns API
+  title: Ascend API V1 Cancelation Returns API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -134,11 +134,13 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
   /v1/cancelation_returns/{id}:
     parameters:
     - name: id
@@ -228,8 +230,9 @@ components:
           type: string
           description: Unique identifier for the document.
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Title of the document.
         url:
           type: string

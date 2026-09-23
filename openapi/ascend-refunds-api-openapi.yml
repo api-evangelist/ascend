@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Refunds API
+  title: Ascend API V1 Refunds API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -96,6 +96,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Refund'
+      operationId: getV1Refunds
+      x-operation-id-source: derived
 components:
   schemas:
     Refund:
@@ -125,13 +127,15 @@ components:
           - canceled
           description: The status of the refund
         refundable_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           description: The unique identifier of the object that is being refunded
         refundable_type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The type of the object being refunded
           enum:
           - Billable
@@ -140,13 +144,15 @@ components:
           - InstallmentPlan
           - ReducingEndorsement
         return_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           description: The unique identifier of the return that resulted in the refund being created
         return_type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The type of the return that resulted in the refund being created
           enum:
           - ReducingEndorsementReturn

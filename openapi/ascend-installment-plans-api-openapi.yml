@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts InstallmentPlans API
+  title: Ascend API V1 Installment Plans API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -9,14 +9,14 @@ servers:
 - url: https://api.useascend.com
   description: Production server
 tags:
-- name: InstallmentPlans
+- name: Installment Plans
   description: A payment plan broken down over a seriies of regular installments
 paths:
   /v1/installment_plans:
     post:
       summary: Create installment plan
       tags:
-      - InstallmentPlans
+      - Installment Plans
       security:
       - bearer_auth: []
       parameters: []
@@ -47,8 +47,9 @@ paths:
                   format: uuid
                   description: Id of the secondary account manager belonging to your organization who will receive the same email communications for the installment plan as the account manager
                 attachments:
-                  type: array
-                  nullable: true
+                  type:
+                  - array
+                  - 'null'
                   items:
                     type: object
                     properties:
@@ -153,13 +154,15 @@ paths:
                   description: Short description for the installment plan
                   maxLength: 50
                 metadata:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: Metadata to be associated with the installment plan. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
-                  nullable: true
                 organization_account:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: (MGA only) The billing account associated to the one time payment. This can represent either the wholesaler or the retail agency.
-                  nullable: true
                   properties:
                     id:
                       type: string
@@ -176,6 +179,8 @@ paths:
               - account_manager_id
               - memo
               - installments
+      operationId: postV1InstallmentPlans
+      x-operation-id-source: derived
   /v1/installment_plans/{id}:
     parameters:
     - name: id
@@ -187,7 +192,7 @@ paths:
     delete:
       summary: Archive Installment Plan
       tags:
-      - InstallmentPlans
+      - Installment Plans
       operationId: archiveInstallmentPlan
       security:
       - bearer_auth: []
@@ -210,7 +215,7 @@ paths:
     get:
       summary: Get installment plan
       tags:
-      - InstallmentPlans
+      - Installment Plans
       security:
       - bearer_auth: []
       parameters:
@@ -226,10 +231,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstallmentPlan'
+      operationId: getV1InstallmentPlansById
+      x-operation-id-source: derived
     patch:
       summary: Update Installment Plan
       tags:
-      - InstallmentPlans
+      - Installment Plans
       operationId: updateInstallmentPlan
       security:
       - bearer_auth: []
@@ -251,9 +258,10 @@ paths:
                   format: uuid
                   description: Id of the account manager who will receive the email communications for the installment plan
                 metadata:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: Metadata to be associated with the installment plan. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
-                  nullable: true
                 secondary_account_manager_id:
                   type: string
                   format: uuid
@@ -280,7 +288,7 @@ paths:
     post:
       summary: Cancel Installment Plan
       tags:
-      - InstallmentPlans
+      - Installment Plans
       operationId: cancelInstallmentPlan
       security:
       - bearer_auth: []
@@ -309,7 +317,7 @@ paths:
     post:
       summary: Notify User
       tags:
-      - InstallmentPlans
+      - Installment Plans
       operationId: sendInstallmentPlanReminder
       security:
       - bearer_auth: []
@@ -318,30 +326,6 @@ paths:
           description: successful
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the user
-        email:
-          type: string
-          format: email
-          description: The email for the user
-        first_name:
-          type: string
-          description: First name of the user.
-        last_name:
-          type: string
-          description: Last name of the user.
-        phone:
-          type: string
-          nullable: true
-          description: 'Phone number. Formatted: 5555555555'
-      required:
-      - email
-      - phone
     InstallmentPlan:
       type: object
       description: An installment plan for a series of payments
@@ -354,7 +338,6 @@ components:
           $ref: '#/components/schemas/User'
         secondary_account_manager:
           $ref: '#/components/schemas/User'
-          nullable: true
         autopay_enabled:
           type: boolean
           description: Whether autopay is enabled for the installment plan.
@@ -366,16 +349,18 @@ components:
           - direct_bill
           description: (MGA only) The type of billing used for this one time payment.
         documents:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: A collection of documents associated with the installment plan.
           items:
             type: object
             properties:
               title:
-                type: string
+                type:
+                - string
+                - 'null'
                 description: The display name of the static asset.
-                nullable: true
               url:
                 type: string
                 description: The url to access the static asset.
@@ -463,14 +448,41 @@ components:
           description: Short description for the installment plan
           maxLength: 50
         metadata:
-          type: object
+          type:
+          - object
+          - 'null'
           description: Metadata associated with the installment plan.
-          nullable: true
         organization_account_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: (MGA only) The unique identifier of the organization account associated with this one time payment.
-          nullable: true
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
   securitySchemes:
     bearer_auth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts OneTimePayments API
+  title: Ascend API V1 One Time Payments API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -9,14 +9,14 @@ servers:
 - url: https://api.useascend.com
   description: Production server
 tags:
-- name: OneTimePayments
+- name: One-Time Payments
   description: Represents records of a transaction between an insured and an agency or MGA.
 paths:
   /v1/one_time_payments:
     post:
       summary: Create One Time Payment
       tags:
-      - OneTimePayments
+      - One-Time Payments
       operationId: createOneTimePayment
       security:
       - bearer_auth: []
@@ -48,8 +48,9 @@ paths:
                   format: uuid
                   type: string
                 attachments:
-                  type: array
-                  nullable: true
+                  type:
+                  - array
+                  - 'null'
                   items:
                     type: object
                     properties:
@@ -66,9 +67,10 @@ paths:
                   - direct_bill
                   description: (MGA only) The type of billing used for this one time payment. If not specified, defaults to the billing type on the organization account.
                 due_date:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date
-                  nullable: true
                   description: The date by which the one time payment should be paid.
                 funds_distribution:
                   type: object
@@ -147,19 +149,22 @@ paths:
                   items:
                     $ref: '#/components/schemas/InvoiceItem'
                 memo:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Information about the one time payment shown to the payer.
                   default: Invoice for {payer_name}
-                  nullable: true
                   example: Additional premium for auto policy
                 metadata:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: Metadata to be associated with the one time payment. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
-                  nullable: true
                 organization_account:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: (MGA only) The billing account associated to the one time payment. This can represent either the wholesaler or the retail agency.
-                  nullable: true
                   properties:
                     id:
                       type: string
@@ -180,7 +185,7 @@ paths:
     get:
       summary: List One Time Payments
       tags:
-      - OneTimePayments
+      - One-Time Payments
       operationId: listOneTimePayments
       security:
       - bearer_auth: []
@@ -288,11 +293,13 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
   /v1/one_time_payments/{id}:
     parameters:
     - name: id
@@ -304,7 +311,7 @@ paths:
     get:
       summary: Get One Time Payment
       tags:
-      - OneTimePayments
+      - One-Time Payments
       operationId: getOneTimePayment
       security:
       - bearer_auth: []
@@ -320,7 +327,7 @@ paths:
     patch:
       summary: Update One Time Payment
       tags:
-      - OneTimePayments
+      - One-Time Payments
       operationId: updateOneTimePayment
       security:
       - bearer_auth: []
@@ -352,9 +359,10 @@ paths:
                   format: uuid
                   type: string
                 due_date:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   format: date
-                  nullable: true
                   description: The date by which the one time payment should be paid.
                 funds_distribution:
                   type: object
@@ -429,14 +437,16 @@ paths:
                   items:
                     $ref: '#/components/schemas/InvoiceItem'
                 memo:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   description: Information about the one time payment shown to the insured.
-                  nullable: true
                   example: Additional premium for auto policy
                 metadata:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: Metadata to be associated with the one time payment. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
-                  nullable: true
                 organization_account:
                   type: object
                   description: (MGA only) The billing account associated to the one time payment. This can represent either the wholesaler or the retail agency.
@@ -453,7 +463,7 @@ paths:
     delete:
       summary: Void One Time Payment
       tags:
-      - OneTimePayments
+      - One-Time Payments
       operationId: voidOneTimePayment
       security:
       - bearer_auth: []
@@ -471,7 +481,7 @@ paths:
     post:
       summary: Notify User
       tags:
-      - OneTimePayments
+      - One-Time Payments
       operationId: sendOneTimePaymentReminder
       security:
       - bearer_auth: []
@@ -493,7 +503,6 @@ components:
           $ref: '#/components/schemas/User'
         secondary_account_manager:
           $ref: '#/components/schemas/User'
-          nullable: true
         billing_type:
           type: string
           enum:
@@ -501,18 +510,21 @@ components:
           - direct_bill
           description: (MGA only) The type of billing used for this one time payment.
         checkout_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: The checkout url of the one time payment.
         due_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date by which the one time payment should be paid.
         funds_distribution:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Dictates where funds will be routed upon receiving payment for this one time payment. Defaults to full allocation to the issuer's configured bank account.
           properties:
             company_payables:
@@ -571,16 +583,18 @@ components:
           format: uuid
           description: The unique identifier of the insured for this one time payment.
         invoice_documents:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: A collection of documents associated with the one time payment.
           items:
             type: object
             properties:
               title:
-                type: string
+                type:
+                - string
+                - 'null'
                 description: The display name of the static asset.
-                nullable: true
               url:
                 type: string
                 description: The url to access the static asset.
@@ -594,23 +608,27 @@ components:
           example: I909821
           readOnly: true
         memo:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Information about the one time payment shown to the payer.
-          nullable: true
           example: Additional premium for auto policy
         metadata:
-          type: object
+          type:
+          - object
+          - 'null'
           description: Metadata associated with the one time payment.
-          nullable: true
         organization_account_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: (MGA only) The unique identifier of the organization account associated with this one time payment.
-          nullable: true
         paid_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date when the one time payment was paid by the payer.
           readOnly: true
         payer:
@@ -663,8 +681,9 @@ components:
           type: string
           description: Last name of the user.
         phone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: 'Phone number. Formatted: 5555555555'
       required:
       - email

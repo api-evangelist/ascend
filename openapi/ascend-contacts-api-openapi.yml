@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Contacts API
+  title: Ascend API V1 Contacts API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -69,6 +69,8 @@ paths:
       responses:
         '200':
           description: successful
+      operationId: getV1Contacts
+      x-operation-id-source: derived
     post:
       summary: Create Contact
       tags:
@@ -104,6 +106,8 @@ paths:
               - email
               - first_name
               - last_name
+      operationId: postV1Contacts
+      x-operation-id-source: derived
   /v1/contacts/{id}:
     get:
       summary: Get Contact
@@ -122,6 +126,8 @@ paths:
           description: successful
         '404':
           description: not found
+      operationId: getV1ContactsById
+      x-operation-id-source: derived
     patch:
       summary: Update contact
       tags:
@@ -158,6 +164,8 @@ paths:
                 phone:
                   type: string
                   description: 'Phone number. Formatted: 5555555555'
+      operationId: patchV1ContactsById
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearer_auth:

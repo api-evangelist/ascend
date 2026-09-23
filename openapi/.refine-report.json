@@ -1,29 +1,7 @@
 {
   "provider": "ascend",
   "sources": [
-    "ascend-accounts-api-openapi.yml",
-    "ascend-attachments-api-openapi.yml",
-    "ascend-billables-api-openapi.yml",
-    "ascend-cancelationreturns-api-openapi.yml",
-    "ascend-carriers-api-openapi.yml",
-    "ascend-contacts-api-openapi.yml",
-    "ascend-coveragetypes-api-openapi.yml",
-    "ascend-financeestimate-api-openapi.yml",
-    "ascend-installmentplans-api-openapi.yml",
-    "ascend-installments-api-openapi.yml",
-    "ascend-insureds-api-openapi.yml",
-    "ascend-invoices-api-openapi.yml",
-    "ascend-loans-api-openapi.yml",
-    "ascend-onetimepayments-api-openapi.yml",
-    "ascend-organization-account-users-api-openapi.yml",
-    "ascend-paymentproposals-api-openapi.yml",
-    "ascend-payouts-api-openapi.yml",
-    "ascend-premiumreducingendorsements-beta-api-openapi.yml",
-    "ascend-programs-api-openapi.yml",
-    "ascend-refunds-api-openapi.yml",
-    "ascend-returns-api-openapi.yml",
-    "ascend-users-api-openapi.yml",
-    "ascend-wholesalers-api-openapi.yml"
+    "_original/ascend-openapi-original.yml"
   ],
   "outputs": [
     "ascend-accounts-api-openapi.yml",
@@ -50,13 +28,47 @@
     "ascend-users-api-openapi.yml",
     "ascend-wholesalers-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [
-    "ascend-invoices-api-openapi.yml: dangling $ref: #/components/parameters/program_id",
-    "ascend-invoices-api-openapi.yml: dangling $ref: #/components/parameters/program_ids",
-    "ascend-payouts-api-openapi.yml: dangling $ref: #/components/parameters/program_id"
+    "ascend-openapi-original.yml: dangling $ref: #/components/parameters/program_id",
+    "ascend-openapi-original.yml: dangling $ref: #/components/parameters/program_ids"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ascend-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "ascend-openapi-original.yml: declared missing tag: Accounts",
+    "ascend-openapi-original.yml: declared missing tag: Organization Account Users",
+    "ascend-openapi-original.yml: declared missing tag: PaymentProposals",
+    "ascend-openapi-original.yml: declared missing tag: Wholesalers",
+    "superseded outputs removed: ascend-installment-plans-api-openapi.yml, ascend-one-time-payments-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 23 total)"
+  ],
+  "skipped": [
+    "ascend-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-billables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-cancelationreturns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-carriers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-coveragetypes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-financeestimate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-installment-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-installments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-insureds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-loans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-one-time-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-organization-account-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-paymentproposals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-payouts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-premiumreducingendorsements-beta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-programs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-returns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ascend-wholesalers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

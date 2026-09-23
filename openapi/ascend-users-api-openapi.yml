@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Users API
+  title: Ascend API V1 Users API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -95,11 +95,13 @@ paths:
                       count:
                         type: integer
                       next:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
                       prev:
-                        type: string
-                        nullable: true
+                        type:
+                        - string
+                        - 'null'
   /v1/users/{id}:
     get:
       summary: Get User
@@ -182,8 +184,9 @@ components:
           type: string
           description: Last name of the user.
         phone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: 'Phone number. Formatted: 5555555555'
       required:
       - email

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Ascend API V1 Accounts API
   version: v1
@@ -56,6 +56,8 @@ paths:
       responses:
         '200':
           description: List accounts
+      operationId: getV1Accounts
+      x-operation-id-source: derived
     post:
       summary: Create Accounts
       tags:
@@ -245,6 +247,8 @@ paths:
                   - billing_type
               required:
               - organization_account
+      operationId: postV1Accounts
+      x-operation-id-source: derived
   /v1/accounts/{id}:
     parameters:
     - name: id
@@ -266,6 +270,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
+      operationId: getV1AccountsById
+      x-operation-id-source: derived
     patch:
       summary: Update account
       tags:
@@ -297,6 +303,8 @@ paths:
                       description: Required for Direct bill. Default account fee for the seller. Expressed in cents (e.g., 1000 for $10.00)
               required:
               - organization_account
+      operationId: patchV1AccountsById
+      x-operation-id-source: derived
 components:
   schemas:
     Account:
@@ -368,8 +376,9 @@ components:
               type: string
               description: Last name of the contact
             phone:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Phone number of the contact
             email:
               type: string

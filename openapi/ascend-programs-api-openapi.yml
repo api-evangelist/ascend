@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Programs API
+  title: Ascend API V1 Programs API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -111,9 +111,10 @@ paths:
                   description: A URL to send the user back to after successful transaction occurs during the checkout process. This defaults to the organization return url if not specified.
                   type: string
                 metadata:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: Metadata to be associated with the program. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
-                  nullable: true
               required:
               - insured_id
               - producer_id
@@ -329,9 +330,10 @@ paths:
                   description: A URL to send the user back to after successful transaction occurs during the checkout process. This defaults to the organization return url if not specified.
                   type: string
                 metadata:
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                   description: Metadata to be associated with the program. Keys cannot be longer than 40 characters, cannot contain [] or {}, and the entire metadata object must be less than 5kB.
-                  nullable: true
               type: object
   /v1/programs/{id}/loan_payoff:
     parameters:
@@ -455,118 +457,6 @@ paths:
           description: Program not found
 components:
   schemas:
-    Program:
-      type: object
-      description: A collection of insurance quotes pooled to produce 1 checkout link.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the program
-        account_manager:
-          $ref: '#/components/schemas/User'
-        secondary_account_manager:
-          $ref: '#/components/schemas/User'
-          nullable: true
-        allowed_payment_methods:
-          type: array
-          description: A list of payment methods that are allowed during checkout.
-          items:
-            type: string
-            enum:
-            - card
-            - ach_debit
-            - ach_credit_transfer
-            - check
-        archived_at:
-          type: string
-          format: date-time
-          nullable: true
-          description: The date the program was archived. The date uses UTC and is represented in the iso8601 format.
-        autopay_enabled:
-          type: boolean
-          description: Whether autopay is enabled for the program.
-          readOnly: true
-        billing_type:
-          type: string
-          enum:
-          - agency_bill
-          - direct_bill
-          description: The type of billing used for this policy.
-          readOnly: true
-        checkedout_at:
-          type: string
-          nullable: true
-          format: date-time
-          description: The date the program was checked out. The date uses UTC and is represented in the iso8601 format.
-        created_at:
-          type: string
-          format: date-time
-          description: The date the program was created. The date uses UTC and is represented in the iso8601 format.
-        due_date:
-          type: string
-          format: date
-          description: Due date of the program payment or downpayment.
-          nullable: true
-        endorsement_due_date:
-          type: string
-          format: date
-          description: Due date of the most recent endorsement payment.
-          nullable: true
-        failure_callback_url:
-          type: string
-          nullable: true
-          description: A URL to send the user back to after failed transaction occurs during the checkout process.
-        hidden_payment_options:
-          type: array
-          description: A list of payment options that are hidden during checkout.
-          items:
-            type: string
-            enum:
-            - annual_pay_in_full
-        insured:
-          $ref: '#/components/schemas/Insured'
-        premium_cents:
-          type: integer
-          description: The total premium that the insured should pay for the program. This represents the premium sum of each quote associated to this program. The value is represented in cents.
-        producer:
-          $ref: '#/components/schemas/User'
-        program_url:
-          type: string
-          description: A URL to complete the checkout process.
-        return_url:
-          type: string
-          nullable: true
-          description: A URL to send the user back to after completing the checkout process.
-        selected_payment_option_type:
-          type: string
-          nullable: true
-          description: The payment option chosen by the insured during the checkout process.
-        status:
-          type: string
-          enum:
-          - archived
-          - purchased
-          - checked_out
-          - elected
-          - ready_for_checkout
-          - created
-          description: The state of the program
-        sub_total_cents:
-          type: integer
-          description: The amount to be payed by the insured including all premium and fees applicable to the program. The value is represented in cents.
-        success_callback_url:
-          type: string
-          nullable: true
-          description: A URL to send the user back to after successful transaction occurs during the checkout process.
-        updated_at:
-          type: string
-          format: date-time
-          description: The date the program was last updated. The date uses UTC and is represented in the iso8601 format.
-        metadata:
-          type: object
-          description: Metadata associated with the program.
-          nullable: true
     PaymentMethod:
       type: object
       description: It represents the payment instrument used by an insured.
@@ -621,69 +511,6 @@ components:
               description: The name of the bank institution.
           required:
           - bank_name
-    Insured:
-      type: object
-      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the insured
-        email:
-          type: string
-          format: email
-          description: The email for the insured
-          nullable: true
-        first_name:
-          type: string
-          nullable: true
-          description: First name of the insured.
-        last_name:
-          type: string
-          nullable: true
-          description: Last name of the insured.
-        business_name:
-          type: string
-          nullable: true
-          description: Business name. Either first + last name or business name is required.
-        is_business:
-          type: boolean
-          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
-        formatted_address:
-          type: string
-          nullable: true
-          description: complete address of the insured
-        phone:
-          type: string
-          description: Phone number of the insured
-          nullable: true
-        mailing_address_street_one:
-          type: string
-          nullable: true
-          description: Mailing Street address
-        mailing_address_street_two:
-          type: string
-          nullable: true
-          description: Suite or unit
-        mailing_address_city:
-          type: string
-          nullable: true
-          description: Mailing city
-        mailing_address_state:
-          nullable: true
-          $ref: '#/components/schemas/StateAnsiCodes'
-        mailing_address_zip_code:
-          type: string
-          nullable: true
-          description: Mailing zip code
-      required:
-      - id
-      - email
-      - is_business
-      - phone
-      - mailing_address_street_one
-      - mailing_address_city
-      - mailing_address_state
-      - mailing_address_zip_code
     LoanPayoffEstimate:
       type: object
       description: Loan payoff estimate for a financed program
@@ -702,6 +529,151 @@ components:
       required:
       - pay_off_amount_cents
       - program_id
+    Program:
+      type: object
+      description: A collection of insurance quotes pooled to produce 1 checkout link.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the program
+        account_manager:
+          $ref: '#/components/schemas/User'
+        secondary_account_manager:
+          $ref: '#/components/schemas/User'
+        allowed_payment_methods:
+          type: array
+          description: A list of payment methods that are allowed during checkout.
+          items:
+            type: string
+            enum:
+            - card
+            - ach_debit
+            - ach_credit_transfer
+            - check
+        archived_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date the program was archived. The date uses UTC and is represented in the iso8601 format.
+        autopay_enabled:
+          type: boolean
+          description: Whether autopay is enabled for the program.
+          readOnly: true
+        billing_type:
+          type: string
+          enum:
+          - agency_bill
+          - direct_bill
+          description: The type of billing used for this policy.
+          readOnly: true
+        checkedout_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date the program was checked out. The date uses UTC and is represented in the iso8601 format.
+        created_at:
+          type: string
+          format: date-time
+          description: The date the program was created. The date uses UTC and is represented in the iso8601 format.
+        due_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Due date of the program payment or downpayment.
+        endorsement_due_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Due date of the most recent endorsement payment.
+        failure_callback_url:
+          type:
+          - string
+          - 'null'
+          description: A URL to send the user back to after failed transaction occurs during the checkout process.
+        hidden_payment_options:
+          type: array
+          description: A list of payment options that are hidden during checkout.
+          items:
+            type: string
+            enum:
+            - annual_pay_in_full
+        insured:
+          $ref: '#/components/schemas/Insured'
+        premium_cents:
+          type: integer
+          description: The total premium that the insured should pay for the program. This represents the premium sum of each quote associated to this program. The value is represented in cents.
+        producer:
+          $ref: '#/components/schemas/User'
+        program_url:
+          type: string
+          description: A URL to complete the checkout process.
+        return_url:
+          type:
+          - string
+          - 'null'
+          description: A URL to send the user back to after completing the checkout process.
+        selected_payment_option_type:
+          type:
+          - string
+          - 'null'
+          description: The payment option chosen by the insured during the checkout process.
+        status:
+          type: string
+          enum:
+          - archived
+          - purchased
+          - checked_out
+          - elected
+          - ready_for_checkout
+          - created
+          description: The state of the program
+        sub_total_cents:
+          type: integer
+          description: The amount to be payed by the insured including all premium and fees applicable to the program. The value is represented in cents.
+        success_callback_url:
+          type:
+          - string
+          - 'null'
+          description: A URL to send the user back to after successful transaction occurs during the checkout process.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the program was last updated. The date uses UTC and is represented in the iso8601 format.
+        metadata:
+          type:
+          - object
+          - 'null'
+          description: Metadata associated with the program.
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
     InvoiceItem:
       type: object
       description: Representation of a line item on the invoice.
@@ -779,30 +751,6 @@ components:
       - WI
       - WV
       - WY
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the user
-        email:
-          type: string
-          format: email
-          description: The email for the user
-        first_name:
-          type: string
-          description: First name of the user.
-        last_name:
-          type: string
-          description: Last name of the user.
-        phone:
-          type: string
-          nullable: true
-          description: 'Phone number. Formatted: 5555555555'
-      required:
-      - email
-      - phone
     Invoice:
       type: object
       description: A document representing a transaction between the insured and Ascend.
@@ -817,40 +765,46 @@ components:
           format: uuid
           description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
         agent_invoice_docs:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: A collection of documents associated with the invoice.
           items:
             type: object
             properties:
               title:
-                type: string
+                type:
+                - string
+                - 'null'
                 description: The display name of the static asset.
-                nullable: true
               url:
                 type: string
                 description: The url to access the static asset.
         checkout_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: The checkout url of the invoice.
         due_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date by which the invoice should be paid.
         installment_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier of the installment the invoice is attached to. Only present for installment plan invoices.
-          nullable: true
           readOnly: true
         installment_plan_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier of the installment plan the invoice is attached to.
-          nullable: true
           readOnly: true
         insured_id:
           type: string
@@ -866,32 +820,37 @@ components:
           example: I909821
           readOnly: true
         invoice_url:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The url of the invoice document.
           example: http://res.cloudinary.com/useascend.pdf
-          nullable: true
           readOnly: true
         issued_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date when the invoice was shared with the insured.
           readOnly: true
         memo:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Information about the invoice shown to the insured.
-          nullable: true
           example: Additional premium for auto policy
         one_time_payment_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
           description: The unique identifier of the one-time payment the invoice is attached to. Only present for one-time payment invoices.
-          nullable: true
           readOnly: true
         paid_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date when the invoice was paid by the insured.
           readOnly: true
         payer_name:
@@ -899,13 +858,13 @@ components:
           description: The name of the insured/business paying for the invoice.
           example: Auto Sales Inc.
         payment_method:
-          nullable: true
           allOf:
           - $ref: '#/components/schemas/PaymentMethod'
         program_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           description: The unique identifier of the program invoice is attached to.
           readOnly: true
         status:
@@ -926,6 +885,78 @@ components:
           minimum: 0
           example: 10000
           readOnly: true
+    Insured:
+      type: object
+      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the insured
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: The email for the insured
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: First name of the insured.
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Last name of the insured.
+        business_name:
+          type:
+          - string
+          - 'null'
+          description: Business name. Either first + last name or business name is required.
+        is_business:
+          type: boolean
+          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
+        formatted_address:
+          type:
+          - string
+          - 'null'
+          description: complete address of the insured
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the insured
+        mailing_address_street_one:
+          type:
+          - string
+          - 'null'
+          description: Mailing Street address
+        mailing_address_street_two:
+          type:
+          - string
+          - 'null'
+          description: Suite or unit
+        mailing_address_city:
+          type:
+          - string
+          - 'null'
+          description: Mailing city
+        mailing_address_state:
+          $ref: '#/components/schemas/StateAnsiCodes'
+        mailing_address_zip_code:
+          type:
+          - string
+          - 'null'
+          description: Mailing zip code
+      required:
+      - id
+      - email
+      - is_business
+      - phone
+      - mailing_address_street_one
+      - mailing_address_city
+      - mailing_address_state
+      - mailing_address_zip_code
   securitySchemes:
     bearer_auth:
       type: http

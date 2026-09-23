@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Insureds API
+  title: Ascend API V1 Insureds API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -315,69 +315,6 @@ components:
       - WI
       - WV
       - WY
-    Insured:
-      type: object
-      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the insured
-        email:
-          type: string
-          format: email
-          description: The email for the insured
-          nullable: true
-        first_name:
-          type: string
-          nullable: true
-          description: First name of the insured.
-        last_name:
-          type: string
-          nullable: true
-          description: Last name of the insured.
-        business_name:
-          type: string
-          nullable: true
-          description: Business name. Either first + last name or business name is required.
-        is_business:
-          type: boolean
-          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
-        formatted_address:
-          type: string
-          nullable: true
-          description: complete address of the insured
-        phone:
-          type: string
-          description: Phone number of the insured
-          nullable: true
-        mailing_address_street_one:
-          type: string
-          nullable: true
-          description: Mailing Street address
-        mailing_address_street_two:
-          type: string
-          nullable: true
-          description: Suite or unit
-        mailing_address_city:
-          type: string
-          nullable: true
-          description: Mailing city
-        mailing_address_state:
-          nullable: true
-          $ref: '#/components/schemas/StateAnsiCodes'
-        mailing_address_zip_code:
-          type: string
-          nullable: true
-          description: Mailing zip code
-      required:
-      - id
-      - email
-      - is_business
-      - phone
-      - mailing_address_street_one
-      - mailing_address_city
-      - mailing_address_state
-      - mailing_address_zip_code
     PaymentMethod:
       type: object
       description: It represents the payment instrument used by an insured.
@@ -432,6 +369,78 @@ components:
               description: The name of the bank institution.
           required:
           - bank_name
+    Insured:
+      type: object
+      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the insured
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: The email for the insured
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: First name of the insured.
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Last name of the insured.
+        business_name:
+          type:
+          - string
+          - 'null'
+          description: Business name. Either first + last name or business name is required.
+        is_business:
+          type: boolean
+          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
+        formatted_address:
+          type:
+          - string
+          - 'null'
+          description: complete address of the insured
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the insured
+        mailing_address_street_one:
+          type:
+          - string
+          - 'null'
+          description: Mailing Street address
+        mailing_address_street_two:
+          type:
+          - string
+          - 'null'
+          description: Suite or unit
+        mailing_address_city:
+          type:
+          - string
+          - 'null'
+          description: Mailing city
+        mailing_address_state:
+          $ref: '#/components/schemas/StateAnsiCodes'
+        mailing_address_zip_code:
+          type:
+          - string
+          - 'null'
+          description: Mailing zip code
+      required:
+      - id
+      - email
+      - is_business
+      - phone
+      - mailing_address_street_one
+      - mailing_address_city
+      - mailing_address_state
+      - mailing_address_zip_code
   securitySchemes:
     bearer_auth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Ascend API V1 Accounts Installments API
+  title: Ascend API V1 Installments API
   version: v1
   description: 'Ascend REST API for insurance financial operations: billing & invoicing, premium financing, payments, installment plans, insureds, programs, loans, payouts, and refunds.'
 servers:
@@ -35,6 +35,8 @@ paths:
                 $ref: '#/components/schemas/Installment'
         '403':
           description: Unauthorized
+      operationId: getV1InstallmentsById
+      x-operation-id-source: derived
     patch:
       summary: Update installment
       tags:
@@ -133,6 +135,8 @@ paths:
                     - amount_cents
                     - organization_account_id
                     - remittance_memo
+      operationId: patchV1InstallmentsById
+      x-operation-id-source: derived
 components:
   schemas:
     Installment:
