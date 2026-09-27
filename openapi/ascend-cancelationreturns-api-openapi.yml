@@ -223,30 +223,6 @@ paths:
                   description: List of supporting documents
 components:
   schemas:
-    Attachment:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the document.
-        title:
-          type:
-          - string
-          - 'null'
-          description: Title of the document.
-        url:
-          type: string
-          description: The url of the document.
-        visibility:
-          type: string
-          enum:
-          - public
-          - private
-          description: Determines who can see this document. When visibility is set to public, anyone with access to public urls such as checkout url will be able to see these documents. When visibility is set to private, only users from your organization will be able to see the documents.
-      required:
-      - id
-      - title
-      - url
     CancelationReturn:
       type: object
       properties:
@@ -290,6 +266,30 @@ components:
                 type: string
                 description: The id of the organization payment.
           description: List of invoices to be paid by you.
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the document.
+        url:
+          type: string
+          description: The url of the document.
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          description: Determines who can see this document. When visibility is set to public, anyone with access to public urls such as checkout url will be able to see these documents. When visibility is set to private, only users from your organization will be able to see the documents.
+      required:
+      - id
+      - title
+      - url
   securitySchemes:
     bearer_auth:
       type: http

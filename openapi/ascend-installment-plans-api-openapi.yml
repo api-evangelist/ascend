@@ -326,6 +326,31 @@ paths:
           description: successful
 components:
   schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
     InstallmentPlan:
       type: object
       description: An installment plan for a series of payments
@@ -458,31 +483,6 @@ components:
           - 'null'
           format: uuid
           description: (MGA only) The unique identifier of the organization account associated with this one time payment.
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the user
-        email:
-          type: string
-          format: email
-          description: The email for the user
-        first_name:
-          type: string
-          description: First name of the user.
-        last_name:
-          type: string
-          description: Last name of the user.
-        phone:
-          type:
-          - string
-          - 'null'
-          description: 'Phone number. Formatted: 5555555555'
-      required:
-      - email
-      - phone
   securitySchemes:
     bearer_auth:
       type: http

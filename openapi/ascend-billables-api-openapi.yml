@@ -476,99 +476,6 @@ paths:
                   description: The identifier of the wholesaler that issued this quote. When the billable is an endorsement the wholesaler will be inherited from the parent billable.
 components:
   schemas:
-    Wholesaler:
-      type: object
-      description: An insurance wholesaler or MGA.
-      properties:
-        identifier:
-          type: string
-          description: A human readable unique identifier.
-        title:
-          type: string
-          description: The wholesaler display name.
-        mailing_address_street_one:
-          type:
-          - string
-          - 'null'
-          description: Mailing Street address
-        mailing_address_street_two:
-          type:
-          - string
-          - 'null'
-          description: Suite or unit
-        mailing_address_city:
-          type:
-          - string
-          - 'null'
-          description: Mailing city
-        mailing_address_state:
-          $ref: '#/components/schemas/StateAnsiCodes'
-        mailing_address_zip_code:
-          type:
-          - string
-          - 'null'
-          description: Mailing zip code
-    StateAnsiCodes:
-      type: string
-      description: 'A US State represented with their ANSI code. For ex: California = CA'
-      enum:
-      - AK
-      - AL
-      - AR
-      - AS
-      - AZ
-      - CA
-      - CO
-      - CT
-      - DC
-      - DE
-      - FL
-      - GA
-      - GU
-      - HI
-      - IA
-      - ID
-      - IL
-      - IN
-      - KS
-      - KY
-      - LA
-      - MA
-      - MD
-      - ME
-      - MI
-      - MN
-      - MO
-      - MP
-      - MS
-      - MT
-      - NC
-      - ND
-      - NE
-      - NH
-      - NJ
-      - NM
-      - NV
-      - NY
-      - OH
-      - OK
-      - OR
-      - PA
-      - PR
-      - RI
-      - SC
-      - SD
-      - TN
-      - TX
-      - UM
-      - UT
-      - VA
-      - VI
-      - VT
-      - WA
-      - WI
-      - WV
-      - WY
     Carrier:
       type: object
       description: An insurance company.
@@ -601,16 +508,6 @@ components:
           - string
           - 'null'
           description: Mailing zip code
-    CoverageType:
-      type: object
-      description: A type of coverage.
-      properties:
-        identifier:
-          type: string
-          description: A human readable unique identifier.
-        title:
-          type: string
-          description: The coverage type display name.
     Billable:
       type: object
       description: An insurance quote or endorsement to be billed to the insured.
@@ -738,6 +635,109 @@ components:
           - object
           - 'null'
           description: Metadata associated with the billable.
+    StateAnsiCodes:
+      type: string
+      description: 'A US State represented with their ANSI code. For ex: California = CA'
+      enum:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
+    Wholesaler:
+      type: object
+      description: An insurance wholesaler or MGA.
+      properties:
+        identifier:
+          type: string
+          description: A human readable unique identifier.
+        title:
+          type: string
+          description: The wholesaler display name.
+        mailing_address_street_one:
+          type:
+          - string
+          - 'null'
+          description: Mailing Street address
+        mailing_address_street_two:
+          type:
+          - string
+          - 'null'
+          description: Suite or unit
+        mailing_address_city:
+          type:
+          - string
+          - 'null'
+          description: Mailing city
+        mailing_address_state:
+          $ref: '#/components/schemas/StateAnsiCodes'
+        mailing_address_zip_code:
+          type:
+          - string
+          - 'null'
+          description: Mailing zip code
+    CoverageType:
+      type: object
+      description: A type of coverage.
+      properties:
+        identifier:
+          type: string
+          description: A human readable unique identifier.
+        title:
+          type: string
+          description: The coverage type display name.
   securitySchemes:
     bearer_auth:
       type: http
