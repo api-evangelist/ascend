@@ -457,78 +457,6 @@ paths:
           description: Program not found
 components:
   schemas:
-    Insured:
-      type: object
-      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the insured
-        email:
-          type:
-          - string
-          - 'null'
-          format: email
-          description: The email for the insured
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: First name of the insured.
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: Last name of the insured.
-        business_name:
-          type:
-          - string
-          - 'null'
-          description: Business name. Either first + last name or business name is required.
-        is_business:
-          type: boolean
-          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
-        formatted_address:
-          type:
-          - string
-          - 'null'
-          description: complete address of the insured
-        phone:
-          type:
-          - string
-          - 'null'
-          description: Phone number of the insured
-        mailing_address_street_one:
-          type:
-          - string
-          - 'null'
-          description: Mailing Street address
-        mailing_address_street_two:
-          type:
-          - string
-          - 'null'
-          description: Suite or unit
-        mailing_address_city:
-          type:
-          - string
-          - 'null'
-          description: Mailing city
-        mailing_address_state:
-          $ref: '#/components/schemas/StateAnsiCodes'
-        mailing_address_zip_code:
-          type:
-          - string
-          - 'null'
-          description: Mailing zip code
-      required:
-      - id
-      - email
-      - is_business
-      - phone
-      - mailing_address_street_one
-      - mailing_address_city
-      - mailing_address_state
-      - mailing_address_zip_code
     Program:
       type: object
       description: A collection of insurance quotes pooled to produce 1 checkout link.
@@ -649,22 +577,67 @@ components:
           - object
           - 'null'
           description: Metadata associated with the program.
-    InvoiceItem:
-      type: object
-      description: Representation of a line item on the invoice.
-      properties:
-        amount_cents:
-          type: integer
-          description: The total amount charged.
-          minimum: 0
-          example: 10000
-        title:
-          type: string
-          description: Information about the invoice item.
-          example: Policy Tax
-      required:
-      - amount_cents
-      - title
+    StateAnsiCodes:
+      type: string
+      description: 'A US State represented with their ANSI code. For ex: California = CA'
+      enum:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
     Invoice:
       type: object
       description: A document representing a transaction between the insured and Ascend.
@@ -799,31 +772,40 @@ components:
           minimum: 0
           example: 10000
           readOnly: true
-    User:
+    InvoiceItem:
       type: object
+      description: Representation of a line item on the invoice.
       properties:
-        id:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
+    LoanPayoffEstimate:
+      type: object
+      description: Loan payoff estimate for a financed program
+      properties:
+        pay_off_amount_cents:
+          type: integer
+          description: The amount in cents needed to pay off the loan.
+          minimum: 0
+          example: 19775000
+          readOnly: true
+        program_id:
           type: string
           format: uuid
-          description: The unique identifier for the user
-        email:
-          type: string
-          format: email
-          description: The email for the user
-        first_name:
-          type: string
-          description: First name of the user.
-        last_name:
-          type: string
-          description: Last name of the user.
-        phone:
-          type:
-          - string
-          - 'null'
-          description: 'Phone number. Formatted: 5555555555'
+          description: The program unique identifier.
+          readOnly: true
       required:
-      - email
-      - phone
+      - pay_off_amount_cents
+      - program_id
     PaymentMethod:
       type: object
       description: It represents the payment instrument used by an insured.
@@ -878,85 +860,103 @@ components:
               description: The name of the bank institution.
           required:
           - bank_name
-    LoanPayoffEstimate:
+    User:
       type: object
-      description: Loan payoff estimate for a financed program
       properties:
-        pay_off_amount_cents:
-          type: integer
-          description: The amount in cents needed to pay off the loan.
-          minimum: 0
-          example: 19775000
-          readOnly: true
-        program_id:
+        id:
           type: string
           format: uuid
-          description: The program unique identifier.
-          readOnly: true
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: 'Phone number. Formatted: 5555555555'
       required:
-      - pay_off_amount_cents
-      - program_id
-    StateAnsiCodes:
-      type: string
-      description: 'A US State represented with their ANSI code. For ex: California = CA'
-      enum:
-      - AK
-      - AL
-      - AR
-      - AS
-      - AZ
-      - CA
-      - CO
-      - CT
-      - DC
-      - DE
-      - FL
-      - GA
-      - GU
-      - HI
-      - IA
-      - ID
-      - IL
-      - IN
-      - KS
-      - KY
-      - LA
-      - MA
-      - MD
-      - ME
-      - MI
-      - MN
-      - MO
-      - MP
-      - MS
-      - MT
-      - NC
-      - ND
-      - NE
-      - NH
-      - NJ
-      - NM
-      - NV
-      - NY
-      - OH
-      - OK
-      - OR
-      - PA
-      - PR
-      - RI
-      - SC
-      - SD
-      - TN
-      - TX
-      - UM
-      - UT
-      - VA
-      - VI
-      - VT
-      - WA
-      - WI
-      - WV
-      - WY
+      - email
+      - phone
+    Insured:
+      type: object
+      description: Represents the person or business entity that is purchasing the collection of insurance quotes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the insured
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: The email for the insured
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: First name of the insured.
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Last name of the insured.
+        business_name:
+          type:
+          - string
+          - 'null'
+          description: Business name. Either first + last name or business name is required.
+        is_business:
+          type: boolean
+          description: Determines if the insured is a business entity. If it is not it will be assumed that the insured is a person.
+        formatted_address:
+          type:
+          - string
+          - 'null'
+          description: complete address of the insured
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the insured
+        mailing_address_street_one:
+          type:
+          - string
+          - 'null'
+          description: Mailing Street address
+        mailing_address_street_two:
+          type:
+          - string
+          - 'null'
+          description: Suite or unit
+        mailing_address_city:
+          type:
+          - string
+          - 'null'
+          description: Mailing city
+        mailing_address_state:
+          $ref: '#/components/schemas/StateAnsiCodes'
+        mailing_address_zip_code:
+          type:
+          - string
+          - 'null'
+          description: Mailing zip code
+      required:
+      - id
+      - email
+      - is_business
+      - phone
+      - mailing_address_street_one
+      - mailing_address_city
+      - mailing_address_state
+      - mailing_address_zip_code
   securitySchemes:
     bearer_auth:
       type: http

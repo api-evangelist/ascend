@@ -254,6 +254,67 @@ paths:
                     type: array
 components:
   schemas:
+    StateAnsiCodes:
+      type: string
+      description: 'A US State represented with their ANSI code. For ex: California = CA'
+      enum:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
     Insured:
       type: object
       description: Represents the person or business entity that is purchasing the collection of insurance quotes.
@@ -380,67 +441,6 @@ components:
               description: The name of the bank institution.
           required:
           - bank_name
-    StateAnsiCodes:
-      type: string
-      description: 'A US State represented with their ANSI code. For ex: California = CA'
-      enum:
-      - AK
-      - AL
-      - AR
-      - AS
-      - AZ
-      - CA
-      - CO
-      - CT
-      - DC
-      - DE
-      - FL
-      - GA
-      - GU
-      - HI
-      - IA
-      - ID
-      - IL
-      - IN
-      - KS
-      - KY
-      - LA
-      - MA
-      - MD
-      - ME
-      - MI
-      - MN
-      - MO
-      - MP
-      - MS
-      - MT
-      - NC
-      - ND
-      - NE
-      - NH
-      - NJ
-      - NM
-      - NV
-      - NY
-      - OH
-      - OK
-      - OR
-      - PA
-      - PR
-      - RI
-      - SC
-      - SD
-      - TN
-      - TX
-      - UM
-      - UT
-      - VA
-      - VI
-      - VT
-      - WA
-      - WI
-      - WV
-      - WY
   securitySchemes:
     bearer_auth:
       type: http

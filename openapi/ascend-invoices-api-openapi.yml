@@ -342,76 +342,6 @@ paths:
                   description: Identifier of the insured's payment method to charge. Must belong to the program's insured payer and have prior use on a different program in this organization.
 components:
   schemas:
-    PaymentMethod:
-      type: object
-      description: It represents the payment instrument used by an insured.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the payment method.
-          readOnly: true
-        payment_type:
-          type: string
-          enum:
-          - card
-          - ach_debit
-          - ach_credit_transfer
-          - us_bank_account
-          - check
-          description: The type of payment method.
-          readOnly: true
-        card:
-          type: object
-          description: Detailed information about the card.
-          properties:
-            last_four_digits:
-              type: string
-              description: The last four digits of the card.
-            brand:
-              type: string
-              description: The card brand.
-          required:
-          - brand
-          - last_four_digits
-        ach_debit:
-          type: object
-          description: Detailed information about the ach method.
-          properties:
-            last_four_digits:
-              type: string
-              description: The last four digits of the account number.
-            bank_name:
-              type: string
-              description: The name of the bank institution.
-          required:
-          - bank_name
-          - last_four_digits
-        ach_credit:
-          type: object
-          description: Detailed information about the ach credit method.
-          properties:
-            bank_name:
-              type: string
-              description: The name of the bank institution.
-          required:
-          - bank_name
-    InvoiceItem:
-      type: object
-      description: Representation of a line item on the invoice.
-      properties:
-        amount_cents:
-          type: integer
-          description: The total amount charged.
-          minimum: 0
-          example: 10000
-        title:
-          type: string
-          description: Information about the invoice item.
-          example: Policy Tax
-      required:
-      - amount_cents
-      - title
     Invoice:
       type: object
       description: A document representing a transaction between the insured and Ascend.
@@ -546,6 +476,76 @@ components:
           minimum: 0
           example: 10000
           readOnly: true
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
+    PaymentMethod:
+      type: object
+      description: It represents the payment instrument used by an insured.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the payment method.
+          readOnly: true
+        payment_type:
+          type: string
+          enum:
+          - card
+          - ach_debit
+          - ach_credit_transfer
+          - us_bank_account
+          - check
+          description: The type of payment method.
+          readOnly: true
+        card:
+          type: object
+          description: Detailed information about the card.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the card.
+            brand:
+              type: string
+              description: The card brand.
+          required:
+          - brand
+          - last_four_digits
+        ach_debit:
+          type: object
+          description: Detailed information about the ach method.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the account number.
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
+          - last_four_digits
+        ach_credit:
+          type: object
+          description: Detailed information about the ach credit method.
+          properties:
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
   securitySchemes:
     bearer_auth:
       type: http

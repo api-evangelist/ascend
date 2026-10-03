@@ -490,6 +490,22 @@ paths:
           description: successful
 components:
   schemas:
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
     OneTimePayment:
       type: object
       description: A document representing a transaction between an insured and an agency or MGA.
@@ -663,22 +679,6 @@ components:
           minimum: 0
           example: 10000
           readOnly: true
-    InvoiceItem:
-      type: object
-      description: Representation of a line item on the invoice.
-      properties:
-        amount_cents:
-          type: integer
-          description: The total amount charged.
-          minimum: 0
-          example: 10000
-        title:
-          type: string
-          description: Information about the invoice item.
-          example: Policy Tax
-      required:
-      - amount_cents
-      - title
     User:
       type: object
       properties:
