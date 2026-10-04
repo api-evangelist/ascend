@@ -457,355 +457,6 @@ paths:
           description: Program not found
 components:
   schemas:
-    Program:
-      type: object
-      description: A collection of insurance quotes pooled to produce 1 checkout link.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the program
-        account_manager:
-          $ref: '#/components/schemas/User'
-        secondary_account_manager:
-          $ref: '#/components/schemas/User'
-        allowed_payment_methods:
-          type: array
-          description: A list of payment methods that are allowed during checkout.
-          items:
-            type: string
-            enum:
-            - card
-            - ach_debit
-            - ach_credit_transfer
-            - check
-        archived_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date the program was archived. The date uses UTC and is represented in the iso8601 format.
-        autopay_enabled:
-          type: boolean
-          description: Whether autopay is enabled for the program.
-          readOnly: true
-        billing_type:
-          type: string
-          enum:
-          - agency_bill
-          - direct_bill
-          description: The type of billing used for this policy.
-          readOnly: true
-        checkedout_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date the program was checked out. The date uses UTC and is represented in the iso8601 format.
-        created_at:
-          type: string
-          format: date-time
-          description: The date the program was created. The date uses UTC and is represented in the iso8601 format.
-        due_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: Due date of the program payment or downpayment.
-        endorsement_due_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: Due date of the most recent endorsement payment.
-        failure_callback_url:
-          type:
-          - string
-          - 'null'
-          description: A URL to send the user back to after failed transaction occurs during the checkout process.
-        hidden_payment_options:
-          type: array
-          description: A list of payment options that are hidden during checkout.
-          items:
-            type: string
-            enum:
-            - annual_pay_in_full
-        insured:
-          $ref: '#/components/schemas/Insured'
-        premium_cents:
-          type: integer
-          description: The total premium that the insured should pay for the program. This represents the premium sum of each quote associated to this program. The value is represented in cents.
-        producer:
-          $ref: '#/components/schemas/User'
-        program_url:
-          type: string
-          description: A URL to complete the checkout process.
-        return_url:
-          type:
-          - string
-          - 'null'
-          description: A URL to send the user back to after completing the checkout process.
-        selected_payment_option_type:
-          type:
-          - string
-          - 'null'
-          description: The payment option chosen by the insured during the checkout process.
-        status:
-          type: string
-          enum:
-          - archived
-          - purchased
-          - checked_out
-          - elected
-          - ready_for_checkout
-          - created
-          description: The state of the program
-        sub_total_cents:
-          type: integer
-          description: The amount to be payed by the insured including all premium and fees applicable to the program. The value is represented in cents.
-        success_callback_url:
-          type:
-          - string
-          - 'null'
-          description: A URL to send the user back to after successful transaction occurs during the checkout process.
-        updated_at:
-          type: string
-          format: date-time
-          description: The date the program was last updated. The date uses UTC and is represented in the iso8601 format.
-        metadata:
-          type:
-          - object
-          - 'null'
-          description: Metadata associated with the program.
-    StateAnsiCodes:
-      type: string
-      description: 'A US State represented with their ANSI code. For ex: California = CA'
-      enum:
-      - AK
-      - AL
-      - AR
-      - AS
-      - AZ
-      - CA
-      - CO
-      - CT
-      - DC
-      - DE
-      - FL
-      - GA
-      - GU
-      - HI
-      - IA
-      - ID
-      - IL
-      - IN
-      - KS
-      - KY
-      - LA
-      - MA
-      - MD
-      - ME
-      - MI
-      - MN
-      - MO
-      - MP
-      - MS
-      - MT
-      - NC
-      - ND
-      - NE
-      - NH
-      - NJ
-      - NM
-      - NV
-      - NY
-      - OH
-      - OK
-      - OR
-      - PA
-      - PR
-      - RI
-      - SC
-      - SD
-      - TN
-      - TX
-      - UM
-      - UT
-      - VA
-      - VI
-      - VT
-      - WA
-      - WI
-      - WV
-      - WY
-    Invoice:
-      type: object
-      description: A document representing a transaction between the insured and Ascend.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The invoice unique identifier.
-          readOnly: true
-        account_manager_id:
-          type: string
-          format: uuid
-          description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
-        agent_invoice_docs:
-          type:
-          - array
-          - 'null'
-          description: A collection of documents associated with the invoice.
-          items:
-            type: object
-            properties:
-              title:
-                type:
-                - string
-                - 'null'
-                description: The display name of the static asset.
-              url:
-                type: string
-                description: The url to access the static asset.
-        checkout_url:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: The checkout url of the invoice.
-        due_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: The date by which the invoice should be paid.
-        installment_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The unique identifier of the installment the invoice is attached to. Only present for installment plan invoices.
-          readOnly: true
-        installment_plan_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The unique identifier of the installment plan the invoice is attached to.
-          readOnly: true
-        insured_id:
-          type: string
-          format: uuid
-          description: The unique identifier of the insured invoice is attached to.
-        invoice_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceItem'
-        invoice_number:
-          type: string
-          description: A number assigned to uniquely identify the invoice.
-          example: I909821
-          readOnly: true
-        invoice_url:
-          type:
-          - string
-          - 'null'
-          description: The url of the invoice document.
-          example: http://res.cloudinary.com/useascend.pdf
-          readOnly: true
-        issued_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date when the invoice was shared with the insured.
-          readOnly: true
-        memo:
-          type:
-          - string
-          - 'null'
-          description: Information about the invoice shown to the insured.
-          example: Additional premium for auto policy
-        one_time_payment_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The unique identifier of the one-time payment the invoice is attached to. Only present for one-time payment invoices.
-          readOnly: true
-        paid_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date when the invoice was paid by the insured.
-          readOnly: true
-        payer_name:
-          type: string
-          description: The name of the insured/business paying for the invoice.
-          example: Auto Sales Inc.
-        payment_method:
-          allOf:
-          - $ref: '#/components/schemas/PaymentMethod'
-        program_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The unique identifier of the program invoice is attached to.
-          readOnly: true
-        status:
-          type: string
-          description: The current state of the invoice.
-          example: draft
-          readOnly: true
-          enum:
-          - draft
-          - awaiting_payment
-          - overdue
-          - processing_payment
-          - paid
-          - void
-        total_amount_cents:
-          type: integer
-          description: The total amount charged.
-          minimum: 0
-          example: 10000
-          readOnly: true
-    InvoiceItem:
-      type: object
-      description: Representation of a line item on the invoice.
-      properties:
-        amount_cents:
-          type: integer
-          description: The total amount charged.
-          minimum: 0
-          example: 10000
-        title:
-          type: string
-          description: Information about the invoice item.
-          example: Policy Tax
-      required:
-      - amount_cents
-      - title
-    LoanPayoffEstimate:
-      type: object
-      description: Loan payoff estimate for a financed program
-      properties:
-        pay_off_amount_cents:
-          type: integer
-          description: The amount in cents needed to pay off the loan.
-          minimum: 0
-          example: 19775000
-          readOnly: true
-        program_id:
-          type: string
-          format: uuid
-          description: The program unique identifier.
-          readOnly: true
-      required:
-      - pay_off_amount_cents
-      - program_id
     PaymentMethod:
       type: object
       description: It represents the payment instrument used by an insured.
@@ -957,6 +608,355 @@ components:
       - mailing_address_city
       - mailing_address_state
       - mailing_address_zip_code
+    Program:
+      type: object
+      description: A collection of insurance quotes pooled to produce 1 checkout link.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the program
+        account_manager:
+          $ref: '#/components/schemas/User'
+        secondary_account_manager:
+          $ref: '#/components/schemas/User'
+        allowed_payment_methods:
+          type: array
+          description: A list of payment methods that are allowed during checkout.
+          items:
+            type: string
+            enum:
+            - card
+            - ach_debit
+            - ach_credit_transfer
+            - check
+        archived_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date the program was archived. The date uses UTC and is represented in the iso8601 format.
+        autopay_enabled:
+          type: boolean
+          description: Whether autopay is enabled for the program.
+          readOnly: true
+        billing_type:
+          type: string
+          enum:
+          - agency_bill
+          - direct_bill
+          description: The type of billing used for this policy.
+          readOnly: true
+        checkedout_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date the program was checked out. The date uses UTC and is represented in the iso8601 format.
+        created_at:
+          type: string
+          format: date-time
+          description: The date the program was created. The date uses UTC and is represented in the iso8601 format.
+        due_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Due date of the program payment or downpayment.
+        endorsement_due_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Due date of the most recent endorsement payment.
+        failure_callback_url:
+          type:
+          - string
+          - 'null'
+          description: A URL to send the user back to after failed transaction occurs during the checkout process.
+        hidden_payment_options:
+          type: array
+          description: A list of payment options that are hidden during checkout.
+          items:
+            type: string
+            enum:
+            - annual_pay_in_full
+        insured:
+          $ref: '#/components/schemas/Insured'
+        premium_cents:
+          type: integer
+          description: The total premium that the insured should pay for the program. This represents the premium sum of each quote associated to this program. The value is represented in cents.
+        producer:
+          $ref: '#/components/schemas/User'
+        program_url:
+          type: string
+          description: A URL to complete the checkout process.
+        return_url:
+          type:
+          - string
+          - 'null'
+          description: A URL to send the user back to after completing the checkout process.
+        selected_payment_option_type:
+          type:
+          - string
+          - 'null'
+          description: The payment option chosen by the insured during the checkout process.
+        status:
+          type: string
+          enum:
+          - archived
+          - purchased
+          - checked_out
+          - elected
+          - ready_for_checkout
+          - created
+          description: The state of the program
+        sub_total_cents:
+          type: integer
+          description: The amount to be payed by the insured including all premium and fees applicable to the program. The value is represented in cents.
+        success_callback_url:
+          type:
+          - string
+          - 'null'
+          description: A URL to send the user back to after successful transaction occurs during the checkout process.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the program was last updated. The date uses UTC and is represented in the iso8601 format.
+        metadata:
+          type:
+          - object
+          - 'null'
+          description: Metadata associated with the program.
+    LoanPayoffEstimate:
+      type: object
+      description: Loan payoff estimate for a financed program
+      properties:
+        pay_off_amount_cents:
+          type: integer
+          description: The amount in cents needed to pay off the loan.
+          minimum: 0
+          example: 19775000
+          readOnly: true
+        program_id:
+          type: string
+          format: uuid
+          description: The program unique identifier.
+          readOnly: true
+      required:
+      - pay_off_amount_cents
+      - program_id
+    InvoiceItem:
+      type: object
+      description: Representation of a line item on the invoice.
+      properties:
+        amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+        title:
+          type: string
+          description: Information about the invoice item.
+          example: Policy Tax
+      required:
+      - amount_cents
+      - title
+    Invoice:
+      type: object
+      description: A document representing a transaction between the insured and Ascend.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The invoice unique identifier.
+          readOnly: true
+        account_manager_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the user associated as the account manager for the invoice. This user is listed as the agent on checkout and receives any invoice communications
+        agent_invoice_docs:
+          type:
+          - array
+          - 'null'
+          description: A collection of documents associated with the invoice.
+          items:
+            type: object
+            properties:
+              title:
+                type:
+                - string
+                - 'null'
+                description: The display name of the static asset.
+              url:
+                type: string
+                description: The url to access the static asset.
+        checkout_url:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: The checkout url of the invoice.
+        due_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The date by which the invoice should be paid.
+        installment_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The unique identifier of the installment the invoice is attached to. Only present for installment plan invoices.
+          readOnly: true
+        installment_plan_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The unique identifier of the installment plan the invoice is attached to.
+          readOnly: true
+        insured_id:
+          type: string
+          format: uuid
+          description: The unique identifier of the insured invoice is attached to.
+        invoice_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+        invoice_number:
+          type: string
+          description: A number assigned to uniquely identify the invoice.
+          example: I909821
+          readOnly: true
+        invoice_url:
+          type:
+          - string
+          - 'null'
+          description: The url of the invoice document.
+          example: http://res.cloudinary.com/useascend.pdf
+          readOnly: true
+        issued_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date when the invoice was shared with the insured.
+          readOnly: true
+        memo:
+          type:
+          - string
+          - 'null'
+          description: Information about the invoice shown to the insured.
+          example: Additional premium for auto policy
+        one_time_payment_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The unique identifier of the one-time payment the invoice is attached to. Only present for one-time payment invoices.
+          readOnly: true
+        paid_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date when the invoice was paid by the insured.
+          readOnly: true
+        payer_name:
+          type: string
+          description: The name of the insured/business paying for the invoice.
+          example: Auto Sales Inc.
+        payment_method:
+          allOf:
+          - $ref: '#/components/schemas/PaymentMethod'
+        program_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The unique identifier of the program invoice is attached to.
+          readOnly: true
+        status:
+          type: string
+          description: The current state of the invoice.
+          example: draft
+          readOnly: true
+          enum:
+          - draft
+          - awaiting_payment
+          - overdue
+          - processing_payment
+          - paid
+          - void
+        total_amount_cents:
+          type: integer
+          description: The total amount charged.
+          minimum: 0
+          example: 10000
+          readOnly: true
+    StateAnsiCodes:
+      type: string
+      description: 'A US State represented with their ANSI code. For ex: California = CA'
+      enum:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
   securitySchemes:
     bearer_auth:
       type: http

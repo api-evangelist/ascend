@@ -490,6 +490,31 @@ paths:
           description: successful
 components:
   schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: The email for the user
+        first_name:
+          type: string
+          description: First name of the user.
+        last_name:
+          type: string
+          description: Last name of the user.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: 'Phone number. Formatted: 5555555555'
+      required:
+      - email
+      - phone
     InvoiceItem:
       type: object
       description: Representation of a line item on the invoice.
@@ -679,31 +704,6 @@ components:
           minimum: 0
           example: 10000
           readOnly: true
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier for the user
-        email:
-          type: string
-          format: email
-          description: The email for the user
-        first_name:
-          type: string
-          description: First name of the user.
-        last_name:
-          type: string
-          description: Last name of the user.
-        phone:
-          type:
-          - string
-          - 'null'
-          description: 'Phone number. Formatted: 5555555555'
-      required:
-      - email
-      - phone
   securitySchemes:
     bearer_auth:
       type: http

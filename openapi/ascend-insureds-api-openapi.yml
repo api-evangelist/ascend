@@ -254,6 +254,60 @@ paths:
                     type: array
 components:
   schemas:
+    PaymentMethod:
+      type: object
+      description: It represents the payment instrument used by an insured.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the payment method.
+          readOnly: true
+        payment_type:
+          type: string
+          enum:
+          - card
+          - ach_debit
+          - ach_credit_transfer
+          - us_bank_account
+          - check
+          description: The type of payment method.
+          readOnly: true
+        card:
+          type: object
+          description: Detailed information about the card.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the card.
+            brand:
+              type: string
+              description: The card brand.
+          required:
+          - brand
+          - last_four_digits
+        ach_debit:
+          type: object
+          description: Detailed information about the ach method.
+          properties:
+            last_four_digits:
+              type: string
+              description: The last four digits of the account number.
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
+          - last_four_digits
+        ach_credit:
+          type: object
+          description: Detailed information about the ach credit method.
+          properties:
+            bank_name:
+              type: string
+              description: The name of the bank institution.
+          required:
+          - bank_name
     StateAnsiCodes:
       type: string
       description: 'A US State represented with their ANSI code. For ex: California = CA'
@@ -387,60 +441,6 @@ components:
       - mailing_address_city
       - mailing_address_state
       - mailing_address_zip_code
-    PaymentMethod:
-      type: object
-      description: It represents the payment instrument used by an insured.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The unique identifier of the payment method.
-          readOnly: true
-        payment_type:
-          type: string
-          enum:
-          - card
-          - ach_debit
-          - ach_credit_transfer
-          - us_bank_account
-          - check
-          description: The type of payment method.
-          readOnly: true
-        card:
-          type: object
-          description: Detailed information about the card.
-          properties:
-            last_four_digits:
-              type: string
-              description: The last four digits of the card.
-            brand:
-              type: string
-              description: The card brand.
-          required:
-          - brand
-          - last_four_digits
-        ach_debit:
-          type: object
-          description: Detailed information about the ach method.
-          properties:
-            last_four_digits:
-              type: string
-              description: The last four digits of the account number.
-            bank_name:
-              type: string
-              description: The name of the bank institution.
-          required:
-          - bank_name
-          - last_four_digits
-        ach_credit:
-          type: object
-          description: Detailed information about the ach credit method.
-          properties:
-            bank_name:
-              type: string
-              description: The name of the bank institution.
-          required:
-          - bank_name
   securitySchemes:
     bearer_auth:
       type: http
